@@ -1,0 +1,90 @@
+/* arvideo — shared brand tokens (one brand, two boards)
+   Landing, Factory GUI, and Spotter GUI all import this file.
+   Per-app accents are set by a data-app attribute on <html> or <body>. */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  /* palette — Habitat register, no grays */
+  --pine:#0F3B31;
+  --cream:#F1E7CE;
+  --orange:#D3572A;
+  --olive:#7E8A4D;
+  --sky:#9CC3B8;
+  --cocoa:#33231A;
+  --barrel:#161210;
+
+  /* derived inks (from landing v5) */
+  --ink-on-cream:#5C4634;
+  --ink-on-sky:#2E3B33;
+  --ink-on-orange:#F7EFDC;
+  --ink-on-olive:#F3EEDD;
+
+  /* type */
+  --disp:'Bricolage Grotesque',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+
+  /* shared shapes */
+  --slab-radius:1.4rem 2.8rem 1.4rem 2.8rem; /* the door/tool slab cut */
+  --pill-radius:99px;
+
+  /* default accent — overridden per app below */
+  --accent:var(--orange);
+  --accent-ink:var(--cream);
+  --app-bg:var(--pine);
+  --app-fg:var(--cream);
+}
+
+/* Both GUIs are night tools — dark benches, one brand, two boards. */
+
+/* factory = the edit bay: barrel/cocoa workshop, orange accent */
+[data-app="factory"]{
+  --accent:var(--orange);
+  --accent-ink:var(--cream);
+  --app-bg:var(--barrel);
+  --app-surface:#221A14;      /* cocoa-leaning bench */
+  --app-well:#0E0B08;
+  --app-edge:#3A2F27;
+  --app-fg:var(--cream);
+  --app-mute:#A89A82;
+}
+
+/* spotter = the light table: pine darkroom, sky accent */
+[data-app="spotter"]{
+  --accent:var(--sky);
+  --accent-ink:var(--pine);
+  --app-bg:#0A2921;           /* deep pine */
+  --app-surface:#0F3B31;      /* pine bench */
+  --app-well:#071E18;
+  --app-edge:#1E5547;
+  --app-fg:var(--cream);
+  --app-mute:#8FB3A8;
+}
+
+/* shared utility voice */
+.av-kicker{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.7rem;
+}
+.av-kicker::before{content:"";width:2.2rem;height:2px;background:currentColor;border-radius:2px}
+
+.av-head{
+  font-family:var(--disp);font-weight:800;text-transform:lowercase;
+  letter-spacing:-.035em;line-height:.9;
+}
+
+.av-tag{ /* mono status tag, film-slate voice */
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:.15rem .55rem;border-radius:var(--pill-radius);
+  background:var(--accent);color:var(--accent-ink);
+}
+
+.av-timecode{ /* readout strip voice: rendering · event · est 04:12 */
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
