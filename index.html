@@ -1,1015 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0F3B31">
-<title>arvideo.io — the home video studio suite</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F4EFE2">
+<title>arvideo — factory · spotter · safe send</title>
+<meta name="description" content="The arvideo suite: Factory indexes and edits your archive on your own hardware, Spotter finds any object in your footage, Safe Send hash-verifies cards before you wipe them. Self-hosted, your drives, your keys.">
 <link rel="icon" href="assets/icon-32.png">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Crete+Round:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --pine:#0F3B31;
-    --cream:#F1E7CE;
-    --orange:#D3572A;
-    --olive:#7E8A4D;
-    --sky:#9CC3B8;
-    --cocoa:#33231A;
-    --barrel:#161210;   /* lens housing near-black */
-    --disp:'Bricolage Grotesque',system-ui,sans-serif;
-    --mono:'Space Mono',ui-monospace,monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--disp);background:var(--pine);color:var(--cream);line-height:1.45;overflow-x:hidden}
-  ::selection{background:var(--orange);color:var(--cream)}
-  svg{display:block;max-width:100%}
-  .wrap{max-width:82rem;margin:0 auto;padding:0 clamp(1.1rem,4vw,3rem)}
-
-  /* ================= HERO ================= */
-  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
-  .topbar{
-    display:flex;justify-content:space-between;align-items:center;gap:1rem;
-    padding:1.1rem clamp(1.1rem,4vw,3rem);
-    font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);
-  }
-  .topbar .brand{color:var(--cream)}
-  .topbar .brand em{color:var(--orange);font-style:normal}
-  .topbar nav{display:flex;gap:1.3rem;flex-wrap:wrap}
-  .topbar a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:.1rem}
-  .topbar a:hover,.topbar a:focus-visible{border-bottom-color:var(--orange);color:var(--cream);outline:none}
-
-  .hero-body{position:relative;flex:1;display:flex;align-items:center}
-  .hero-body .wrap{flex:1}
-  .wordmark{
-    position:relative;z-index:4;
-    font-weight:800;font-optical-sizing:auto;
-    font-size:clamp(4rem,16.5vw,14.5rem);
-    line-height:.82;letter-spacing:-.045em;text-transform:lowercase;color:var(--cream);
-  }
-  .wordmark{display:flex;align-items:flex-end;gap:clamp(.3rem,1vw,.7rem)}
-  .wm-hand{width:clamp(16rem,56vw,50rem);height:auto;opacity:.96;
-    filter:drop-shadow(5px 5px 0 rgba(211,87,42,.18))}
-  .wordmark .dot{width:clamp(.8rem,2.6vw,2.2rem);height:clamp(.8rem,2.6vw,2.2rem);
-    background:var(--orange);border-radius:50%;flex:none;margin-bottom:clamp(.15rem,.8vw,.6rem)}
-  .tagline{
-    margin-top:1.9rem;max-width:34ch;position:relative;z-index:4;
-    font-size:clamp(1.02rem,2.1vw,1.45rem);font-weight:300;color:var(--sky);
-  }
-  .tagline b{color:var(--cream);font-weight:600}
-  .heromono{
-    margin-top:1.4rem;position:relative;z-index:4;
-    font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);
-  }
-
-  /* ---------- THE LENS (.3x ultra fisheye homage) ---------- */
-  .lensrig{
-    position:absolute;z-index:3;
-    right:clamp(-5rem,-3vw,-1rem);top:50%;transform:translateY(-54%);
-    width:clamp(17rem,44vw,33rem);aspect-ratio:1/1;
-  }
-  /* orbit contour lines behind the lens — keep the line language */
-  .orbit{position:absolute;inset:-5%;border-radius:50%;border:2px solid var(--olive);transform:rotate(-8deg) scaleY(.96)}
-  .orbit.two{inset:-9%;border-color:var(--orange);opacity:.6;transform:rotate(5deg) scaleX(.97)}
-  .lens{position:absolute;inset:0;border-radius:50%;background:var(--barrel);
-    box-shadow:inset 0 0 0 2px #2A211C, 0 30px 80px rgba(0,0,0,.45)}
-  /* engraved ring text */
-  .ringtext{position:absolute;inset:0}
-  .ringtext text{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;
-    fill:#CFC5B2;text-transform:uppercase;
-  }
-  /* bevel rings — death-lens proportions: barely-there barrel, almost all glass */
-  .bevel{position:absolute;inset:2%;border-radius:50%;background:#0D0A08;
-    box-shadow:inset 0 0 0 1px #3A2F27, inset 0 0 0 2px #14100D, inset 0 0 0 2.5px #4A3C31}
-  /* the glass */
-  .glass{position:absolute;inset:3.2%;border-radius:50%;overflow:hidden;background:#07120E;cursor:pointer;
-    box-shadow:inset 0 0 34px rgba(0,0,0,.85), inset 0 -14px 34px rgba(0,0,0,.55)}
-  .glass svg{width:100%;height:100%}
-  .glass img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1);z-index:1}
-  .glass::after{ /* halftone print texture over the reflection */
-    content:"";position:absolute;inset:0;border-radius:50%;
-    background-image:radial-gradient(circle, rgba(241,231,206,.10) 1px, transparent 1.6px);
-    background-size:6px 6px;
-  }
-  .lensdots{position:absolute;left:50%;bottom:-2.4rem;transform:translateX(-50%);display:flex;gap:.55rem;z-index:7}
-  .ldot{width:13px;height:13px;border-radius:50%;border:2px solid var(--sky);background:transparent;cursor:pointer;padding:0}
-  .ldot.on{background:var(--orange);border-color:var(--orange)}
-  .ldot:hover{border-color:var(--orange)}
-  .ldot:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
-  .lenscap{position:absolute;left:50%;bottom:-4.2rem;transform:translateX(-50%);white-space:nowrap;
-    font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--olive)}
-  .glare{ /* convex specular sweep */
-    position:absolute;inset:3.2%;border-radius:50%;pointer-events:none;
-    background:
-      radial-gradient(ellipse 42% 26% at 32% 22%, rgba(255,255,255,.5), transparent 70%),
-      radial-gradient(ellipse 20% 10% at 62% 12%, rgba(255,255,255,.28), transparent 70%);
-  }
-
-  .scrollcue{
-    padding:0 clamp(1.1rem,4vw,3rem) 1.4rem;
-    font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);
-  }
-
-  /* ================= CONTOUR DIVIDERS ================= */
-  .contour{display:block;width:100%;height:clamp(90px,14vw,190px);position:relative;z-index:5}
-  .contour svg{width:100%;height:100%}
-  .band{will-change:transform}
-
-  /* ================= SPREADS ================= */
-  section.spread{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(4rem,9vw,8rem)}
-  .spread.cream{background:var(--cream);color:var(--cocoa)}
-  .spread.skyf{background:var(--sky);color:var(--cocoa)}
-  .spread.orange{background:var(--orange);color:var(--cream)}
-  .spread.olivef{background:var(--olive);color:var(--cream)}
-  .spread.pine{background:var(--pine);color:var(--cream)}
-
-  .kicker{
-    font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
-    display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;
-  }
-  .spread.cream .kicker{color:var(--orange)}
-  .spread.skyf .kicker{color:var(--pine)}
-  .spread.orange .kicker{color:var(--pine)}
-  .spread.olivef .kicker{color:var(--cream)}
-  .spread.pine .kicker{color:var(--sky)}
-  .kicker::before{content:"";width:2.2rem;height:2px;background:currentColor;border-radius:2px}
-
-  .adhead{font-weight:800;text-transform:lowercase;letter-spacing:-.035em;line-height:.88;font-size:clamp(2.8rem,9.5vw,7.8rem)}
-  .adhead .alt{font-weight:300;font-style:italic;letter-spacing:-.02em}
-  .spread.cream .adhead .alt{color:var(--olive)}
-  .spread.skyf .adhead .alt{color:var(--pine)}
-  .spread.orange .adhead .alt{color:var(--cream);opacity:.85}
-  .spread.olivef .adhead .alt{color:var(--pine)}
-  .adcopy{margin-top:1.6rem;max-width:38ch;font-size:clamp(1rem,1.8vw,1.22rem)}
-  .spread.cream .adcopy{color:#5C4634}
-  .spread.skyf .adcopy{color:#2E3B33}
-  .spread.orange .adcopy{color:#F7EFDC}
-  .spread.olivef .adcopy{color:#F3EEDD}
-
-  /* prompt mode: the order counter */
-  .orderline{
-    margin-top:2.8rem;border:2px solid var(--cream);border-radius:99px;
-    padding:1.05rem 1.5rem;display:flex;align-items:center;gap:.9rem;
-    font-family:var(--mono);font-size:clamp(.82rem,1.7vw,1.05rem);color:var(--cream);
-    background:rgba(15,59,49,.35);
-  }
-  .orderline .ps{color:var(--orange);font-weight:700;flex:none}
-  .orderline .caret{display:inline-block;width:.55em;height:1.15em;background:var(--cream);
-    margin-left:.15em;vertical-align:text-bottom;animation:caret 1s steps(2,start) infinite}
-  @keyframes caret{50%{opacity:0}}
-  .resolves{
-    margin-top:1.1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;
-    text-transform:uppercase;color:#EAF0DC;opacity:.85;
-  }
-  .outslip{
-    margin-top:2rem;display:inline-block;border:2px dashed var(--cream);border-radius:.9rem 1.8rem .9rem 1.8rem;
-    padding:.85rem 1.2rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--cream);
-  }
-  .outslip b{color:var(--pine);font-weight:700}
-
-  .spreadgrid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
-  @media (max-width:760px){.spreadgrid{grid-template-columns:1fr}}
-
-  .feats{margin-top:2.4rem;border-top:2px solid currentColor}
-  .feat{display:grid;grid-template-columns:3.2rem 1fr auto;gap:1rem;align-items:baseline;
-    padding:1rem 0;border-bottom:1px solid rgba(51,35,26,.25)}
-  .spread.orange .feat{border-bottom-color:rgba(241,231,206,.35)}
-  .feat .ix{font-family:var(--mono);font-weight:700;font-size:.85rem}
-  .spread.cream .feat .ix{color:var(--orange)}
-  .spread.skyf .feat .ix{color:var(--orange)}
-  .spread.orange .feat .ix{color:var(--pine)}
-  .feat .nm{font-weight:600;font-size:1.02rem;text-transform:lowercase}
-  .feat .nm small{display:block;font-weight:400;opacity:.75;font-size:.85rem;margin-top:.1rem;text-transform:none}
-  .feat .md{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
-
-  /* factory art panel — circular port (lens family), no leaves */
-  .panel{position:relative;min-height:clamp(17rem,38vw,28rem);display:flex;align-items:center;justify-content:center}
-  .port{
-    position:relative;width:min(100%,26rem);aspect-ratio:1/1;border-radius:50%;overflow:hidden;
-    border:3px solid var(--cocoa);
-    background:
-      radial-gradient(circle at 68% 22%, rgba(241,231,206,.85), transparent 40%),
-      radial-gradient(circle at 22% 80%, rgba(126,138,77,.7), transparent 55%),
-      linear-gradient(200deg,#B44820,#5E2410);
-  }
-  .port::after{content:"";position:absolute;inset:0;
-    background-image:radial-gradient(circle, rgba(51,35,26,.22) 1px, transparent 1.7px);background-size:6px 6px}
-  .port-echo{position:absolute;width:min(104%,27rem);aspect-ratio:1/1;border-radius:50%;
-    border:2px solid var(--pine);transform:translate(3%,-3%)}
-  .panel .tc{position:absolute;left:50%;transform:translateX(-50%);bottom:-.4rem;white-space:nowrap;
-    font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--cocoa)}
-
-  /* detect: tracking viz */
-  .trackpanel{position:relative;min-height:clamp(17rem,38vw,28rem)}
-  .trackpanel svg{width:100%;height:100%;position:absolute;inset:0}
-  .readout{
-    position:absolute;right:2%;bottom:0;
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;line-height:1.9;color:var(--pine);
-    text-transform:uppercase;text-align:right;
-  }
-  .readout b{color:var(--orange);font-weight:400}
-
-  /* ticker */
-  .ticker{overflow:hidden;border-top:2px solid var(--cocoa);border-bottom:2px solid var(--cocoa);
-    margin-top:clamp(2.4rem,6vw,4rem);padding:.7rem 0;white-space:nowrap}
-  .spread.orange .ticker{border-color:var(--cream)}
-  .ticker .rail{display:inline-block;animation:slide 26s linear infinite}
-  .ticker span{font-weight:700;text-transform:lowercase;font-size:1.15rem;margin-right:2.6rem}
-  .ticker .o{color:var(--orange)}
-  @keyframes slide{to{transform:translateX(-50%)}}
-
-  /* spotter: circular contact ports */
-  .organics{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.6vw,1.8rem);margin-top:3rem}
-  @media (max-width:560px){.organics{grid-template-columns:repeat(2,1fr)}}
-  .oframe{position:relative;aspect-ratio:1/1;border-radius:50%;border:2px solid var(--cream)}
-  .oframe .ph{position:absolute;inset:6%;border-radius:50%;overflow:hidden;
-    background:radial-gradient(circle at 30% 30%, rgba(241,231,206,.75), transparent 45%),linear-gradient(160deg,#155244,#08251E)}
-  .oframe:nth-child(2) .ph{background:radial-gradient(circle at 70% 25%, rgba(156,195,184,.8), transparent 50%),linear-gradient(120deg,#6E7A41,#2C331A)}
-  .oframe:nth-child(4) .ph{background:radial-gradient(circle at 50% 75%, rgba(211,87,42,.6), transparent 55%),linear-gradient(200deg,#124638,#071F1A)}
-  .oframe:nth-child(5) .ph{background:radial-gradient(circle at 25% 60%, rgba(241,231,206,.6), transparent 45%),linear-gradient(140deg,#7E8A4D,#3A3F22)}
-  .oframe .ph::after{content:"";position:absolute;inset:0;
-    background-image:radial-gradient(circle, rgba(241,231,206,.15) 1px, transparent 1.6px);background-size:6px 6px}
-  .oframe.pick{border-color:var(--pine);border-width:3px}
-  .oframe.pick::after{content:"pick";position:absolute;top:-.6rem;right:8%;
-    background:var(--pine);color:var(--cream);font-family:var(--mono);font-size:.58rem;
-    letter-spacing:.16em;text-transform:uppercase;padding:.15rem .5rem;border-radius:99px}
-  .oframe .id{position:absolute;bottom:-1.5rem;left:14%;
-    font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--cream);opacity:.85}
-  .runline{margin-top:3.2rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
-    text-transform:uppercase;color:#F7EFDC;opacity:.9}
-
-  /* tools */
-  .toolgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(1rem,2.6vw,1.8rem);margin-top:2.6rem}
-  .tool{
-    border:2px solid var(--sky);border-radius:1.4rem 2.8rem 1.4rem 2.8rem;padding:1.5rem 1.5rem 1.4rem;
-    color:var(--cream);
-  }
-  .tool .tk{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
-  .tool h3{font-weight:800;text-transform:lowercase;font-size:1.7rem;letter-spacing:-.03em;margin:.35rem 0 .35rem}
-  .tool p{font-size:.92rem;color:var(--sky)}
-  .tool.ghost{border-style:dashed;opacity:.6}
-
-  /* pipeline vine (lines only) */
-  .vinewrap{position:relative;margin-top:2.4rem}
-  .vinewrap svg{width:100%;height:auto}
-  .stops{display:flex;justify-content:space-between;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
-  .stop{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
-  .stop b{display:block;font-family:var(--disp);font-weight:700;font-size:1.02rem;color:var(--cream);text-transform:lowercase}
-
-  /* doors */
-  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(1rem,2.6vw,1.8rem);margin-top:clamp(2.4rem,6vw,3.6rem)}
-  .door{display:block;text-decoration:none;color:var(--cream);
-    border:2px solid var(--sky);border-radius:1.4rem 2.8rem 1.4rem 2.8rem;padding:1.4rem 1.5rem;
-    transition:transform .25s ease,border-color .25s ease}
-  .door:hover,.door:focus-visible{transform:translateY(-4px);border-color:var(--orange);outline:none}
-  .door .go{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
-  .door h3{font-weight:800;text-transform:lowercase;font-size:1.7rem;letter-spacing:-.03em;margin:.3rem 0 .2rem}
-  .door p{font-size:.9rem;color:var(--sky)}
-
-  footer{background:var(--cocoa);color:var(--cream);padding:clamp(3rem,7vw,5rem) 0 3.5rem}
-  footer .fm{display:flex;align-items:flex-end;gap:.5rem}
-  footer .fm img{width:clamp(11rem,26vw,17rem);height:auto;opacity:.95}
-  footer .fm .dot{width:clamp(.55rem,1.5vw,.95rem);height:clamp(.55rem,1.5vw,.95rem);
-    background:var(--orange);border-radius:50%;flex:none;margin-bottom:.3rem}
-  footer .cred{margin-top:1.6rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--sky);line-height:2.2}
-  footer .cred b{color:var(--orange);font-weight:400}
-
-  .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-  .rv.in{opacity:1;transform:none}
-
-  /* ---- print shop: slight off-registration on display heads (hand-touched, not costume) ---- */
-  .spread.cream .adhead,.spread.skyf .adhead{text-shadow:3px 3px 0 rgba(211,87,42,.16)}
-  .spread.orange .adhead,.spread.olivef .adhead,.spread.pine .adhead{text-shadow:3px 3px 0 rgba(241,231,206,.13)}
-  .wordmark{text-shadow:4px 4px 0 rgba(211,87,42,.14)}
-
-  /* ---- real imagery in the ports (halftone + circle language preserved) ---- */
-  .port img,.oframe .ph img{width:100%;height:100%;object-fit:cover;display:block;
-    filter:saturate(.82) contrast(1.05)}
-  .port{isolation:isolate}
-  .port img{position:absolute;inset:0;z-index:0}
-  .port::after{z-index:1}
-
-  /* ---- interactive layer ---- */
-  .lensrig .glass svg,.lensrig .glass img,.lensrig .glare{transition:transform .18s ease-out;will-change:transform}
-  .oframe{cursor:pointer;transition:transform .2s ease}
-  .oframe:hover,.oframe:focus-visible{transform:translateY(-3px);outline:none}
-  .oframe:focus-visible{border-color:var(--pine)}
-  .stop{cursor:pointer;text-decoration:none;display:inline-block;padding:.2rem .3rem;border-radius:.4rem}
-  .stop:hover b,.stop:focus-visible b{color:var(--orange)}
-  .stop:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
-  .vc{transition:r .2s ease}
-  .vc.lit{stroke:#F1E7CE;stroke-width:3}
-  .orderline{cursor:pointer}
-  .trackpanel g[data-line]{pointer-events:all;cursor:crosshair}
-  .readout span{transition:color .2s ease}
-  .readout span.lit,.readout span.lit b{color:var(--orange)}
-
-  /* ---- prologue: the mountain ---- */
-  .mtnpanel{position:relative;min-height:clamp(17rem,38vw,26rem)}
-  .mtnpanel svg{position:absolute;inset:0;width:100%;height:100%}
-  .mtnpanel text{font-family:var(--mono);text-transform:uppercase}
-  .cam .feed{transition:stroke .25s ease}
-  .cam:hover .feed{stroke:var(--orange)}
-  .cam:hover .ci{stroke:var(--orange)}
-
-  /* ---- scroll-step reveals (mountain rings, index extraction) ---- */
-  .steps.armed [data-step]{opacity:0;transform:scale(.75);transform-box:fill-box;transform-origin:center;
-    transition:opacity .5s ease,transform .5s ease}
-  .steps.armed [data-step].stepon{opacity:1;transform:none}
-
-  /* ---- index: squeezing clips into the database ---- */
-  .dbpanel{position:relative;min-height:clamp(19rem,40vw,28rem)}
-  .dbpanel svg{position:absolute;inset:0;width:100%;height:100%}
-  .dbpanel text{font-family:var(--mono)}
-
-  /* ---- many lenses: the detection box hunts ---- */
-  .trackbox{transform-box:fill-box;transform-origin:center;animation:hunt 9s ease-in-out infinite alternate}
-  @keyframes hunt{
-    0%{transform:translate(0,0) scale(1)}
-    30%{transform:translate(16px,8px) scale(1.06)}
-    62%{transform:translate(-12px,12px) scale(.93)}
-    100%{transform:translate(6px,-6px) scale(1.02)}
-  }
-
-  /* ---- pipeline vine: signal traveling the line ---- */
-  .vinepulse{stroke-dasharray:26 1400;animation:vtravel 8s linear infinite}
-  @keyframes vtravel{to{stroke-dashoffset:-1426}}
-
-  /* ---- spotter: demo results slip ---- */
-  .spotlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.6rem}
-  .sr{border:2px dashed var(--cream);border-radius:.9rem 1.8rem .9rem 1.8rem;padding:.85rem 1.1rem;
-    font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--cream);line-height:2}
-  .sr .srh{display:block;text-transform:uppercase;letter-spacing:.18em;color:var(--pine);font-weight:700}
-  .sr b{color:var(--pine);font-weight:400}
-  .spotnote{margin-top:.8rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
-    text-transform:uppercase;color:#F7EFDC;opacity:.7}
-
-  @media (prefers-reduced-motion:reduce){
-    .trackbox{animation:none}
-    .vinepulse{animation:none;stroke-dasharray:none;opacity:0}
-    .steps.armed [data-step]{transition:none;opacity:1;transform:none}
-  }
-
-  /* ---- ways of seeing (cocoa spread) ---- */
-  .spread.cocoaf{background:var(--cocoa);color:var(--cream)}
-  .spread.cocoaf .kicker{color:var(--sky)}
-  .spread.cocoaf .adhead .alt{color:var(--sky)}
-  .spread.cocoaf .adcopy{color:#E3D5C2}
-  .seegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(1.2rem,3vw,2rem);margin-top:2.8rem}
-  .see{border:2px solid rgba(241,231,206,.35);border-radius:1.4rem 2.8rem 1.4rem 2.8rem;
-    padding:1.35rem 1.35rem 1.5rem;display:flex;flex-direction:column;gap:.85rem}
-  .see .tk{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
-  .see h3{font-weight:800;text-transform:lowercase;font-size:1.45rem;letter-spacing:-.03em}
-  .see p{font-size:.92rem;color:#D9C8B4}
-  .see svg{width:100%;height:auto}
-  .see .slate{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;line-height:2.1;
-    text-transform:uppercase;color:var(--sky);border:1px dashed rgba(241,231,206,.4);
-    border-radius:.9rem;padding:.85rem 1rem}
-  .see .slate b{color:var(--orange);font-weight:400}
-  .see .starline{stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.4s ease}
-  .see.star:hover .starline,.see.star:focus-within .starline{stroke-dashoffset:0}
-  @media (prefers-reduced-motion:reduce){
-    .see .starline{stroke-dashoffset:0;transition:none}
-    .cam .feed{transition:none}
-  }
-
-  @media (max-width:760px){
-    .lensrig{opacity:.5}
-    .wordmark,.tagline,.heromono{z-index:6}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .rv{opacity:1;transform:none;transition:none}
-    .ticker .rail{animation:none}
-    .caret{animation:none}
-    .band{transform:none !important}
-    .door{transition:none}
-    html{scroll-behavior:auto}
-  }
+body{margin:0;background:#F4EFE2;font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1F5CA8}a:hover{color:#C93B26}
+html{scroll-behavior:smooth}
+.deck-card{transition:transform .25s ease}
+.deck-card:hover{transform:translateY(-8px)}
+.slot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+a.cta{ text-decoration:none; display:inline-block }
+@media (max-width:900px){
+  .g2{display:block !important}
+  .g2 > div{margin-bottom:34px}
+  .pad{padding-left:24px !important;padding-right:24px !important}
+  .topnav a{display:none}
+}
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="topbar">
-    <span class="brand">arvideo<em>.io</em></span>
-    <nav>
-      <a href="index/" target="_blank" rel="noopener">index</a>
-      <a href="factory/" target="_blank" rel="noopener">factory</a>
-      <a href="prompt/" target="_blank" rel="noopener">prompt</a>
-      <a href="spotter/" target="_blank" rel="noopener">spotter</a>
-      <a href="tools/" target="_blank" rel="noopener">tools</a>
-    </nav>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:3px solid #2A1F16;background:#F4EFE2" data-screen-label="topbar">
+  <div style="display:flex;align-items:flex-end;gap:7px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:26px;width:auto;display:block"><span style="width:9px;height:9px;border-radius:50%;background:#E4762B;margin-bottom:3px"></span></div>
+  <div class="topnav" style="display:flex;align-items:center;gap:26px">
+    <a href="#factory" style="font-size:13px;font-weight:800;color:#C05A17;letter-spacing:-.01em;text-decoration:none">Factory</a>
+    <a href="#spotter" style="font-size:13px;font-weight:800;color:#1F5CA8;letter-spacing:-.01em;text-decoration:none">Spotter</a>
+    <a href="#safesend" style="font-size:13px;font-weight:800;color:#C93B26;letter-spacing:-.01em;text-decoration:none">SafeSend</a>
+    <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:7px 18px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none">Download</a>
   </div>
+</div>
 
-  <div class="hero-body wrap">
-    <div class="lensrig">
-      <div class="orbit" aria-hidden="true"></div>
-      <div class="orbit two" aria-hidden="true"></div>
-      <div class="lens" aria-hidden="true"></div>
-      <svg class="ringtext" viewBox="0 0 400 400" aria-hidden="true">
-        <defs>
-          <path id="ring" d="M200,200 m-187,0 a187,187 0 1,1 374,0 a187,187 0 1,1 -374,0"/>
-        </defs>
-        <text><textPath href="#ring" startOffset="0">arvideo optics · 0.3x ultra wide · mk-i · &#9678; · card to credits · home glass ·</textPath></text>
+<div class="g2 pad" style="display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:64px 44px 56px 64px;align-items:center;max-width:1400px;margin:0 auto;box-sizing:border-box" data-screen-label="hero">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="background:#F0BC3C;color:#2A1F16;font-size:13px;font-weight:900;padding:3px 8px">26</span>
+      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;color:#6A5A48">ARVIDEO.IO — SELF-HOSTED SUITE FOR PRO VIDEO</span>
+    </div>
+    <h1 style="margin:18px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:76px;line-height:.98;color:#1F5CA8;letter-spacing:-.01em">The good stuff<br>is in there.</h1>
+    <p style="margin:24px 0 0;font-size:16.5px;line-height:1.6;color:#4A3B2C;max-width:46ch">Decades of field tape — Hi-8, MiniDV, phones, GoPros, drones — sitting on drives, unlogged and unwatched.</p>
+    <div style="margin:18px 0 0;display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.5;color:#4A3B2C;max-width:54ch">
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C05A17;font-weight:800">Factory</b><span>indexes every clip and cuts the pile into finished, event-based videos.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#1F5CA8;font-weight:800">Spotter</b><span>finds anything you can show it.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C93B26;font-weight:800">Safe Send</b><span>clears your cards with receipts.</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;margin:32px 0 0">
+      <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none">Download</a>
+      <a href="mailto:info@arvideo.io" style="font-size:14px;font-weight:600;color:#2A1F16;text-decoration:underline;text-underline-offset:3px">info@arvideo.io</a>
+    </div>
+  </div>
+  <svg viewBox="0 0 520 620" style="width:100%;max-width:480px;justify-self:center;display:block" aria-label="clips in, videos out">
+    <rect x="6" y="140" width="26" height="40" fill="#F0BC3C"></rect>
+    <rect x="40" y="112" width="26" height="68" fill="#E4762B"></rect>
+    <rect x="74" y="80" width="26" height="100" fill="#F0BC3C"></rect>
+    <rect x="108" y="44" width="26" height="136" fill="#E4762B"></rect>
+    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#E4762B" stroke-width="120"></path>
+    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#F0BC3C" stroke-width="90"></path>
+    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#E4762B" stroke-width="60"></path>
+    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#F0BC3C" stroke-width="30"></path>
+    <path transform="translate(400,62)" d="M0,-54 C3,-54 5,-46 5,-34 L5,-12 L64,14 L64,22 L6,8 L6,30 L26,42 L26,49 L2,44 L-2,44 L-26,49 L-26,42 L-6,30 L-6,8 L-64,22 L-64,14 L-5,-12 L-5,-34 C-5,-46 -3,-54 0,-54 Z" fill="#2A1F16"></path>
+    <text x="8" y="608" font-size="11" letter-spacing="3" fill="#6A5A48" font-family="Archivo,Helvetica,sans-serif" font-weight="700">LOOSE CLIPS IN — FINISHED VIDEOS OUT</text>
+  </svg>
+</div>
+
+<div style="border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED;display:grid;grid-template-columns:1fr 1fr 1fr" data-screen-label="product strip">
+  <a href="#factory" style="padding:24px 34px;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#C05A17;letter-spacing:-.03em">01</span>
+    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Factory</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Loose archival footage in, watchable event videos out. Indexing, batch runs, AI edits, prompt orders.</span>
+    <span style="font-size:11px;font-weight:800;color:#C05A17;letter-spacing:.14em">FACTORY →</span></span>
+  </a>
+  <a href="#spotter" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">02</span>
+    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Spotter</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Show it a few frames of a thing; it finds that thing across your videos, timestamped and scored.</span>
+    <span style="font-size:11px;font-weight:800;color:#1F5CA8;letter-spacing:.14em">SPOTTER →</span></span>
+  </a>
+  <a href="#safesend" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#C93B26;letter-spacing:-.03em">03</span>
+    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Safe Send</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Byte-for-byte proof your card is backed up before you wipe it. One click to move what isn't.</span>
+    <span style="font-size:11px;font-weight:800;color:#C93B26;letter-spacing:.14em">SAFE SEND →</span></span>
+  </a>
+</div>
+
+<div id="factory" class="g2 pad" style="scroll-margin-top:20px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;padding:84px 64px 64px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="factory index">
+  <div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · THE INDEX</div>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Nothing gets cut blind.</h2>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Factory reads every clip before it touches one: quality scores, duration, resolution, camera body and everything the file will give up — GPMF telemetry included. Claude writes a scene description; transcription runs locally, timestamped. All of it lands in one database, and every edit downstream is a query against it.</p>
+    <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">SCORED</span><span style="font-size:13.5px;color:#4A3B2C">sharpness · brightness · motion · audio</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">LOGGED</span><span style="font-size:13.5px;color:#4A3B2C">camera · duration · resolution · GPMF telemetry · GPS</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DESCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">scene notes by Claude, per clip</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">TRANSCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">Whisper, timestamped, fully local</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DETECTED</span><span style="font-size:13.5px;color:#4A3B2C">optional — object detection, tracking, informatics</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">PROVENANCE</span><span style="font-size:13.5px;color:#4A3B2C">copyright carried from source clips through every edit, timestamped</span></div>
+    </div>
+  </div>
+  <div>
+    <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:340px;position:relative;background:#EAE2CE">
+      <img class="slot-img" src="assets/shot_factory.webp" alt="Factory GUI — a batch render running against the event library" style="object-position:50% 12%">
+    </div>
+    <div style="margin-top:10px;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 01 — FACTORY, INDEXING A CARD</div>
+  </div>
+</div>
+
+<div id="flow" style="scroll-margin-top:20px;border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED;padding:56px 0 40px" data-screen-label="the line interactive">
+  <div style="max-width:1400px;margin:0 auto;padding:0 64px;box-sizing:border-box">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · THE LINE</div>
+        <h2 style="margin:12px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1;color:#1F5CA8">Run it yourself.</h2>
+      </div>
+      <p style="margin:0;font-size:13.5px;color:#6A5A48;max-width:44ch;line-height:1.55">Pick folders — or run a prompt. Choose the cut, the mode, the render. When a render needs boxes or facts, the line dips through detections.</p>
+    </div>
+    <div style="display:flex;gap:34px;margin:34px 0 6px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">CUT</div>
+        <div style="display:flex;gap:8px">
+          <span id="cutOpts" style="display:flex;gap:8px"></span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">MODE</div>
+        <div style="display:flex;gap:8px">
+          <span id="modeOpts" style="display:flex;gap:8px"></span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">RENDER</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span id="renderOpts" style="display:flex;gap:8px"></span>
+          <span style="width:2px;height:22px;background:#D8CDB6;margin:0 4px"></span>
+          <span id="boxesChip">boxes</span>
+          <span id="hudChip">+ diagnostic hud</span>
+        </div>
+        <div id="boxNote" style="margin-top:6px;font-size:10px;color:#6A5A48;letter-spacing:.06em;min-height:12px"></div>
+      </div>
+    </div>
+    <div id="lineOuter" style="width:100%;height:640px;overflow:hidden"><div id="lineInner" style="position:relative;height:640px;width:1160px;transform:scale(1);transform-origin:0 0" data-screen-label="pipeline diagram">
+      <svg viewBox="0 0 1160 640" style="position:absolute;inset:0;width:100%;height:100%;display:block" preserveAspectRatio="xMidYMid meet">
+        <path d="M 335 170 H 490 C 526 170 508 430 544 430 H 744 C 780 430 762 170 798 170" fill="none" stroke="#B9AD93" stroke-width="3" stroke-dasharray="4 8" opacity="0" id="ghostPath"></path>
+        <g id="lanes"></g>
+        <g>
+          <rect x="362" y="106" width="36" height="128" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+          <text x="380" y="96" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#2A1F16" font-family="Archivo,Helvetica,sans-serif">CUT</text>
+          <rect x="430" y="106" width="36" height="128" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+          <text x="448" y="96" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#2A1F16" font-family="Archivo,Helvetica,sans-serif">MODE</text>
+          <rect x="818" y="106" width="36" height="128" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+          <text x="836" y="96" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#2A1F16" font-family="Archivo,Helvetica,sans-serif">RENDER</text>
+        </g>
+        <g id="detGates" opacity="1">
+          <rect x="548" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+          <rect x="626" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+          <rect x="704" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
+        </g>
       </svg>
-      <div class="bevel" aria-hidden="true"></div>
-      <div class="glass" id="glassbtn" role="button" tabindex="0" aria-label="next impact shot">
-        <!-- real glass: impact shots off the archive, shot on the suite's own cameras; contour scene beneath as fallback -->
-        <img src="assets/hero_shuttle.jpg" id="glassimg" alt="space shuttle discovery" loading="eager">
-        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="300" height="300" fill="#9CC3B8"/>
-          <circle cx="228" cy="66" r="17" fill="#F1E7CE"/>
-          <path d="M-20,190 Q150,96 320,190 L320,320 L-20,320 Z" fill="#7E8A4D"/>
-          <path d="M-20,218 Q150,132 320,218 L320,320 L-20,320 Z" fill="#0F3B31"/>
-          <path d="M-20,252 Q150,178 320,252 L320,320 L-20,320 Z" fill="#D3572A"/>
-          <path d="M-20,282 Q150,220 320,282 L320,320 L-20,320 Z" fill="#33231A"/>
-          <path d="M-20,204 Q150,114 320,204" fill="none" stroke="#33231A" stroke-width="3"/>
-          <path d="M-20,266 Q150,198 320,266" fill="none" stroke="#F1E7CE" stroke-width="2" opacity=".7"/>
-        </svg>
+      <div id="railA" class="detop" style="position:absolute;left:566px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
+      <div id="railB" class="detop" style="position:absolute;left:644px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
+      <div id="railC" class="detop" style="position:absolute;left:722px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
+      <div class="detop" style="position:absolute;left:644px;top:521px;transform:translateX(-50%);width:560px;text-align:center;pointer-events:none">
+        <div id="railSub1" style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6"></div>
+        <div id="railSub2" style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6"></div>
+        <div id="detState" style="margin-top:7px;font-size:10px;font-weight:800;letter-spacing:2px;color:#2A1F16"></div>
+        <div id="detNote" style="margin-top:3px;font-size:8.5px;font-weight:700;color:#B9AD93;min-height:11px"></div>
       </div>
-      <div class="glare" aria-hidden="true"></div>
-      <div class="lensdots" role="group" aria-label="choose the shot in the glass">
-        <button class="ldot on" data-shot="0" aria-label="space shuttle discovery"></button>
-        <button class="ldot" data-shot="1" aria-label="barnegat lighthouse"></button>
-        <button class="ldot" data-shot="2" aria-label="county fair thrill ride"></button>
-        <button class="ldot" data-shot="3" aria-label="steam engine firebox"></button>
-        <button class="ldot" data-shot="4" aria-label="barracuda"></button>
+      <div style="position:absolute;left:0;top:6px;font-size:10px;font-weight:800;letter-spacing:.18em;color:#6A5A48">SOURCE — FOLDERS, OR A PROMPT</div>
+      <div id="folderChips"></div>
+      <div id="promptChip" style="position:absolute;left:0;top:342px;width:200px;box-sizing:border-box;border:2.5px solid #B9AD93;background:transparent;opacity:.75;border-radius:10px;padding:9px 12px;cursor:pointer">
+        <div style="font-size:9.5px;font-weight:800;letter-spacing:.18em;color:#1F5CA8">PROMPT</div>
+        <div style="margin-top:4px;font-size:10.5px;font-style:italic;color:#4A3B2C;line-height:1.45">&#8220;every merry christmas in the last 5 years — christmas music, 2 min&#8221;</div>
       </div>
-      <span class="lenscap" id="lenscap">glass 01/05 · discovery</span>
-    </div>
-
-    <div>
-      <h1 class="wordmark"><img class="wm-hand" src="assets/arvideo_hand.png" alt="arvideo"><span class="dot" aria-hidden="true"></span></h1>
-      <p class="tagline">the self-hosted studio suite. <b>one workflow, card to credits</b> — offload, index, cut, render, store, then search back into the footage.</p>
-      <p class="heromono">your footage stays home · ai models on call, never on autopilot</p>
+      <div style="position:absolute;right:0;top:6px;width:210px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.18em;color:#6A5A48">OUTPUT — ONE PER EVENT</div>
+      <div id="noOutputs" style="display:none;position:absolute;right:0;top:120px;width:210px;border:2px dashed #B9AD93;border-radius:10px;padding:18px 14px;font-size:11.5px;color:#6A5A48;line-height:1.5">pick at least one folder — or run the prompt</div>
+      <div id="outputs"></div>
+    </div></div>
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:2.5px solid #2A1F16;padding-top:14px">
+      <div id="slateLine" style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16"></div>
+      <div style="font-size:12.5px;color:#6A5A48;max-width:56ch">Batch mode runs this same line across the whole archive, passively — the mountain shrinks while you sleep.</div>
     </div>
   </div>
+</div>
 
-  <p class="scrollcue">scroll — the whole ad runs long ↓</p>
-</header>
-
-<!-- ============ PROLOGUE: THE MOUNTAIN (pine) ============ -->
-<section class="spread pine" id="mountain" style="padding-top:clamp(1rem,3vw,2.5rem)">
-  <div class="wrap spreadgrid rv">
-    <div>
-      <span class="kicker">prologue — the mountain</span>
-      <h2 class="adhead">the footage<br><span class="alt" style="color:var(--olive)">mountain.</span></h2>
-      <p class="adcopy" style="color:var(--sky)">every camera you've ever carried — phones, action cams, 360 rigs, drones, the old handycam — has been quietly stacking hours onto a pile nobody could ever sit down and watch. it grows faster than any human can edit. the whole suite exists to move that mountain.</p>
-    </div>
-    <div class="mtnpanel steps" aria-hidden="true">
-      <svg viewBox="0 0 560 400" fill="none">
-        <!-- the cameras, each feeding the pile -->
-        <g class="cam">
-          <rect class="hit" x="18" y="20" width="90" height="70" fill="transparent"/>
-          <g class="ci" stroke="#F1E7CE" stroke-width="2.5">
-            <rect x="34" y="32" width="26" height="46" rx="5"/><circle cx="47" cy="44" r="3.5"/>
-          </g>
-          <path class="feed" d="M70,56 C160,70 260,180 398,266" stroke="#9CC3B8" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
-          <text x="30" y="88" fill="#9CC3B8" font-size="9.5" letter-spacing="2">PHONE</text>
-        </g>
-        <g class="cam">
-          <rect class="hit" x="18" y="92" width="90" height="62" fill="transparent"/>
-          <g class="ci" stroke="#F1E7CE" stroke-width="2.5">
-            <rect x="28" y="104" width="42" height="30" rx="5"/><circle cx="47" cy="119" r="8"/><line x1="34" y1="100" x2="42" y2="100"/>
-          </g>
-          <path class="feed" d="M76,120 C170,132 260,190 360,270" stroke="#9CC3B8" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
-          <text x="28" y="152" fill="#9CC3B8" font-size="9.5" letter-spacing="2">ACTION</text>
-        </g>
-        <g class="cam">
-          <rect class="hit" x="18" y="156" width="90" height="76" fill="transparent"/>
-          <g class="ci" stroke="#F1E7CE" stroke-width="2.5">
-            <circle cx="49" cy="175" r="13"/><circle cx="49" cy="175" r="5"/><line x1="49" y1="188" x2="49" y2="215"/>
-          </g>
-          <path class="feed" d="M66,189 C160,200 250,240 330,276" stroke="#9CC3B8" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
-          <text x="32" y="230" fill="#9CC3B8" font-size="9.5" letter-spacing="2">360°</text>
-        </g>
-        <g class="cam">
-          <rect class="hit" x="16" y="234" width="94" height="70" fill="transparent"/>
-          <g class="ci" stroke="#F1E7CE" stroke-width="2.5">
-            <rect x="40" y="259" width="18" height="12" rx="3"/>
-            <line x1="40" y1="262" x2="22" y2="246"/><circle cx="20" cy="243" r="5"/>
-            <line x1="58" y1="262" x2="76" y2="246"/><circle cx="78" cy="243" r="5"/>
-            <line x1="40" y1="271" x2="22" y2="287"/><circle cx="20" cy="290" r="5"/>
-            <line x1="58" y1="271" x2="76" y2="287"/><circle cx="78" cy="290" r="5"/>
-          </g>
-          <path class="feed" d="M58,265 C150,270 230,278 300,283" stroke="#9CC3B8" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
-          <text x="26" y="308" fill="#9CC3B8" font-size="9.5" letter-spacing="2">DRONE</text>
-        </g>
-        <g class="cam">
-          <rect class="hit" x="16" y="306" width="94" height="74" fill="transparent"/>
-          <g class="ci" stroke="#F1E7CE" stroke-width="2.5">
-            <rect x="28" y="316" width="42" height="26" rx="5"/><rect x="70" y="322" width="12" height="14" rx="2"/><path d="M32,346 Q49,356 66,346"/>
-          </g>
-          <path class="feed" d="M88,330 C160,326 220,308 265,296" stroke="#9CC3B8" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
-          <text x="24" y="372" fill="#9CC3B8" font-size="9.5" letter-spacing="2">HANDYCAM</text>
-        </g>
-        <!-- the mountain: contour rings, growing as you scroll — oversized, bleeds past the frame -->
-        <ellipse data-step cx="440" cy="340" rx="201" ry="92" stroke="#F1E7CE" stroke-width="3"/>
-        <ellipse data-step cx="426" cy="318" rx="153" ry="68" stroke="#9CC3B8" stroke-width="3"/>
-        <ellipse data-step cx="415" cy="298" rx="105" ry="46" stroke="#7E8A4D" stroke-width="3"/>
-        <ellipse data-step cx="406" cy="281" rx="60" ry="26" stroke="#D3572A" stroke-width="3"/>
-        <circle data-step cx="401" cy="269" r="6" fill="#D3572A"/>
-        <text x="18" y="12" fill="#9CC3B8" font-size="9.5" letter-spacing="2">THE BACKLOG · STILL GROWING</text>
+<div style="position:relative;height:640px;border-bottom:3px solid #2A1F16;background:#CFC5AC" data-screen-label="real frames band">
+  <img class="slot-img" src="assets/line_frame.webp" alt="A real diagnostic render off the line — drone flight telemetry, cut details and quality metrics burned in" loading="lazy">
+  <div style="position:absolute;top:30px;left:40px;background:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.26em;color:#2A1F16;pointer-events:none">ARVIDEO.IO — FROM THE LINE</div>
+  <div style="position:absolute;top:34px;right:44px;width:250px;display:flex;flex-direction:column;gap:16px;align-items:flex-end;pointer-events:none">
+    <div style="background:#FAF7ED;padding:16px 16px 0;display:flex;gap:14px;align-items:flex-start">
+      <svg viewBox="-70 -60 140 120" style="width:58px;display:block;flex:none;margin-top:2px">
+        <path d="M0,-54 C3,-54 5,-46 5,-34 L5,-12 L64,14 L64,22 L6,8 L6,30 L26,42 L26,49 L2,44 L-2,44 L-26,49 L-26,42 L-6,30 L-6,8 L-64,22 L-64,14 L-5,-12 L-5,-34 C-5,-46 -3,-54 0,-54 Z" fill="#2A1F16"></path>
       </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DIVIDER: pine → sky ============ -->
-<div class="contour" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.06" fill="#7E8A4D" d="M0,70 C220,20 420,120 720,80 C1020,40 1220,130 1440,70 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.11" fill="#F1E7CE" d="M0,105 C260,60 480,150 760,105 C1040,62 1240,150 1440,100 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.16" fill="#D3572A" d="M0,140 C280,100 520,175 800,135 C1080,98 1260,170 1440,132 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.22" fill="#9CC3B8" d="M0,168 C300,140 560,190 840,162 C1120,136 1300,185 1440,160 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.11" fill="none" stroke="#0F3B31" stroke-width="3" d="M0,88 C240,40 460,135 740,92 C1030,50 1230,140 1440,85"/>
-  </svg>
-</div>
-
-<!-- ============ NO.01 THE INDEX (sky) ============ -->
-<section class="spread skyf" id="index">
-  <div class="wrap spreadgrid rv">
-    <div>
-      <span class="kicker">no. 01 — the index</span>
-      <h2 class="adhead">know your<br><span class="alt">footage.</span></h2>
-      <p class="adcopy">the foundation under everything downstream — every clip transcribed, measured, scored, and mapped before a single cut is made. cuts, ai edits, and prompt search are all just questions asked of the index.</p>
-      <div class="feats">
-        <div class="feat"><span class="ix">01</span><span class="nm">timestamped transcripts<small>every word, time-coded and searchable across the archive</small></span><span class="md">whisper</span></div>
-        <div class="feat"><span class="ix">02</span><span class="nm">object detection, optional<small>timestamped detections per clip — species, confidence, and where in the frame</small></span><span class="md">ai · opt-in</span></div>
-        <div class="feat"><span class="ix">03</span><span class="nm">camera &amp; lens metrics<small>body, lens, frame rate, resolution — plus motion &amp; audio scores, gps, timelapse flags</small></span><span class="md">measured</span></div>
-        <div class="feat"><span class="ix">04</span><span class="nm">one queryable database<small>everything above lands in a single database — the foundation prompt mode, auto-cut, and ai edit all run on</small></span><span class="md">queryable</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start">
+        <div style="width:13px;height:96px;background:#1C3A63;border-radius:0 0 7px 7px"></div>
+        <div style="width:13px;height:132px;background:#7FA99B;border-radius:0 0 7px 7px"></div>
+        <div style="width:13px;height:70px;background:#1F5CA8;border-radius:0 0 7px 7px"></div>
       </div>
     </div>
-    <div class="dbpanel steps" aria-hidden="true">
-      <svg viewBox="0 0 500 420" fill="none">
-        <!-- the clip -->
-        <g stroke="#0F3B31" stroke-width="3">
-          <rect x="28" y="26" width="168" height="106" rx="9"/>
-          <line x1="28" y1="48" x2="196" y2="48" stroke-width="2"/>
-          <line x1="44" y1="37" x2="52" y2="37" stroke-width="2"/><line x1="68" y1="37" x2="76" y2="37" stroke-width="2"/>
-          <line x1="92" y1="37" x2="100" y2="37" stroke-width="2"/><line x1="116" y1="37" x2="124" y2="37" stroke-width="2"/>
-          <path d="M98,72 L134,90 L98,108 Z" fill="#D3572A" stroke="none"/>
-        </g>
-        <text x="28" y="152" fill="#0F3B31" font-size="11" letter-spacing="1.5">GX010142.MP4 · 00:58</text>
-        <!-- the squeeze: everything the clip knows, wrung out into the db -->
-        <path d="M196,80 C300,86 350,140 384,208" stroke="#D3572A" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round"/>
-        <path d="M110,132 C150,230 240,268 330,286" stroke="#D3572A" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round"/>
-        <g data-step>
-          <rect x="212" y="52" width="146" height="22" rx="11" fill="#0F3B31"/>
-          <text x="224" y="67" fill="#F1E7CE" font-size="11" letter-spacing="1">"happy birthday…"</text>
-        </g>
-        <g data-step>
-          <rect x="252" y="102" width="110" height="22" rx="11" fill="#0F3B31"/>
-          <text x="264" y="117" fill="#F1E7CE" font-size="11" letter-spacing="1">4k60 · 24mm</text>
-        </g>
-        <g data-step>
-          <rect x="270" y="152" width="112" height="22" rx="11" fill="#D3572A"/>
-          <text x="282" y="167" fill="#F1E7CE" font-size="11" letter-spacing="1">osprey · 91%</text>
-        </g>
-        <g data-step>
-          <rect x="180" y="212" width="140" height="22" rx="11" fill="#0F3B31"/>
-          <text x="192" y="227" fill="#F1E7CE" font-size="11" letter-spacing="1">gps ✔ · motion .87</text>
-        </g>
-        <!-- the database -->
-        <g stroke="#0F3B31" stroke-width="3">
-          <ellipse cx="400" cy="248" rx="72" ry="19"/>
-          <path d="M328,248 L328,382 M472,248 L472,382"/>
-          <path d="M328,382 A72,19 0 0 0 472,382"/>
-        </g>
-        <g font-size="10.5">
-          <text data-step x="352" y="286" fill="#0F3B31" letter-spacing="1.5">▸ TRANSCRIPT</text>
-          <text data-step x="352" y="308" fill="#0F3B31" letter-spacing="1.5">▸ CAMERA + LENS</text>
-          <text data-step x="352" y="330" fill="#D3572A" letter-spacing="1.5">▸ DETECTIONS</text>
-          <text data-step x="352" y="352" fill="#0F3B31" letter-spacing="1.5">▸ GPS + SCORES</text>
-          <text data-step x="352" y="374" fill="#0F3B31" letter-spacing="1.5">▸ QUERYABLE ✔</text>
-        </g>
-        <text x="472" y="416" text-anchor="end" fill="#0F3B31" font-size="10" letter-spacing="2">EVERY CLIP · ONE DATABASE</text>
+    <div style="background:#FAF7ED;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;min-width:206px;box-sizing:border-box">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#C05A17;letter-spacing:-.02em;line-height:1.12">Factory</div>
+        <div style="font-size:20px;font-weight:800;color:#1F5CA8;letter-spacing:-.02em;line-height:1.12">Spotter</div>
+        <div style="font-size:20px;font-weight:800;color:#C93B26;letter-spacing:-.02em;line-height:1.12">SafeSend</div>
+        <div style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.16em;color:#6A5A48">INDEXED · EDITED · VERIFIED</div>
+      </div>
+      <div style="margin-left:auto;font-size:46px;font-weight:900;color:#1F5CA8;line-height:.9;letter-spacing:-.04em">3</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:0;bottom:0;width:584px;background:#FAF7ED;border-top-right-radius:120px;padding:26px 62px 22px 40px;box-sizing:border-box;pointer-events:none">
+    <div style="display:flex;align-items:center;gap:18px">
+      <svg viewBox="0 0 40 40" style="width:32px;flex:none;display:block">
+        <g fill="none" stroke="#2A1F16" stroke-width="2.2"><circle cx="20" cy="20" r="16"></circle><ellipse cx="20" cy="20" rx="16" ry="6.5"></ellipse><ellipse cx="20" cy="20" rx="6.5" ry="16"></ellipse><line x1="4" y1="20" x2="36" y2="20"></line></g>
       </svg>
+      <div style="width:2px;height:40px;background:#D8CDB6"></div>
+      <div style="display:flex;align-items:flex-end;gap:8px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:44px;width:auto;display:block"><span style="width:10px;height:10px;border-radius:50%;background:#E4762B;margin-bottom:5px"></span></div>
     </div>
+    <div style="margin-top:11px;font-size:12.5px;color:#6A5A48">real render, straight off the line — title card, informatics, or the full diagnostic hud</div>
   </div>
-</section>
-
-<!-- ============ DIVIDER: sky → cream ============ -->
-<div class="contour" style="background:var(--sky)" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.07" fill="#D3572A" d="M0,80 C260,130 500,30 760,85 C1020,140 1240,45 1440,95 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="#0F3B31" d="M0,120 C300,165 540,75 820,120 C1080,162 1280,90 1440,130 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.19" fill="#F1E7CE" d="M0,155 C320,185 580,120 860,155 C1120,185 1300,140 1440,165 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="none" stroke="#33231A" stroke-width="3" d="M0,95 C280,145 520,45 790,98 C1050,150 1260,60 1440,108"/>
-  </svg>
 </div>
 
-<!-- ============ NO.01 FACTORY (cream) ============ -->
-<section class="spread cream" id="factory">
-  <div class="wrap spreadgrid rv">
+<div id="spotter" class="g2 pad" style="scroll-margin-top:20px;display:grid;grid-template-columns:.98fr 1.02fr;gap:52px;padding:84px 64px 72px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="spotter">
+  <div>
+    <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:320px;position:relative;background:#EAE2CE">
+      <img class="slot-img" src="assets/shot_spotter.webp" alt="Spotter GUI — detections table with confidence-scored hits" style="object-position:50% 30%" loading="lazy">
+    </div>
+    <svg viewBox="0 0 460 96" style="width:100%;display:block;margin-top:18px">
+      <rect x="4" y="58" width="452" height="14" rx="7" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></rect>
+      <rect x="52" y="58" width="6" height="14" fill="#BFCDBB"></rect>
+      <rect x="84" y="58" width="6" height="14" fill="#1F5CA8"></rect>
+      <rect x="128" y="58" width="6" height="14" fill="#C0A05E"></rect>
+      <rect x="160" y="58" width="6" height="14" fill="#BFCDBB"></rect>
+      <rect x="208" y="58" width="6" height="14" fill="#1F5CA8"></rect>
+      <rect x="266" y="58" width="6" height="14" fill="#C0A05E"></rect>
+      <rect x="308" y="58" width="6" height="14" fill="#BFCDBB"></rect>
+      <rect x="352" y="58" width="6" height="14" fill="#1F5CA8"></rect>
+      <rect x="396" y="58" width="6" height="14" fill="#C0A05E"></rect>
+      <rect x="160" y="12" width="112" height="24" rx="6" fill="#1F5CA8"></rect>
+      <text x="172" y="28" font-size="11" font-weight="700" fill="#FAF7ED" font-family="Archivo,Helvetica,sans-serif">07:41 · match 98%</text>
+      <line x1="211" y1="36" x2="211" y2="58" stroke="#1F5CA8" stroke-width="2.5"></line>
+      <text x="4" y="92" font-size="9" letter-spacing="1.2" fill="#6A5A48" font-family="Archivo,Helvetica,sans-serif" font-weight="700">HITS, CODED BY CONFIDENCE — CLICK TO LAND ON THE MOMENT</text>
+    </svg>
+  </div>
+  <div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#1F5CA8">№ 02 — SPOTTER</div>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Show it. It finds it.</h2>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. DinoV2 takes the local guess (&#8220;soccer cleat&#8221;); Gemini, armed with your hints and the web, names it for real (&#8220;Mercurial Superfly 11 Elite — Breakout pack&#8221;).</p>
+    <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint (&#8220;this is from the 2026 World Cup&#8221;)</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SCAN</span><span style="font-size:13.5px;color:#4A3B2C">three detectors run head-to-head, scored per hit</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">IDENTIFY</span><span style="font-size:13.5px;color:#4A3B2C">local guess by DinoV2 · real answer by Gemini + web</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">RESULT</span><span style="font-size:13.5px;color:#4A3B2C">a confidence-coded timeline of every appearance</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SNIP</span><span style="font-size:13.5px;color:#4A3B2C">every hit snipped from its source video and filed to a target folder</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="safesend" style="scroll-margin-top:20px;border-top:3px solid #2A1F16;background:#FAF7ED;padding:76px 64px 72px" data-screen-label="safe send">
+  <div class="g2" style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
     <div>
-      <span class="kicker">no. 02 — factory</span>
-      <h2 class="adhead">grow the<br><span class="alt">edit.</span></h2>
-      <p class="adcopy">the batch bay pointed straight at the mountain — decades of unwatched footage in, watchable parts out. it reads the index, cuts to the beat, and resurfaces memories you forgot you filmed, while you sleep.</p>
-      <div class="feats">
-        <div class="feat"><span class="ix">01</span><span class="nm">cut options<small>normal · ai-edit · review · guide — informed by the index</small></span><span class="md">4 modes</span></div>
-        <div class="feat"><span class="ix">02</span><span class="nm">overlays &amp; render styles<small>normal · fun facts · star · diagnostic — from clean cut to science slate</small></span><span class="md">4 styles</span></div>
-        <div class="feat"><span class="ix">03</span><span class="nm">versioned renders → storage<small>every final lands in storage under version control — re-render, never overwrite</small></span><span class="md">kept</span></div>
-        <div class="feat"><span class="ix">04</span><span class="nm">cost on the slate<small>every api call metered — real spend per event, one command away</small></span><span class="md">$ tracked</span></div>
-      </div>
-    </div>
-    <div class="panel" aria-hidden="true">
-      <div class="port-echo"></div>
-      <div class="port"><img src="assets/port_factory.jpg" alt="" loading="lazy"></div>
-      <span class="tc">frame · great_falls_2014 · indexed · stored ✔</span>
-    </div>
-  </div>
-  <div class="wrap rv">
-    <div class="ticker" aria-hidden="true">
-      <div class="rail">
-        <span>offload</span><span class="o">index</span><span>cut</span><span class="o">render</span><span>store</span><span class="o">search</span><span>offload</span><span class="o">index</span><span>cut</span><span class="o">render</span><span>store</span><span class="o">search</span>
-        <span>offload</span><span class="o">index</span><span>cut</span><span class="o">render</span><span>store</span><span class="o">search</span><span>offload</span><span class="o">index</span><span>cut</span><span class="o">render</span><span>store</span><span class="o">search</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DIVIDER: cream → cocoa ============ -->
-<div class="contour" style="background:var(--cream)" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.07" fill="#D3572A" d="M0,78 C250,125 490,32 750,82 C1010,132 1240,48 1440,92 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="#0F3B31" d="M0,118 C290,160 540,78 815,118 C1080,158 1280,92 1440,128 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.19" fill="#33231A" d="M0,152 C315,182 575,122 855,152 C1120,182 1305,138 1440,162 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="none" stroke="#7E8A4D" stroke-width="3" d="M0,94 C270,140 515,48 785,96 C1045,144 1255,62 1440,104"/>
-  </svg>
-</div>
-
-<!-- ============ NO.02 SIDE B — WAYS OF SEEING (cocoa) ============ -->
-<section class="spread cocoaf" id="seeing">
-  <div class="wrap rv">
-    <span class="kicker">no. 02, side b — ways of seeing</span>
-    <h2 class="adhead">one archive,<br><span class="alt">many lenses.</span></h2>
-    <p class="adcopy">renders aren't one flavor. the same indexed footage comes back as a clean cut, a nature documentary, a star chart — or a full technical teardown of itself.</p>
-    <div class="seegrid">
-      <div class="see">
-        <span class="tk">render 01 · detection + informatics</span>
-        <svg viewBox="0 0 300 170" fill="none" aria-hidden="true">
-          <path d="M10,26 v-14 h14 M290,26 v-14 h-14 M10,144 v14 h14 M290,144 v14 h-14" stroke="#F1E7CE" stroke-width="2.5"/>
-          <g class="trackbox">
-            <rect x="92" y="52" width="118" height="78" rx="6" stroke="#D3572A" stroke-width="3"/>
-            <rect x="92" y="24" width="128" height="20" rx="10" fill="#D3572A"/>
-            <text x="102" y="38" fill="#F1E7CE" font-size="11" letter-spacing="1">sea turtle · 94%</text>
+      <div style="display:flex;align-items:center;gap:22px">
+        <svg viewBox="0 0 200 260" style="width:120px;flex:none;display:block" aria-label="safe send pigeon">
+          <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
+          <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
+          <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
+          <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
+          <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
+          <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
+          <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
+          <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
+          <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
+            <path d="M56,118 Q66,150 60,182"></path>
+            <path d="M70,110 Q82,148 74,188"></path>
+            <path d="M144,118 Q134,150 140,182"></path>
+            <path d="M130,110 Q118,148 126,188"></path>
           </g>
-          <line x1="20" y1="150" x2="120" y2="150" stroke="#9CC3B8" stroke-width="2"/>
-          <text x="20" y="164" fill="#9CC3B8" font-size="9" letter-spacing="1.5">READS THE EARTH'S MAGNETIC FIELD</text>
+          <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+          <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
+          <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+          <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+          <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
+          <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+          <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
         </svg>
-        <h3>any category you can name</h3>
-        <p>wildlife, aviation, steam engines, museum halls, local history — detection finds it, tracks it, and writes the story on screen. bounding boxes optional, facts on the slate.</p>
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C93B26">№ 03 — SAFE SEND</div>
+          <div style="margin-top:8px;font-size:34px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;line-height:1">Safe Send</div>
+          <div style="margin-top:7px;font-size:10.5px;font-weight:800;letter-spacing:.26em;color:#C93B26">VERIFIED OFFLOAD</div>
+        </div>
       </div>
-      <div class="see star" tabindex="0">
-        <span class="tk">render 02 · star mode</span>
-        <svg viewBox="0 0 300 170" fill="none" aria-hidden="true">
-          <circle cx="26" cy="120" r="1.8" fill="#F1E7CE"/><circle cx="70" cy="140" r="1.4" fill="#F1E7CE"/>
-          <circle cx="120" cy="128" r="2" fill="#F1E7CE"/><circle cx="180" cy="140" r="1.5" fill="#F1E7CE"/>
-          <circle cx="236" cy="122" r="1.8" fill="#F1E7CE"/><circle cx="270" cy="96" r="1.4" fill="#F1E7CE"/>
-          <circle cx="60" cy="30" r="1.5" fill="#F1E7CE"/><circle cx="150" cy="108" r="1.6" fill="#F1E7CE"/>
-          <circle cx="255" cy="30" r="2.2" fill="#F1E7CE"/>
-          <path class="starline" d="M40,62 L85,96 L130,56 L175,92 L220,52" stroke="#9CC3B8" stroke-width="1.6"/>
-          <circle cx="40" cy="62" r="3" fill="#D3572A"/><circle cx="85" cy="96" r="3" fill="#D3572A"/>
-          <circle cx="130" cy="56" r="3" fill="#D3572A"/><circle cx="175" cy="92" r="3" fill="#D3572A"/>
-          <circle cx="220" cy="52" r="3" fill="#D3572A"/>
-          <text x="196" y="36" fill="#9CC3B8" font-size="9.5" letter-spacing="2">CASSIOPEIA</text>
-          <text x="240" y="20" fill="#9CC3B8" font-size="8" letter-spacing="1.5">VEGA</text>
-        </svg>
-        <h3>star mode</h3>
-        <p>the same idea pointed up — celestial bodies and constellations identified and drawn over your night-sky footage.</p>
-      </div>
-      <div class="see">
-        <span class="tk">render 03 · diagnostic view</span>
-        <svg viewBox="0 0 300 170" fill="none" aria-hidden="true" font-size="8.5" letter-spacing="1.2">
-          <!-- the video frame, wearing its whole database as a HUD -->
-          <rect x="40" y="34" width="220" height="104" rx="4" stroke="rgba(241,231,206,.45)" stroke-width="1.5"/>
-          <path d="M40,44 v-10 h10 M260,44 v-10 h-10 M40,128 v10 h10 M260,128 v10 h-10" stroke="#D3572A" stroke-width="2.5"/>
-          <rect x="128" y="70" width="52" height="34" rx="4" stroke="#D3572A" stroke-width="2"/>
-          <text x="128" y="66" fill="#D3572A" font-size="8">osprey · 91%</text>
-          <text x="6" y="14" fill="#9CC3B8">CAM HERO5 · 27MM EQ</text>
-          <text x="192" y="14" fill="#9CC3B8">4K · 59.94FPS</text>
-          <text x="6" y="26" fill="#9CC3B8">HEVC · GPS ✔ · MOTION .87</text>
-          <text x="222" y="26" fill="#9CC3B8">TC 00:41</text>
-          <line x1="46" y1="120" x2="130" y2="120" stroke="#9CC3B8" stroke-width="1.5"/>
-          <text x="46" y="132" fill="#F1E7CE">"WATCH THIS!"</text>
-          <text x="6" y="152" fill="#9CC3B8">SONG BEAT ✔ · CUT 14/31</text>
-          <text x="6" y="164" fill="#D3572A">MODES AI-EDIT · OVERLAY · GUIDE</text>
-          <text x="212" y="164" fill="#9CC3B8">V6.3.0</text>
-        </svg>
-        <h3>the x-ray</h3>
-        <p>insanely revealing — the whole database worn as a hud around the video. camera, lens, resolution and frame rate, live transcription, detections, beat grid, and every mode flag used to cut it.</p>
+      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:50ch">Old card in a drawer? Don&#8217;t wipe anything on faith. Safe Send hashes every file on the card — bit-accurate, not filename matching — and checks it against your archive. Whatever isn&#8217;t backed up comes home in one click, filed to your folder scheme. Then, and only then, is the card clear.</p>
+      <div style="display:flex;gap:18px;margin:30px 0 0;flex-wrap:wrap">
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(-2deg)">HASHED ✓</span>
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(1.5deg)">COMPARED ✓</span>
+        <span style="border:3px solid #C93B26;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#C93B26;transform:rotate(-1deg)">CLEAR TO WIPE</span>
       </div>
     </div>
+    <div>
+      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:330px;position:relative;background:#EAE2CE">
+        <img class="slot-img" src="assets/shot_safesend.webp" alt="Safe Send — every file hash-verified on the NAS, card clear to wipe" style="object-position:50% 0%" loading="lazy">
+      </div>
+      <div style="margin-top:10px;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 03 — SAFE SEND, RECEIPTS BEFORE THE WIPE</div>
+    </div>
   </div>
-</section>
-
-<!-- ============ DIVIDER: cocoa → olive ============ -->
-<div class="contour" style="background:var(--cocoa)" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.07" fill="#D3572A" d="M0,80 C260,130 500,30 760,85 C1020,140 1240,45 1440,95 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="#0F3B31" d="M0,120 C300,165 540,75 820,120 C1080,162 1280,90 1440,130 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.19" fill="#7E8A4D" d="M0,155 C320,185 580,120 860,155 C1120,185 1300,140 1440,165 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.13" fill="none" stroke="#F1E7CE" stroke-width="3" d="M0,95 C280,145 520,45 790,98 C1050,150 1260,60 1440,108"/>
-  </svg>
 </div>
 
-<!-- ============ NO.03 PROMPT MODE (olive) ============ -->
-<section class="spread olivef" id="prompt">
-  <div class="wrap rv">
-    <span class="kicker">no. 03 — prompt mode</span>
-    <h2 class="adhead">just ask<br><span class="alt">for it.</span></h2>
-    <p class="adcopy">one sentence against everything the index knows — what you want, how long, which render style — and the counter hands back a finished part.</p>
-
-    <div class="orderline" role="img" aria-label="example prompt: all austin skateboarding from 2025, three minutes, star render">
-      <span class="ps">&gt;</span>
-      <span id="ptype">all austin skateboarding from 2025 — 3 min, star render</span>
-      <span class="caret" aria-hidden="true"></span>
+<div id="suite" style="scroll-margin-top:20px;border-top:3px solid #2A1F16;padding:76px 40px 60px;background:#F4EFE2" data-screen-label="deck wall">
+  <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#6A5A48">THE SUITE</div>
+    <div style="display:flex;align-items:flex-end;gap:10px;margin-top:18px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="width:360px;height:auto;display:block"><span style="width:14px;height:14px;border-radius:50%;background:#E4762B;margin-bottom:7px"></span></div>
+    <div style="width:360px;display:flex;flex-direction:column;gap:3px;margin-top:22px">
+      <div style="height:4px;background:#C0A05E"></div>
+      <div style="height:4px;background:#7FA99B"></div>
+      <div style="height:4px;background:#7B5EA7"></div>
+      <div style="height:4px;background:#D6432E"></div>
     </div>
-    <p class="resolves">resolves against · transcripts · detections · gps · camera metrics · dates · scores</p>
-
-    <p class="outslip">→ rendered <b>merry_christmas_alltime_v1.mp4</b> · 02:41 · versioned · stored</p>
+    <div style="margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.24em;color:#6A5A48">THREE TOOLS · ONE ARCHIVE</div>
   </div>
-</section>
-
-<!-- ============ DIVIDER: olive → orange ============ -->
-<div class="contour" style="background:var(--olive)" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.06" fill="#9CC3B8" d="M0,75 C240,115 460,35 720,78 C980,120 1220,45 1440,85 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.12" fill="#0F3B31" d="M0,112 C280,150 520,72 800,112 C1080,150 1280,85 1440,120 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.18" fill="#D3572A" d="M0,150 C300,180 560,118 840,150 C1120,180 1310,132 1440,158 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.12" fill="none" stroke="#33231A" stroke-width="3" d="M0,92 C260,132 500,50 770,92 C1030,132 1250,60 1440,100"/>
-  </svg>
+  <div style="display:flex;justify-content:center;gap:46px;padding:46px 0 8px;flex-wrap:wrap">
+    <a href="#factory" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+      <span style="display:block;background:#E4762B;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
+        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
+          <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="owl mark">
+            <path d="M52,46 L66,10 L82,38 Z" fill="#2A1F16"></path>
+            <path d="M148,46 L134,10 L118,38 Z" fill="#2A1F16"></path>
+            <path d="M52,46 Q100,30 148,46 L148,58 Q100,42 52,58 Z" fill="#2A1F16"></path>
+            <path d="M56,108 Q42,196 100,246 Q158,196 144,108 Z" fill="#FAF7ED" stroke="#2A1F16" stroke-width="6" stroke-linejoin="round"></path>
+            <clipPath id="owlbody2"><path d="M56,108 Q42,196 100,246 Q158,196 144,108 Z"></path></clipPath>
+            <g clip-path="url(#owlbody2)">
+              <path d="M66,122 L100,138 L134,122" fill="none" stroke="#E4762B" stroke-width="9"></path>
+              <path d="M66,144 L100,160 L134,144" fill="none" stroke="#E4762B" stroke-width="9"></path>
+              <path d="M66,166 L100,182 L134,166" fill="none" stroke="#E4762B" stroke-width="9"></path>
+              <path d="M66,188 L100,204 L134,188" fill="none" stroke="#E4762B" stroke-width="9"></path>
+              <path d="M66,210 L100,226 L134,210" fill="none" stroke="#E4762B" stroke-width="9"></path>
+              <rect x="52" y="112" width="12" height="112" rx="6" fill="#2A1F16"></rect>
+              <rect x="136" y="112" width="12" height="112" rx="6" fill="#2A1F16"></rect>
+            </g>
+            <circle cx="66" cy="72" r="34" fill="#2A1F16"></circle>
+            <circle cx="66" cy="72" r="27" fill="#E4762B"></circle>
+            <circle cx="66" cy="72" r="21" fill="#FAF7ED"></circle>
+            <g stroke="#2A1F16" stroke-width="3.5"><line x1="45" y1="72" x2="87" y2="72"></line><line x1="66" y1="51" x2="66" y2="93"></line><line x1="51.2" y1="57.2" x2="80.8" y2="86.8"></line><line x1="51.2" y1="86.8" x2="80.8" y2="57.2"></line></g>
+            <circle cx="66" cy="72" r="7" fill="#2A1F16"></circle>
+            <circle cx="134" cy="72" r="34" fill="#2A1F16"></circle>
+            <circle cx="134" cy="72" r="27" fill="#E4762B"></circle>
+            <circle cx="134" cy="72" r="21" fill="#FAF7ED"></circle>
+            <g stroke="#2A1F16" stroke-width="3.5"><line x1="113" y1="72" x2="155" y2="72"></line><line x1="134" y1="51" x2="134" y2="93"></line><line x1="119.2" y1="57.2" x2="148.8" y2="86.8"></line><line x1="119.2" y1="86.8" x2="148.8" y2="57.2"></line></g>
+            <circle cx="134" cy="72" r="7" fill="#2A1F16"></circle>
+            <path d="M100,106 L88,84 L112,84 Z" fill="#E4762B" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+            <rect x="70" y="244" width="16" height="11" rx="4" fill="#2A1F16"></rect>
+            <rect x="114" y="244" width="16" height="11" rx="4" fill="#2A1F16"></rect>
+          </svg>
+          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Factory</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">edits the pile into finished videos, overnight</span>
+          <span style="flex:1"></span>
+          <span style="font-size:34px;font-weight:900;color:#C05A17;letter-spacing:-.03em">01</span>
+          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#C05A17;letter-spacing:.18em">OPEN →</span>
+        </span>
+      </span>
+    </a>
+    <a href="#spotter" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+      <span style="display:block;background:#1F5CA8;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
+        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
+          <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="kestrel mark">
+            <rect x="10" y="96" width="58" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="22" y="120" width="46" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="34" y="144" width="34" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="46" y="168" width="22" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="132" y="96" width="58" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="132" y="120" width="46" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="132" y="144" width="34" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="132" y="168" width="22" height="14" rx="7" fill="#1F5CA8"></rect>
+            <rect x="94" y="184" width="12" height="54" rx="6" fill="#2A1F16" transform="rotate(-18 100 184)"></rect>
+            <rect x="94" y="184" width="12" height="54" rx="6" fill="#2A1F16" transform="rotate(18 100 184)"></rect>
+            <rect x="94" y="186" width="12" height="56" rx="6" fill="#2A1F16"></rect>
+            <rect x="76" y="88" width="48" height="94" rx="24" fill="#FAF7ED" stroke="#2A1F16" stroke-width="6"></rect>
+            <rect x="87" y="106" width="6" height="54" rx="3" fill="#1F5CA8"></rect>
+            <rect x="97" y="106" width="6" height="54" rx="3" fill="#1F5CA8"></rect>
+            <rect x="107" y="106" width="6" height="54" rx="3" fill="#1F5CA8"></rect>
+            <path d="M100,88 L90,78 L110,78 Z" fill="#2A1F16"></path>
+            <circle cx="100" cy="52" r="30" fill="#2A1F16"></circle>
+            <rect x="80" y="62" width="5" height="16" rx="2.5" fill="#FAF7ED"></rect>
+            <rect x="115" y="62" width="5" height="16" rx="2.5" fill="#FAF7ED"></rect>
+            <g stroke="#FAF7ED" stroke-width="3"><line x1="100" y1="24" x2="100" y2="31"></line><line x1="100" y1="73" x2="100" y2="80"></line><line x1="72" y1="52" x2="79" y2="52"></line><line x1="121" y1="52" x2="128" y2="52"></line></g>
+            <circle cx="100" cy="52" r="19" fill="#FAF7ED"></circle>
+            <circle cx="100" cy="52" r="11" fill="none" stroke="#1F5CA8" stroke-width="4"></circle>
+            <circle cx="100" cy="52" r="4" fill="#2A1F16"></circle>
+          </svg>
+          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Spotter</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">finds anything you can show it</span>
+          <span style="flex:1"></span>
+          <span style="font-size:34px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">02</span>
+          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#1F5CA8;letter-spacing:.18em">OPEN →</span>
+        </span>
+      </span>
+    </a>
+    <a href="#safesend" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+      <span style="display:block;background:#D6432E;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
+        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
+          <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="homing pigeon mark">
+            <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
+            <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
+            <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
+            <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
+            <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
+            <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
+            <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
+            <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
+            <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
+              <path d="M56,118 Q66,150 60,182"></path>
+              <path d="M70,110 Q82,148 74,188"></path>
+              <path d="M144,118 Q134,150 140,182"></path>
+              <path d="M130,110 Q118,148 126,188"></path>
+            </g>
+            <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+            <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
+            <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+            <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+            <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
+            <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+            <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+          </svg>
+          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Safe Send</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">wipe cards with receipts, never on faith</span>
+          <span style="flex:1"></span>
+          <span style="font-size:34px;font-weight:900;color:#C93B26;letter-spacing:-.03em">03</span>
+          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#C93B26;letter-spacing:.18em">OPEN →</span>
+        </span>
+      </span>
+    </a>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:30px 0 8px">
+    <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none">Download</a>
+    <span style="font-size:13px;color:#6A5A48">or write: <a href="mailto:info@arvideo.io" style="color:#2A1F16;font-weight:600">info@arvideo.io</a></span>
+  </div>
 </div>
 
-<!-- ============ NO.04 SPOTTER (orange) ============ -->
-<section class="spread orange" id="spotter">
-  <div class="wrap rv">
-    <span class="kicker">no. 04 — spotter</span>
-    <h2 class="adhead">search back<br><span class="alt">into it.</span></h2>
-    <p class="adcopy">the light table that closes the loop — hand it a reference image and it searches back into the stored footage, timestamp by timestamp. local matchers do the looking; ai verification only when you call for it.</p>
-    <div class="organics" id="lighttable">
-      <div class="oframe" role="button" tabindex="0" aria-pressed="false" data-key="turtle"><div class="ph"><img src="assets/spot_a.jpg" alt="snapping turtle found by spotter" loading="lazy"></div><span class="id">turtle · 1.00</span></div>
-      <div class="oframe pick" role="button" tabindex="0" aria-pressed="true" data-key="deck"><div class="ph"><img src="assets/spot_b.jpg" alt="skateboard deck found by spotter" loading="lazy"></div><span class="id">deck · 0.91</span></div>
-      <div class="oframe" role="button" tabindex="0" aria-pressed="false" data-key="cleat"><div class="ph"><img src="assets/spot_c.jpg" alt="cleat found by spotter" loading="lazy"></div><span class="id">cleat · 0.95</span></div>
-      <div class="oframe" role="button" tabindex="0" aria-pressed="false" data-key="plane"><div class="ph"><img src="assets/spot_d.jpg" alt="corsair fighter found by spotter" loading="lazy"></div><span class="id">corsair · 0.82</span></div>
-      <div class="oframe pick" role="button" tabindex="0" aria-pressed="true" data-key="fish"><div class="ph"><img src="assets/spot_e.jpg" alt="reef fish found by spotter" loading="lazy"></div><span class="id">reef fish · 0.88</span></div>
-      <div class="oframe" role="button" tabindex="0" aria-pressed="false" data-key="car"><div class="ph"><img src="assets/spot_f.jpg" alt="1921 touring car found by spotter" loading="lazy"></div><span class="id">hupmobile · 0.90</span></div>
-    </div>
-    <p class="runline">this run searched for · 6 frames · <span id="pickcount">2 picks</span> · filter: date ▸ run ▸ category — try the light table: tap a frame to pick it</p>
-    <div class="spotlist" id="spotlist" aria-live="polite"></div>
+<div style="background:#2A1F16;padding:64px 40px 44px" data-screen-label="footer">
+  <div style="display:flex;flex-direction:column;gap:3px;max-width:1320px;margin:0 auto">
+    <div style="height:4px;background:#C0A05E"></div>
+    <div style="height:4px;background:#7FA99B"></div>
+    <div style="height:4px;background:#7B5EA7"></div>
+    <div style="height:4px;background:#D6432E"></div>
   </div>
-</section>
-
-<!-- ============ DIVIDER: orange → pine ============ -->
-<div class="contour" style="background:var(--orange)" aria-hidden="true">
-  <svg viewBox="0 0 1440 190" preserveAspectRatio="none">
-    <path class="band" data-sp="0.06" fill="#F1E7CE" d="M0,75 C240,115 460,35 720,78 C980,120 1220,45 1440,85 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.12" fill="#7E8A4D" d="M0,112 C280,150 520,72 800,112 C1080,150 1280,85 1440,120 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.18" fill="#0F3B31" d="M0,150 C300,180 560,118 840,150 C1120,180 1310,132 1440,158 L1440,190 L0,190 Z"/>
-    <path class="band" data-sp="0.12" fill="none" stroke="#33231A" stroke-width="3" d="M0,92 C260,132 500,50 770,92 C1030,132 1250,60 1440,100"/>
-  </svg>
+  <div style="max-width:1320px;margin:34px auto 0;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:flex-end;gap:8px"><img src="assets/wordmark_src_1.png" alt="arvideo" style="height:44px;width:auto;display:block"><span style="width:11px;height:11px;border-radius:50%;background:#E4762B;margin-bottom:5px"></span></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:.22em;color:#B9AD93;text-align:right;line-height:2.1">SELF-HOSTED · YOUR DRIVES, YOUR KEYS<br>BYO API KEYS · <a href="mailto:info@arvideo.io" style="color:#EDE6D4">INFO@ARVIDEO.IO</a></div>
+  </div>
 </div>
-
-<!-- ============ NO.05 TOOLS + PIPELINE (pine) ============ -->
-<section class="spread pine" id="tools">
-  <div class="wrap rv">
-    <span class="kicker">no. 05 — the tool shed</span>
-    <h2 class="adhead">small tools,<br><span class="alt" style="color:var(--olive)">no casualties.</span></h2>
-    <p class="adcopy" style="color:var(--sky)">the workflow crew around the suite — one job each, built to never lose a file. spotter's light table works upstairs; the shed holds the rest.</p>
-
-    <div class="toolgrid">
-      <div class="tool">
-        <span class="tk">tool 01</span>
-        <h3>safesend</h3>
-        <p>sd offload with receipts. every file on the card verified byte-for-byte on the nas before you're cleared to wipe it. "all safe ✔" or it doesn't happen.</p>
-      </div>
-      <div class="tool ghost">
-        <span class="tk">tool 02</span>
-        <h3>next up</h3>
-        <p>the shed has empty pegs. more one-job tools hang here as they're built.</p>
-      </div>
-    </div>
-
-    <div class="vinewrap" aria-hidden="true" style="margin-top:4rem">
-      <svg viewBox="0 0 1200 210" fill="none">
-        <path class="vinemain" d="M20,150 C90,110 150,105 213,120 C280,137 340,155 406,140 C470,126 535,95 600,110 C665,125 730,152 793,140 C860,128 925,100 986,115 C1050,131 1120,145 1180,130" stroke="#7E8A4D" stroke-width="4" stroke-linecap="round"/>
-        <path d="M20,158 C90,118 150,113 213,128 C280,145 340,163 406,148 C470,134 535,103 600,118 C665,133 730,160 793,148 C860,136 925,108 986,123 C1050,139 1120,153 1180,138" stroke="#D3572A" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-        <path class="vinepulse" d="M20,150 C90,110 150,105 213,120 C280,137 340,155 406,140 C470,126 535,95 600,110 C665,125 730,152 793,140 C860,128 925,100 986,115 C1050,131 1120,145 1180,130" stroke="#F1E7CE" stroke-width="4" stroke-linecap="round"/>
-        <circle class="vc" data-stop="1" cx="20" cy="150" r="10" fill="#F1E7CE"/>
-        <circle class="vc" data-stop="2" cx="213" cy="120" r="10" fill="#9CC3B8"/>
-        <circle class="vc" data-stop="3" cx="406" cy="140" r="10" fill="#D3572A"/>
-        <circle class="vc" data-stop="4" cx="600" cy="110" r="10" fill="#9CC3B8"/>
-        <circle class="vc" data-stop="5" cx="793" cy="140" r="10" fill="#F1E7CE"/>
-        <circle class="vc" data-stop="6" cx="986" cy="115" r="10" fill="#9CC3B8"/>
-        <circle class="vc" data-stop="7" cx="1180" cy="130" r="10" fill="#D3572A"/>
-      </svg>
-    </div>
-    <div class="stops">
-      <a class="stop" data-stop="1" href="#tools">01<b>offload</b></a>
-      <a class="stop" data-stop="2" href="#index">02<b>index</b></a>
-      <a class="stop" data-stop="3" href="#seeing">03<b>detect</b></a>
-      <a class="stop" data-stop="4" href="#factory">04<b>cut</b></a>
-      <a class="stop" data-stop="5" href="#factory">05<b>render</b></a>
-      <a class="stop" data-stop="6" href="#factory">06<b>store</b></a>
-      <a class="stop" data-stop="7" href="#spotter">07<b>search ↩</b></a>
-    </div>
-
-    <div class="doors">
-      <a class="door" href="index/" target="_blank" rel="noopener"><span class="go">open →</span><h3>index</h3><p>the card catalog</p></a>
-      <a class="door" href="factory/" target="_blank" rel="noopener"><span class="go">open →</span><h3>factory</h3><p>the edit bay</p></a>
-      <a class="door" href="prompt/" target="_blank" rel="noopener"><span class="go">open →</span><h3>prompt</h3><p>the order counter</p></a>
-      <a class="door" href="spotter/" target="_blank" rel="noopener"><span class="go">open →</span><h3>spotter</h3><p>the light table</p></a>
-      <a class="door" href="tools/" target="_blank" rel="noopener"><span class="go">open →</span><h3>tools</h3><p>the shed</p></a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap rv">
-    <p class="fm"><img src="assets/arvideo_hand.png" alt="arvideo"><span class="dot" aria-hidden="true"></span></p>
-    <p class="cred">
-      offloaded by <b>safesend</b> · indexed by <b>the index</b> · edited by <b>factory</b> · found by <b>spotter</b> · directed by <b>you</b><br>
-      your footage stays home — <b>ai models on call</b>, never on autopilot
-    </p>
-  </div>
-</footer>
-
-<script>
-  if (location.search.includes('snap')){
-    document.querySelectorAll('.rv').forEach(el => { el.style.transition = 'none'; el.classList.add('in'); });
-    document.querySelectorAll('img[loading=lazy]').forEach(im => im.loading = 'eager');
-  } else {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    }), {threshold:.12});
-    document.querySelectorAll('.rv').forEach(el => io.observe(el));
-  }
-
-  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // prompt-mode order counter: typed rotating examples (click/tap = next order)
-  const pEl = document.getElementById('ptype');
-  const prompts = [
-    "all austin skateboarding from 2025 — 3 min, star render",
-    "every time anyone said merry christmas, ever — chronological",
-    "the dog's best moments this summer — 60 sec, fun facts"
-  ];
-  let pi = 0, pTimer = null;
-  if (pEl && !rm){
-    let ci = prompts[0].length, deleting = true;
-    const tick = () => {
-      const cur = prompts[pi];
-      if (deleting){
-        ci--; pEl.textContent = cur.slice(0, ci);
-        if (ci <= 0){ deleting = false; pi = (pi+1) % prompts.length; }
-        pTimer = setTimeout(tick, 18);
-      } else {
-        ci++; pEl.textContent = prompts[pi].slice(0, ci);
-        if (ci >= prompts[pi].length){ deleting = true; pTimer = setTimeout(tick, 3600); return; }
-        pTimer = setTimeout(tick, 42);
-      }
-    };
-    pTimer = setTimeout(tick, 3200);
-    pEl.parentElement.addEventListener('click', () => {
-      clearTimeout(pTimer); ci = pEl.textContent.length; deleting = true; tick();
-    });
-  } else if (pEl){
-    // reduced motion: static line, click still cycles instantly
-    pEl.parentElement.addEventListener('click', () => {
-      pi = (pi+1) % prompts.length; pEl.textContent = prompts[pi];
-    });
-  }
-
-  // hero lens: five impact shots through the same glass
-  const HERO_SHOTS = [
-    ['assets/hero_shuttle.jpg', 'discovery',       'space shuttle discovery'],
-    ['assets/hero_lbi.jpg',     'barnegat light',  'barnegat lighthouse'],
-    ['assets/hero_fair.jpg',    'the gravitron',   'county fair thrill ride'],
-    ['assets/hero_fire.jpg',    'the firebox',     'steam engine firebox'],
-    ['assets/hero_barra.jpg',   'barracuda',       'great barracuda']
-  ];
-  let shot = 0;
-  const glassImg = document.getElementById('glassimg');
-  const lenscap = document.getElementById('lenscap');
-  const ldots = [...document.querySelectorAll('.ldot')];
-  const setShot = i => {
-    shot = (i + HERO_SHOTS.length) % HERO_SHOTS.length;
-    glassImg.src = HERO_SHOTS[shot][0];
-    glassImg.alt = HERO_SHOTS[shot][2];
-    lenscap.textContent = `glass 0${shot+1}/0${HERO_SHOTS.length} · ${HERO_SHOTS[shot][1]}`;
-    ldots.forEach((d, j) => d.classList.toggle('on', j === shot));
-  };
-  ldots.forEach(d => d.addEventListener('click', e => { e.stopPropagation(); setShot(+d.dataset.shot); }));
-  const glassBtn = document.getElementById('glassbtn');
-  glassBtn.addEventListener('click', () => setShot(shot + 1));
-  glassBtn.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setShot(shot + 1); }
-  });
-  addEventListener('load', () => HERO_SHOTS.forEach(s => { const im = new Image(); im.src = s[0]; }));
-
-  // the glass looks where you point (subtle, hover devices only)
-  const glassArt = document.querySelector('.lensrig .glass img') || document.querySelector('.lensrig .glass svg');
-  const glare = document.querySelector('.lensrig .glare');
-  if (glassArt && !rm && matchMedia('(hover:hover)').matches){
-    const hero = document.querySelector('.hero');
-    hero.addEventListener('pointermove', e => {
-      const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
-      glassArt.style.transform = `translate(${x*14}px,${y*10}px) scale(1.14)`;
-      glare.style.transform = `translate(${x*-6}px,${y*-4}px)`;
-    }, {passive:true});
-    hero.addEventListener('pointerleave', () => {
-      glassArt.style.transform = ''; glare.style.transform = '';
-    });
-  }
-
-  // spotter light table: pick/unpick frames → demo hit lists per pick
-  const SPOTDB = {
-    turtle: ['2023-05-29 (creek walk) · <b>IMG_8785 @ 00:01</b>','2021-07-04 (lake day) · <b>GX014412 @ 02:47</b>','2019-06-16 (backyard) · <b>MVI_0333 @ 01:05</b>'],
-    deck:   ['2025-04-12 (skatepark) · <b>GX016210 @ 00:08</b>','2024-10-03 (driveway session) · <b>IMG_4501 @ 01:22</b>','2022-08-19 (bowl trip) · <b>GH011980 @ 03:40</b>'],
-    cleat:  ['2026-06-14 (soccer semifinal) · <b>GX018871 @ 02:19</b>','2025-09-21 (practice) · <b>IMG_9134 @ 00:44</b>','2024-05-05 (tournament) · <b>GX015520 @ 05:03</b>'],
-    plane:  ['2020-01-25 (udvar-hazy) · <b>GH012143 @ 00:02</b>','2021-12-30 (udvar-hazy) · <b>GH012301 @ 01:48</b>','2020-01-25 (udvar-hazy) · <b>GH012164 @ 00:31</b>'],
-    fish:   ['2026-05-14 (culebra day 2) · <b>GX011636 @ 00:20</b>','2026-05-15 (culebra day 3) · <b>GX011671 @ 04:12</b>','2026-05-17 (culebra day 5) · <b>GX011754 @ 01:31</b>'],
-    car:    ['2024-04-28 (gas &amp; steam festival) · <b>GX019817 @ 00:01</b>','2024-04-28 (gas &amp; steam festival) · <b>GX019818 @ 00:15</b>','2023-04-30 (gas &amp; steam festival) · <b>GX013304 @ 02:08</b>']
-  };
-  const table = document.getElementById('lighttable');
-  const spotlist = document.getElementById('spotlist');
-  if (table){
-    const render = () => {
-      const picks = [...table.querySelectorAll('.pick')];
-      const n = picks.length;
-      document.getElementById('pickcount').textContent = n + (n === 1 ? ' pick' : ' picks');
-      spotlist.innerHTML = picks.map(f => {
-        const key = f.dataset.key, label = f.querySelector('.id').textContent.split('·')[0].trim();
-        const rows = (SPOTDB[key] || []).join('<br>');
-        return `<div class="sr"><span class="srh">${label} — found in the archive</span>${rows}</div>`;
-      }).join('') + (n ? '<p class="spotnote">illustrative results — the real light table runs on the bench</p>' : '');
-    };
-    table.querySelectorAll('.oframe').forEach(f => {
-      const flip = () => { f.classList.toggle('pick');
-        f.setAttribute('aria-pressed', f.classList.contains('pick')); render(); };
-      f.addEventListener('click', flip);
-      f.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); }
-      });
-    });
-    render();
-  }
-
-  // pipeline vine: stops light their node on the vine
-  document.querySelectorAll('.stop[data-stop]').forEach(s => {
-    const node = document.querySelector(`.vc[data-stop="${s.dataset.stop}"]`);
-    if (!node) return;
-    const on = () => { node.classList.add('lit'); node.setAttribute('r','14'); };
-    const off = () => { node.classList.remove('lit'); node.setAttribute('r','10'); };
-    s.addEventListener('mouseenter', on); s.addEventListener('mouseleave', off);
-    s.addEventListener('focus', on); s.addEventListener('blur', off);
-  });
-
-  // scroll-step reveals: the mountain grows, the index database fills
-  const stepPanels = [...document.querySelectorAll('.steps')];
-  if (stepPanels.length && !rm && !location.search.includes('snap')){
-    stepPanels.forEach(p => p.classList.add('armed'));
-    let sTick = false;
-    const stepDrift = () => {
-      const vh = innerHeight;
-      stepPanels.forEach(p => {
-        const r = p.getBoundingClientRect();
-        if (r.top > vh || r.bottom < 0){ sTick = false; return; }
-        const prog = Math.min(1, Math.max(0, (vh - r.top) / (r.height + vh * .35)));
-        const steps = p.querySelectorAll('[data-step]');
-        const n = Math.round(prog * steps.length);
-        steps.forEach((s, i) => s.classList.toggle('stepon', i < n));
-      });
-      sTick = false;
-    };
-    addEventListener('scroll', () => { if(!sTick){ requestAnimationFrame(stepDrift); sTick = true; } }, {passive:true});
-    stepDrift();
-  }
-
-  if (!rm){
-    const bands = [...document.querySelectorAll('.band')];
-    let ticking = false;
-    const drift = () => {
-      const vh = innerHeight;
-      bands.forEach(b => {
-        const r = b.ownerSVGElement.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
-        const p = (r.top + r.height/2 - vh/2) / vh;
-        b.style.transform = `translateX(${p * -140 * parseFloat(b.dataset.sp||0) * 10}px)`;
-      });
-      ticking = false;
-    };
-    addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(drift); ticking = true; } }, {passive:true});
-    drift();
-  }
-</script>
+</x-dc>
+<script src="assets/line.js"></script>
 </body>
 </html>
