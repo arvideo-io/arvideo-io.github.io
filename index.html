@@ -1,46 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F4EFE2">
-<title>arvideo — factory · spotter · safe send</title>
-<meta name="description" content="The arvideo suite: Factory indexes and edits your archive on your own hardware, Spotter finds any object in your footage, Safe Send hash-verifies cards before you wipe them. Self-hosted, your drives, your keys.">
-<link rel="icon" href="assets/icon-32.png">
-<link rel="apple-touch-icon" href="assets/icon-180.png">
-<link rel="manifest" href="site.webmanifest">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Crete+Round:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Crete+Round:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F4EFE2;font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#1F5CA8}a:hover{color:#C93B26}
 html{scroll-behavior:smooth}
-.deck-card{transition:transform .25s ease}
-.deck-card:hover{transform:translateY(-8px)}
-.slot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-a.cta{ text-decoration:none; display:inline-block }
-@media (max-width:900px){
-  .g2{display:block !important}
-  .g2 > div{margin-bottom:34px}
-  .pad{padding-left:24px !important;padding-right:24px !important}
-  .topnav a{display:none}
-}
 </style>
-</head>
-<body>
+</helmet>
 
 <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:3px solid #2A1F16;background:#F4EFE2" data-screen-label="topbar">
   <div style="display:flex;align-items:flex-end;gap:7px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:26px;width:auto;display:block"><span style="width:9px;height:9px;border-radius:50%;background:#E4762B;margin-bottom:3px"></span></div>
-  <div class="topnav" style="display:flex;align-items:center;gap:26px">
+  <div style="display:flex;align-items:center;gap:26px">
     <a href="#factory" style="font-size:13px;font-weight:800;color:#C05A17;letter-spacing:-.01em;text-decoration:none">Factory</a>
     <a href="#spotter" style="font-size:13px;font-weight:800;color:#1F5CA8;letter-spacing:-.01em;text-decoration:none">Spotter</a>
     <a href="#safesend" style="font-size:13px;font-weight:800;color:#C93B26;letter-spacing:-.01em;text-decoration:none">SafeSend</a>
-    <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:7px 18px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none">Download</a>
+    <a href="#download" style="background:#1F5CA8;color:#FAF7ED;padding:7px 18px;border-radius:999px;font-size:12.5px;font-weight:700;text-decoration:none">Download</a>
   </div>
 </div>
 
-<div class="g2 pad" style="display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:64px 44px 56px 64px;align-items:center;max-width:1400px;margin:0 auto;box-sizing:border-box" data-screen-label="hero">
+<div style="display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:64px 44px 56px 64px;align-items:center;max-width:1400px;margin:0 auto;box-sizing:border-box" data-screen-label="hero">
   <div>
     <div style="display:flex;align-items:center;gap:10px">
       <span style="background:#F0BC3C;color:#2A1F16;font-size:13px;font-weight:900;padding:3px 8px">26</span>
@@ -54,7 +42,7 @@ a.cta{ text-decoration:none; display:inline-block }
       <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C93B26;font-weight:800">Safe Send</b><span>clears your cards with receipts.</span></div>
     </div>
     <div style="display:flex;align-items:center;gap:20px;margin:32px 0 0">
-      <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none">Download</a>
+      <a href="#download" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;text-decoration:none">Download</a>
       <a href="mailto:info@arvideo.io" style="font-size:14px;font-weight:600;color:#2A1F16;text-decoration:underline;text-underline-offset:3px">info@arvideo.io</a>
     </div>
   </div>
@@ -93,7 +81,7 @@ a.cta{ text-decoration:none; display:inline-block }
   </a>
 </div>
 
-<div id="factory" class="g2 pad" style="scroll-margin-top:20px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;padding:84px 64px 64px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="factory index">
+<div id="factory" style="scroll-margin-top:20px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;padding:84px 64px 64px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="factory index">
   <div>
     <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · THE INDEX</div>
     <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Nothing gets cut blind.</h2>
@@ -109,7 +97,7 @@ a.cta{ text-decoration:none; display:inline-block }
   </div>
   <div>
     <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:340px;position:relative;background:#EAE2CE">
-      <img class="slot-img" src="assets/shot_factory.webp" alt="Factory GUI — a batch render running against the event library" style="object-position:50% 12%">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-factory-gui" src="assets/speedrun_factory.webp" shape="rect" fit="cover" placeholder="Drop: Factory GUI screenshot" style="position:absolute;inset:0" hint-size="100%,340px"></x-import>
     </div>
     <div style="margin-top:10px;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 01 — FACTORY, INDEXING A CARD</div>
   </div>
@@ -128,30 +116,32 @@ a.cta{ text-decoration:none; display:inline-block }
       <div>
         <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">CUT</div>
         <div style="display:flex;gap:8px">
-          <span id="cutOpts" style="display:flex;gap:8px"></span>
+          <sc-for list="{{cutOpts}}" as="o" hint-placeholder-count="3"><span onClick="{{o.click}}" style="{{o.st}}">{{o.label}}</span></sc-for>
         </div>
       </div>
       <div>
         <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">MODE</div>
         <div style="display:flex;gap:8px">
-          <span id="modeOpts" style="display:flex;gap:8px"></span>
+          <sc-for list="{{modeOpts}}" as="o" hint-placeholder-count="2"><span onClick="{{o.click}}" style="{{o.st}}">{{o.label}}</span></sc-for>
         </div>
       </div>
       <div>
         <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48;margin-bottom:8px">RENDER</div>
         <div style="display:flex;gap:8px;align-items:center">
-          <span id="renderOpts" style="display:flex;gap:8px"></span>
+          <sc-for list="{{renderOpts}}" as="o" hint-placeholder-count="3"><span onClick="{{o.click}}" style="{{o.st}}">{{o.label}}</span></sc-for>
           <span style="width:2px;height:22px;background:#D8CDB6;margin:0 4px"></span>
-          <span id="boxesChip">boxes</span>
-          <span id="hudChip">+ diagnostic hud</span>
+          <span onClick="{{toggleBoxes}}" style="{{boxesSt}}">boxes</span>
+          <span onClick="{{toggleHud}}" style="{{hudSt}}">+ diagnostic hud</span>
         </div>
-        <div id="boxNote" style="margin-top:6px;font-size:10px;color:#6A5A48;letter-spacing:.06em;min-height:12px"></div>
+        <div style="margin-top:6px;font-size:10px;color:#6A5A48;letter-spacing:.06em;min-height:12px">{{boxNote}}</div>
       </div>
     </div>
-    <div id="lineOuter" style="width:100%;height:640px;overflow:hidden"><div id="lineInner" style="position:relative;height:640px;width:1160px;transform:scale(1);transform-origin:0 0" data-screen-label="pipeline diagram">
+    <div ref="{{outerRef}}" style="width:100%;height:{{diagHpx}};overflow:hidden"><div style="position:relative;height:640px;width:1160px;transform:scale({{diagScale}});transform-origin:0 0" data-screen-label="pipeline diagram">
       <svg viewBox="0 0 1160 640" style="position:absolute;inset:0;width:100%;height:100%;display:block" preserveAspectRatio="xMidYMid meet">
-        <path d="M 335 170 H 490 C 526 170 508 430 544 430 H 744 C 780 430 762 170 798 170" fill="none" stroke="#B9AD93" stroke-width="3" stroke-dasharray="4 8" opacity="0" id="ghostPath"></path>
-        <g id="lanes"></g>
+        <path d="M 335 170 H 490 C 526 170 508 430 544 430 H 744 C 780 430 762 170 798 170" fill="none" stroke="#B9AD93" stroke-width="3" stroke-dasharray="4 8" opacity="{{ghostOp}}"></path>
+        <sc-for list="{{lanes}}" as="ln" hint-placeholder-count="3">
+          <path d="{{ln.d}}" fill="none" stroke="{{ln.color}}" stroke-width="12" stroke-linecap="round"></path>
+        </sc-for>
         <g>
           <rect x="362" y="106" width="36" height="128" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
           <text x="380" y="96" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#2A1F16" font-family="Archivo,Helvetica,sans-serif">CUT</text>
@@ -160,78 +150,215 @@ a.cta{ text-decoration:none; display:inline-block }
           <rect x="818" y="106" width="36" height="128" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
           <text x="836" y="96" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#2A1F16" font-family="Archivo,Helvetica,sans-serif">RENDER</text>
         </g>
-        <g id="detGates" opacity="1">
+        <g opacity="{{detOp}}">
           <rect x="548" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
           <rect x="626" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
           <rect x="704" y="368" width="36" height="124" rx="18" fill="#FAF7ED" stroke="#2A1F16" stroke-width="3"></rect>
         </g>
       </svg>
-      <div id="railA" class="detop" style="position:absolute;left:566px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
-      <div id="railB" class="detop" style="position:absolute;left:644px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
-      <div id="railC" class="detop" style="position:absolute;left:722px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;pointer-events:none;white-space:nowrap"></div>
-      <div class="detop" style="position:absolute;left:644px;top:521px;transform:translateX(-50%);width:560px;text-align:center;pointer-events:none">
-        <div id="railSub1" style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6"></div>
-        <div id="railSub2" style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6"></div>
-        <div id="detState" style="margin-top:7px;font-size:10px;font-weight:800;letter-spacing:2px;color:#2A1F16"></div>
-        <div id="detNote" style="margin-top:3px;font-size:8.5px;font-weight:700;color:#B9AD93;min-height:11px"></div>
+      <div style="position:absolute;left:566px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;opacity:{{detOp}};pointer-events:none;white-space:nowrap">{{railA}}</div>
+      <div style="position:absolute;left:644px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;opacity:{{detOp}};pointer-events:none;white-space:nowrap">{{railB}}</div>
+      <div style="position:absolute;left:722px;top:503px;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:1.5px;color:#2A1F16;opacity:{{detOp}};pointer-events:none;white-space:nowrap">{{railC}}</div>
+      <div style="position:absolute;left:644px;top:521px;transform:translateX(-50%);width:560px;text-align:center;opacity:{{detOp}};pointer-events:none">
+        <div style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6">{{railSub1}}</div>
+        <div style="font-size:8.5px;font-weight:700;color:#6A5A48;line-height:1.6">{{railSub2}}</div>
+        <div style="margin-top:7px;font-size:10px;font-weight:800;letter-spacing:2px;color:#2A1F16">DETECTIONS — {{detState}}</div>
+        <div style="margin-top:3px;font-size:8.5px;font-weight:700;color:#B9AD93;min-height:11px">{{detNote}}</div>
       </div>
       <div style="position:absolute;left:0;top:6px;font-size:10px;font-weight:800;letter-spacing:.18em;color:#6A5A48">SOURCE — FOLDERS, OR A PROMPT</div>
-      <div id="folderChips"></div>
-      <div id="promptChip" style="position:absolute;left:0;top:342px;width:200px;box-sizing:border-box;border:2.5px solid #B9AD93;background:transparent;opacity:.75;border-radius:10px;padding:9px 12px;cursor:pointer">
+      <sc-for list="{{folderChips}}" as="f" hint-placeholder-count="5">
+        <div onClick="{{f.click}}" style="position:absolute;left:0;top:{{f.topPx}};width:200px;height:44px;box-sizing:border-box;border:2.5px solid {{f.bd}};background:{{f.bg}};opacity:{{f.op}};border-radius:10px;display:flex;align-items:center;gap:9px;padding:0 12px;cursor:pointer">
+          <span style="width:11px;height:11px;background:{{f.color}};flex:none;border-radius:3px"></span>
+          <span style="font-size:11.5px;font-weight:700;color:#2A1F16;line-height:1.2">{{f.label}}<br><span style="font-weight:600;font-size:9.5px;color:#6A5A48;letter-spacing:.06em">{{f.clips}}</span></span>
+        </div>
+      </sc-for>
+      <div onClick="{{usePrompt}}" style="position:absolute;left:0;top:342px;width:200px;box-sizing:border-box;border:2.5px solid {{promptBd}};background:{{promptBg}};opacity:{{promptOp}};border-radius:10px;padding:9px 12px;cursor:pointer">
         <div style="font-size:9.5px;font-weight:800;letter-spacing:.18em;color:#1F5CA8">PROMPT</div>
         <div style="margin-top:4px;font-size:10.5px;font-style:italic;color:#4A3B2C;line-height:1.45">&#8220;every merry christmas in the last 5 years — christmas music, 2 min&#8221;</div>
       </div>
       <div style="position:absolute;right:0;top:6px;width:210px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.18em;color:#6A5A48">OUTPUT — ONE PER EVENT</div>
-      <div id="noOutputs" style="display:none;position:absolute;right:0;top:120px;width:210px;border:2px dashed #B9AD93;border-radius:10px;padding:18px 14px;font-size:11.5px;color:#6A5A48;line-height:1.5">pick at least one folder — or run the prompt</div>
-      <div id="outputs"></div>
+      <sc-if value="{{noOutputs}}" hint-placeholder-val="{{false}}">
+        <div style="position:absolute;right:0;top:120px;width:210px;border:2px dashed #B9AD93;border-radius:10px;padding:18px 14px;font-size:11.5px;color:#6A5A48;line-height:1.5">pick at least one folder — or run the prompt</div>
+      </sc-if>
+      <sc-for list="{{outputs}}" as="out" hint-placeholder-count="2">
+        <div style="position:absolute;left:942px;top:{{out.topPx}};width:216px;display:flex;gap:9px;align-items:center">
+          <div style="position:relative;width:124px;flex:none;height:88px;border:3px solid {{out.color}};border-radius:6px;overflow:hidden;background:#F4EFE2;box-sizing:border-box">
+            <sc-if value="{{out.showStar}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#1C3A63"></rect>
+                <circle cx="18" cy="70" r="1.4" fill="#EDE6D4"></circle><circle cx="45" cy="80" r="1.1" fill="#EDE6D4"></circle><circle cx="90" cy="76" r="1.5" fill="#EDE6D4"></circle><circle cx="150" cy="66" r="1.2" fill="#EDE6D4"></circle><circle cx="30" cy="16" r="1.3" fill="#EDE6D4"></circle><circle cx="70" cy="52" r="1.2" fill="#EDE6D4"></circle>
+                <path d="M22,42 L52,56 L82,36 L112,50 L142,30" fill="none" stroke="#7FA99B" stroke-width="1.4"></path>
+                <circle cx="22" cy="42" r="2.4" fill="#F0BC3C"></circle><circle cx="52" cy="56" r="2.4" fill="#F0BC3C"></circle><circle cx="82" cy="36" r="2.4" fill="#F0BC3C"></circle><circle cx="112" cy="50" r="2.4" fill="#F0BC3C"></circle><circle cx="142" cy="30" r="2.4" fill="#F0BC3C"></circle>
+                <text x="96" y="26" font-size="7" letter-spacing="1.5" fill="#7FA99B" font-family="Archivo,Helvetica,sans-serif" font-weight="700">CASSIOPEIA</text>
+                <rect x="128" y="18" width="28" height="22" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                <rect x="128" y="8" width="42" height="10" fill="{{out.color}}"></rect>
+                <text x="131" y="15.5" font-size="6.5" fill="#FAF7ED" font-family="Archivo,Helvetica,sans-serif" font-weight="700">vega · α lyr</text>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isLight}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#F4EFE2"></rect>
+                <circle cx="140" cy="18" r="10" fill="#F0BC3C"></circle>
+                <rect y="66" width="170" height="27" fill="#7FA99B"></rect>
+                <rect x="62" y="20" width="18" height="48" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2"></rect>
+                <rect x="62" y="28" width="18" height="8" fill="#D6432E"></rect><rect x="62" y="44" width="18" height="8" fill="#D6432E"></rect>
+                <rect x="66" y="12" width="10" height="8" fill="#2A1F16"></rect>
+                <line x1="56" y1="14" x2="48" y2="10" stroke="#F0BC3C" stroke-width="2"></line><line x1="86" y1="14" x2="94" y2="10" stroke="#F0BC3C" stroke-width="2"></line>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="52" y="8" width="38" height="64" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isSteam}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#F4EFE2"></rect>
+                <circle cx="85" cy="56" r="26" fill="#C0A05E" stroke="#2A1F16" stroke-width="4"></circle>
+                <g stroke="#2A1F16" stroke-width="3"><line x1="63" y1="56" x2="107" y2="56"></line><line x1="85" y1="34" x2="85" y2="78"></line><line x1="70" y1="41" x2="100" y2="71"></line><line x1="70" y1="71" x2="100" y2="41"></line></g>
+                <circle cx="85" cy="56" r="5" fill="#2A1F16"></circle>
+                <circle cx="118" cy="22" r="6" fill="#CFC5AC"></circle><circle cx="130" cy="14" r="4.5" fill="#CFC5AC"></circle><circle cx="139" cy="8" r="3" fill="#CFC5AC"></circle>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="53" y="24" width="64" height="62" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isSkate}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#F4EFE2"></rect>
+                <path d="M92,58 H170 V93 H92 Z M108,70 H170 M124,82 H170" fill="none" stroke="#2A1F16" stroke-width="0"></path>
+                <rect x="96" y="58" width="74" height="12" fill="#2A1F16"></rect><rect x="112" y="70" width="58" height="12" fill="#2A1F16" opacity=".85"></rect><rect x="128" y="82" width="42" height="12" fill="#2A1F16" opacity=".7"></rect>
+                <g transform="rotate(-14 56 40)"><rect x="38" y="34" width="36" height="7" rx="3.5" fill="#E4762B"></rect><circle cx="46" cy="45" r="3.2" fill="#2A1F16"></circle><circle cx="66" cy="45" r="3.2" fill="#2A1F16"></circle></g>
+                <path d="M26,60 Q46,54 64,58" fill="none" stroke="#B9AD93" stroke-width="2"></path>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="30" y="22" width="54" height="34" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isReef}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#7FA99B"></rect>
+                <rect width="170" height="10" fill="#FAF7ED" opacity=".28"></rect><rect y="14" width="170" height="5" fill="#FAF7ED" opacity=".16"></rect>
+                <ellipse cx="78" cy="54" rx="24" ry="13" fill="#FAF7ED"></ellipse>
+                <path d="M100,54 L118,42 L118,66 Z" fill="#FAF7ED"></path>
+                <circle cx="62" cy="51" r="2.2" fill="#2A1F16"></circle>
+                <line x1="74" y1="43" x2="74" y2="65" stroke="#2A1F16" stroke-width="2.5"></line><line x1="84" y1="44" x2="84" y2="64" stroke="#2A1F16" stroke-width="2.5"></line>
+                <circle cx="52" cy="34" r="2" fill="#FAF7ED" opacity=".7"></circle><circle cx="47" cy="26" r="1.4" fill="#FAF7ED" opacity=".7"></circle>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="46" y="34" width="80" height="40" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isRidge}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#F4EFE2"></rect>
+                <path d="M0,74 L44,46 L78,66 L120,40 L170,68 V93 H0 Z" fill="#B9AD93"></path>
+                <path d="M0,86 L54,62 L96,80 L140,58 L170,76 V93 H0 Z" fill="#D6432E"></path>
+                <g stroke="#2A1F16" stroke-width="2.5"><line x1="74" y1="24" x2="98" y2="36"></line><line x1="98" y1="24" x2="74" y2="36"></line></g>
+                <circle cx="72" cy="23" r="5" fill="none" stroke="#2A1F16" stroke-width="2"></circle><circle cx="100" cy="23" r="5" fill="none" stroke="#2A1F16" stroke-width="2"></circle><circle cx="72" cy="37" r="5" fill="none" stroke="#2A1F16" stroke-width="2"></circle><circle cx="100" cy="37" r="5" fill="none" stroke="#2A1F16" stroke-width="2"></circle>
+                <rect x="81" y="27" width="10" height="6" fill="#2A1F16"></rect>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="58" y="10" width="56" height="38" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isNight}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#1C3A63"></rect>
+                <circle cx="14" cy="20" r="1.3" fill="#EDE6D4"></circle><circle cx="38" cy="44" r="1.1" fill="#EDE6D4"></circle><circle cx="58" cy="14" r="1.5" fill="#EDE6D4"></circle><circle cx="84" cy="52" r="1.2" fill="#EDE6D4"></circle><circle cx="118" cy="46" r="1.3" fill="#EDE6D4"></circle><circle cx="146" cy="30" r="1.6" fill="#EDE6D4"></circle><circle cx="160" cy="54" r="1.1" fill="#EDE6D4"></circle><circle cx="30" cy="60" r="1.2" fill="#EDE6D4"></circle>
+                <line x1="98" y1="12" x2="130" y2="32" stroke="#EDE6D4" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="52" y1="26" x2="72" y2="39" stroke="#EDE6D4" stroke-width="1.2" stroke-linecap="round" opacity=".6"></line>
+                <path d="M0,82 L44,70 L86,78 L132,66 L170,76 V93 H0 Z" fill="#10203A"></path>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="90" y="4" width="48" height="34" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.isMontage}}" hint-placeholder-val="{{false}}">
+              <svg viewBox="0 0 170 93" style="position:absolute;inset:0;width:100%;height:100%">
+                <rect width="170" height="93" fill="#F4EFE2"></rect>
+                <rect x="8" y="30" width="46" height="34" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2"></rect>
+                <rect x="62" y="26" width="50" height="42" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></rect>
+                <rect x="120" y="30" width="46" height="34" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2"></rect>
+                <path d="M87,34 L99,52 H75 Z" fill="#77863F"></path><path d="M87,42 L101,62 H73 Z" fill="#77863F"></path><rect x="84" y="62" width="6" height="5" fill="#2A1F16"></rect>
+                <path d="M87,28 l1.8,3.6 4,.6 -2.9,2.8 .7,4 -3.6,-1.9 -3.6,1.9 .7,-4 -2.9,-2.8 4,-.6 Z" fill="#F0BC3C"></path>
+                <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+                  <rect x="60" y="24" width="54" height="46" fill="none" stroke="{{out.color}}" stroke-width="2"></rect>
+                </sc-if>
+              </svg>
+            </sc-if>
+            <sc-if value="{{out.boxOn}}" hint-placeholder-val="{{true}}">
+              <div style="position:absolute;left:4px;top:4px;background:{{out.color}};color:#FAF7ED;font-size:6.8px;font-weight:700;letter-spacing:.04em;padding:2px 6px;pointer-events:none">{{out.det}}</div>
+            </sc-if>
+            <sc-if value="{{out.review}}" hint-placeholder-val="{{false}}">
+              <div style="position:absolute;left:0;right:0;bottom:0;height:9px;display:flex">
+                <span style="flex:1;background:{{out.color}};opacity:.9"></span><span style="flex:1;background:#2A1F16;opacity:.75"></span><span style="flex:1;background:{{out.color}};opacity:.6"></span><span style="flex:1;background:#2A1F16;opacity:.5"></span><span style="flex:1;background:{{out.color}};opacity:.4"></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{out.showPlate}}" hint-placeholder-val="{{true}}">
+              <div style="position:absolute;left:5px;bottom:5px;background:rgba(250,247,237,.94);color:#2A1F16;font-size:6.8px;font-weight:800;letter-spacing:.1em;padding:2.5px 6px;pointer-events:none">{{out.title}}</div>
+            </sc-if>
+            <sc-if value="{{out.showHud}}" hint-placeholder-val="{{false}}">
+              <div style="position:absolute;inset:0;pointer-events:none">
+                <div style="position:absolute;left:3px;top:3px;width:10px;height:10px;border-left:2px solid {{out.hudInk}};border-top:2px solid {{out.hudInk}}"></div>
+                <div style="position:absolute;right:3px;top:3px;width:10px;height:10px;border-right:2px solid {{out.hudInk}};border-top:2px solid {{out.hudInk}}"></div>
+                <div style="position:absolute;left:3px;bottom:3px;width:10px;height:10px;border-left:2px solid {{out.hudInk}};border-bottom:2px solid {{out.hudInk}}"></div>
+                <div style="position:absolute;right:3px;bottom:3px;width:10px;height:10px;border-right:2px solid {{out.hudInk}};border-bottom:2px solid {{out.hudInk}}"></div>
+                <div style="position:absolute;left:16px;top:5px;font-size:6px;font-weight:700;letter-spacing:.06em;color:{{out.hudInk}}">{{out.cam}}</div>
+                <div style="position:absolute;right:16px;top:5px;font-size:6px;font-weight:700;color:{{out.hudInk}}">59.94 · TC {{out.dur}}</div>
+                <div style="position:absolute;right:5px;top:20px;display:flex;flex-direction:column;gap:1.5px;align-items:flex-end">
+                  <span style="width:14px;height:2.5px;background:{{out.hudInk}};opacity:.9"></span><span style="width:10px;height:2.5px;background:{{out.hudInk}};opacity:.7"></span><span style="width:6px;height:2.5px;background:{{out.hudInk}};opacity:.5"></span>
+                </div>
+                <div style="position:absolute;left:16px;bottom:18px;font-size:6px;font-weight:700;letter-spacing:.06em;color:{{out.hudInk}}">GPS ✔ · MOTION .87</div>
+                <sc-if value="{{out.droneHud}}" hint-placeholder-val="{{false}}">
+                  <div style="position:absolute;left:50%;bottom:26px;transform:translateX(-50%);border:1.5px solid {{out.hudInk}};border-radius:4px;padding:1.5px 5px;font-size:6px;font-weight:800;letter-spacing:.08em;color:{{out.hudInk}};background:rgba(250,247,237,.6)">ALT 122M · SPD 14 M/S · HDG 214°</div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+          <ul style="margin:0;padding:0;list-style:none;flex:1">
+            <sc-for list="{{out.bullets}}" as="b" hint-placeholder-count="3">
+              <li style="font-size:9px;font-weight:700;letter-spacing:.05em;color:#6A5A48;line-height:1.5">{{b}}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
     </div></div>
     <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:2.5px solid #2A1F16;padding-top:14px">
-      <div id="slateLine" style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16"></div>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16">SLATE — {{slate}}</div>
       <div style="font-size:12.5px;color:#6A5A48;max-width:56ch">Batch mode runs this same line across the whole archive, passively — the mountain shrinks while you sleep.</div>
     </div>
   </div>
 </div>
 
-<div style="position:relative;height:640px;border-bottom:3px solid #2A1F16;background:#CFC5AC" data-screen-label="real frames band">
-  <img class="slot-img" src="assets/line_frame.webp" alt="A real diagnostic render off the line — drone flight telemetry, cut details and quality metrics burned in" loading="lazy">
-  <div style="position:absolute;top:30px;left:40px;background:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.26em;color:#2A1F16;pointer-events:none">ARVIDEO.IO — FROM THE LINE</div>
-  <div style="position:absolute;top:34px;right:44px;width:250px;display:flex;flex-direction:column;gap:16px;align-items:flex-end;pointer-events:none">
-    <div style="background:#FAF7ED;padding:16px 16px 0;display:flex;gap:14px;align-items:flex-start">
-      <svg viewBox="-70 -60 140 120" style="width:58px;display:block;flex:none;margin-top:2px">
-        <path d="M0,-54 C3,-54 5,-46 5,-34 L5,-12 L64,14 L64,22 L6,8 L6,30 L26,42 L26,49 L2,44 L-2,44 L-26,49 L-26,42 L-6,30 L-6,8 L-64,22 L-64,14 L-5,-12 L-5,-34 C-5,-46 -3,-54 0,-54 Z" fill="#2A1F16"></path>
-      </svg>
-      <div style="display:flex;gap:6px;align-items:flex-start">
-        <div style="width:13px;height:96px;background:#1C3A63;border-radius:0 0 7px 7px"></div>
-        <div style="width:13px;height:132px;background:#7FA99B;border-radius:0 0 7px 7px"></div>
-        <div style="width:13px;height:70px;background:#1F5CA8;border-radius:0 0 7px 7px"></div>
+<div style="border-bottom:3px solid #2A1F16;background:#CFC5AC" data-screen-label="from the line band">
+  <div style="position:relative;height:520px;border-bottom:3px solid #2A1F16">
+    <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr">
+      <div style="position:relative;border-right:3px solid #2A1F16">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-render-normal" src="assets/demo_left_clean.webp" shape="rect" fit="contain" placeholder="Drop: NORMAL render of a clip — title card, no frills (gif or frame)" style="position:absolute;inset:0" hint-size="100%,520px"></x-import>
+        <span style="position:absolute;top:30px;right:24px;background:#2A1F16;color:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:800;letter-spacing:.22em;pointer-events:none">NORMAL</span>
+      </div>
+      <div style="position:relative">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-render-diagnostic" src="assets/demo_right_diag.webp" shape="rect" fit="contain" placeholder="Drop: DIAGNOSTIC render — same clip, full HUD (gif or frame)" style="position:absolute;inset:0" hint-size="100%,520px"></x-import>
+        <span style="position:absolute;top:30px;right:24px;background:#E4762B;color:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:800;letter-spacing:.22em;pointer-events:none">DIAGNOSTIC HUD</span>
       </div>
     </div>
-    <div style="background:#FAF7ED;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;min-width:206px;box-sizing:border-box">
-      <div>
-        <div style="font-size:20px;font-weight:800;color:#C05A17;letter-spacing:-.02em;line-height:1.12">Factory</div>
-        <div style="font-size:20px;font-weight:800;color:#1F5CA8;letter-spacing:-.02em;line-height:1.12">Spotter</div>
-        <div style="font-size:20px;font-weight:800;color:#C93B26;letter-spacing:-.02em;line-height:1.12">SafeSend</div>
-        <div style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.16em;color:#6A5A48">INDEXED · EDITED · VERIFIED</div>
+    <div style="position:absolute;top:30px;left:40px;background:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.26em;color:#2A1F16;pointer-events:none">ARVIDEO.IO — FROM THE LINE</div>
+    <div style="position:absolute;left:0;bottom:0;width:560px;background:#FAF7ED;border-top-right-radius:120px;padding:24px 62px 20px 40px;box-sizing:border-box;pointer-events:none">
+      <div style="display:flex;align-items:center;gap:18px">
+        <svg viewBox="0 0 40 40" style="width:32px;flex:none;display:block">
+          <g fill="none" stroke="#2A1F16" stroke-width="2.2"><circle cx="20" cy="20" r="16"></circle><ellipse cx="20" cy="20" rx="16" ry="6.5"></ellipse><ellipse cx="20" cy="20" rx="6.5" ry="16"></ellipse><line x1="4" y1="20" x2="36" y2="20"></line></g>
+        </svg>
+        <div style="width:2px;height:40px;background:#D8CDB6"></div>
+        <div style="display:flex;align-items:flex-end;gap:8px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:44px;width:auto;display:block"><span style="width:10px;height:10px;border-radius:50%;background:#E4762B;margin-bottom:5px"></span></div>
       </div>
-      <div style="margin-left:auto;font-size:46px;font-weight:900;color:#1F5CA8;line-height:.9;letter-spacing:-.04em">3</div>
+      <div style="margin-top:11px;font-size:12.5px;color:#6A5A48">one clip, two renders — the title card, or the full diagnostic hud</div>
     </div>
-  </div>
-  <div style="position:absolute;left:0;bottom:0;width:584px;background:#FAF7ED;border-top-right-radius:120px;padding:26px 62px 22px 40px;box-sizing:border-box;pointer-events:none">
-    <div style="display:flex;align-items:center;gap:18px">
-      <svg viewBox="0 0 40 40" style="width:32px;flex:none;display:block">
-        <g fill="none" stroke="#2A1F16" stroke-width="2.2"><circle cx="20" cy="20" r="16"></circle><ellipse cx="20" cy="20" rx="16" ry="6.5"></ellipse><ellipse cx="20" cy="20" rx="6.5" ry="16"></ellipse><line x1="4" y1="20" x2="36" y2="20"></line></g>
-      </svg>
-      <div style="width:2px;height:40px;background:#D8CDB6"></div>
-      <div style="display:flex;align-items:flex-end;gap:8px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:44px;width:auto;display:block"><span style="width:10px;height:10px;border-radius:50%;background:#E4762B;margin-bottom:5px"></span></div>
-    </div>
-    <div style="margin-top:11px;font-size:12.5px;color:#6A5A48">real render, straight off the line — title card, informatics, or the full diagnostic hud</div>
   </div>
 </div>
 
-<div id="spotter" class="g2 pad" style="scroll-margin-top:20px;display:grid;grid-template-columns:.98fr 1.02fr;gap:52px;padding:84px 64px 72px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="spotter">
+<div id="spotter" style="scroll-margin-top:20px;display:grid;grid-template-columns:.98fr 1.02fr;gap:52px;padding:84px 64px 72px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="spotter">
   <div>
     <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:320px;position:relative;background:#EAE2CE">
-      <img class="slot-img" src="assets/shot_spotter.webp" alt="Spotter GUI — detections table with confidence-scored hits" style="object-position:50% 30%" loading="lazy">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-spotter-gui" src="assets/speedrun_spotter.webp" shape="rect" fit="cover" placeholder="Drop: Spotter GUI screenshot" style="position:absolute;inset:0" hint-size="100%,320px"></x-import>
     </div>
     <svg viewBox="0 0 460 96" style="width:100%;display:block;margin-top:18px">
       <rect x="4" y="58" width="452" height="14" rx="7" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></rect>
@@ -253,9 +380,9 @@ a.cta{ text-decoration:none; display:inline-block }
   <div>
     <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#1F5CA8">№ 02 — SPOTTER</div>
     <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Show it. It finds it.</h2>
-    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. DinoV2 takes the local guess (&#8220;soccer cleat&#8221;); Gemini, armed with your hints and the web, names it for real (&#8220;Mercurial Superfly 11 Elite — Breakout pack&#8221;).</p>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. DinoV2 takes the local guess (&#8220;mascot costume&#8221;); Gemini, armed with your hints and the web, names it for real (&#8220;Keyote — the Frederick Keys mascot&#8221;).</p>
     <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint (&#8220;this is from the 2026 World Cup&#8221;)</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint (&#8220;this is from a Frederick Keys double header&#8221;)</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SCAN</span><span style="font-size:13.5px;color:#4A3B2C">three detectors run head-to-head, scored per hit</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">IDENTIFY</span><span style="font-size:13.5px;color:#4A3B2C">local guess by DinoV2 · real answer by Gemini + web</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">RESULT</span><span style="font-size:13.5px;color:#4A3B2C">a confidence-coded timeline of every appearance</span></div>
@@ -265,7 +392,7 @@ a.cta{ text-decoration:none; display:inline-block }
 </div>
 
 <div id="safesend" style="scroll-margin-top:20px;border-top:3px solid #2A1F16;background:#FAF7ED;padding:76px 64px 72px" data-screen-label="safe send">
-  <div class="g2" style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
+  <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
     <div>
       <div style="display:flex;align-items:center;gap:22px">
         <svg viewBox="0 0 200 260" style="width:120px;flex:none;display:block" aria-label="safe send pigeon">
@@ -305,10 +432,10 @@ a.cta{ text-decoration:none; display:inline-block }
       </div>
     </div>
     <div>
-      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:330px;position:relative;background:#EAE2CE">
-        <img class="slot-img" src="assets/shot_safesend.webp" alt="Safe Send — every file hash-verified on the NAS, card clear to wipe" style="object-position:50% 0%" loading="lazy">
+      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:340px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-safesend-gui" src="assets/speedrun_safesend.webp" shape="rect" fit="contain" placeholder="Drop: Safe Send GUI screenshot (tall window)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
       </div>
-      <div style="margin-top:10px;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 03 — SAFE SEND, RECEIPTS BEFORE THE WIPE</div>
+      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 03 — SAFE SEND, RECEIPTS BEFORE THE WIPE</div>
     </div>
   </div>
 </div>
@@ -326,7 +453,7 @@ a.cta{ text-decoration:none; display:inline-block }
     <div style="margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.24em;color:#6A5A48">THREE TOOLS · ONE ARCHIVE</div>
   </div>
   <div style="display:flex;justify-content:center;gap:46px;padding:46px 0 8px;flex-wrap:wrap">
-    <a href="#factory" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+    <a href="#factory" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
       <span style="display:block;background:#E4762B;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
         <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
           <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="owl mark">
@@ -366,7 +493,7 @@ a.cta{ text-decoration:none; display:inline-block }
         </span>
       </span>
     </a>
-    <a href="#spotter" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+    <a href="#spotter" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
       <span style="display:block;background:#1F5CA8;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
         <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
           <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="kestrel mark">
@@ -402,7 +529,7 @@ a.cta{ text-decoration:none; display:inline-block }
         </span>
       </span>
     </a>
-    <a href="#safesend" class="deck-card" style="width:186px;cursor:pointer;text-decoration:none;display:block">
+    <a href="#safesend" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
       <span style="display:block;background:#D6432E;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
         <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
           <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="homing pigeon mark">
@@ -437,8 +564,13 @@ a.cta{ text-decoration:none; display:inline-block }
       </span>
     </a>
   </div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:30px 0 8px">
-    <a class="cta" href="spotter/" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none">Download</a>
+  <div id="download" style="scroll-margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:34px 0 8px">
+    <div style="font-size:11px;font-weight:800;letter-spacing:.24em;color:#6A5A48">DOWNLOAD</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#E4762B;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Factory</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">SELF-HOSTED</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#1F5CA8;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Spotter</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">RUNS LOCAL · OFFLINE</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#C93B26;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Safe Send</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">WINDOWS</span></span>
+    </div>
     <span style="font-size:13px;color:#6A5A48">or write: <a href="mailto:info@arvideo.io" style="color:#2A1F16;font-weight:600">info@arvideo.io</a></span>
   </div>
 </div>
@@ -456,6 +588,150 @@ a.cta{ text-decoration:none; display:inline-block }
   </div>
 </div>
 </x-dc>
-<script src="assets/line.js"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultRender&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normal&quot;,&quot;overlay&quot;,&quot;star&quot;],&quot;default&quot;:&quot;overlay&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;the line demo&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.FOLDERS = [
+      {key:'barnegat', label:'2019 · barnegat light', clips:'214 clips', color:'#1F5CA8', type:'light', det:'barnegat light · 99%', fact:'first lit 1859 — still burning', title:'BARNEGAT LIGHT · JUL 2019', cam:'TRV50 · MINIDV', dur:'3:12'},
+      {key:'steam', label:'2024 · gas &amp; steam festival'.replace('&amp;','&'), clips:'96 clips', color:'#C0A05E', type:'steam', det:'flywheel · 96%', fact:'the governor holds 220 rpm', title:'GAS & STEAM · APR 2024', cam:'GL2 · DV', dur:'4:05'},
+      {key:'skate', label:'2025 · austin skatepark', clips:'58 clips', color:'#E4762B', type:'skate', det:'skateboard · 97%', fact:'switch 360 flip, second try', title:'AUSTIN SKATEPARK · MAR 2025', cam:'HERO12 · 4K60', dur:'2:31'},
+      {key:'culebra', label:'2026 · culebra — day 2', clips:'41 clips', color:'#7FA99B', type:'reef', det:'queen angelfish · 93%', fact:'angelfish patrol one reef for life', title:'CULEBRA DAY 2 · MAY 2026', cam:'X5 · 5.7K', dur:'6:48'},
+      {key:'ridge', label:'2025 · avata — the ridge', clips:'12 clips', color:'#D6432E', type:'ridge', det:'dji avata · 99%', fact:'gpmf + flight log, resolved', title:'THE RIDGE · OCT 2025', cam:'AVATA · 4K100', dur:'1:58', drone:true},
+      {key:'perseids', label:'2025 · perseids — backyard', clips:'9 clips', color:'#1C3A63', type:'night', det:'perseid · 96%', fact:'sixty meteors an hour, one camera', title:'PERSEIDS · AUG 2025', cam:'HERO12 · NLAPSE', dur:'1:12'}
+    ];
+    this.PROMPTF = {key:'prompt', label:'prompt', color:'#1F5CA8', type:'montage', det:'christmas tree · 99%', fact:'12 christmases, 9 cameras, one cut', title:'MERRY CHRISTMAS — ALL TIME', cam:'MIXED · 9 CAMS', dur:'2:00'};
+    this.state = {
+      sourceMode:'folders',
+      on:{barnegat:true, steam:false, skate:true, culebra:false, ridge:true},
+      cut:'auto', mode:'none',
+      render:(props && props.defaultRender) || 'overlay',
+      boxes:true, hud:false, scale:1
+    };
+  }
+  lanePath(srcY, tY, oY, dip, dY){
+    let d = 'M 210 ' + srcY + ' C 275 ' + srcY + ' 270 ' + tY + ' 335 ' + tY;
+    if (dip) d += ' H 490 C 526 ' + tY + ' 508 ' + dY + ' 544 ' + dY + ' H 744 C 780 ' + dY + ' 762 ' + tY + ' 798 ' + tY;
+    d += ' H 862 C 912 ' + tY + ' 894 ' + oY + ' 954 ' + oY;
+    return d;
+  }
+  attachMeasure(el){
+    if (el && !this._ro && typeof ResizeObserver !== 'undefined'){
+      this._ro = new ResizeObserver(es => {
+        const w = es[0].contentRect.width;
+        const sc = Math.max(.3, Math.min(1, w/1160));
+        if (Math.abs(sc - this.state.scale) > .003) this.setState({scale: sc});
+      });
+      this._ro.observe(el);
+    }
+  }
+  componentWillUnmount(){ if (this._ro) this._ro.disconnect(); }
+  chipSt(sel, dis){
+    let s = 'padding:6px 14px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;border:2px solid #2A1F16;letter-spacing:.02em;user-select:none;';
+    s += sel ? 'background:#2A1F16;color:#FAF7ED;' : 'background:#FAF7ED;color:#2A1F16;';
+    if (dis) s += 'opacity:.35;cursor:default;';
+    return s;
+  }
+  renderVals(){
+    const s = this.state, F = this.FOLDERS;
+    const promptActive = s.sourceMode === 'prompt';
+    const act = promptActive ? [] : F.filter(f => s.on[f.key]);
+    const allNight = !promptActive && act.length > 0 && act.every(f => f.type === 'night');
+    const render = (s.render === 'star' && !allNight) ? 'overlay' : s.render;
+    const detOn = render === 'overlay' || render === 'star' || s.mode === 'guide';
+    const boxesOn = render === 'star' || s.mode === 'guide' ? true : (render === 'overlay' ? s.boxes : false);
+    const boxesEnabled = render === 'overlay' && s.mode !== 'guide';
+    const n = promptActive ? 1 : act.length;
+    const tBase = 170 - (Math.max(n,1)-1)*8, dBase = 430 - (Math.max(n,1)-1)*8;
+    const lanes = [], outputs = [];
+    const mkOut = (f, idx) => {
+      const star = render === 'star';
+      let bullets;
+      if (s.cut === 'review') bullets = ['review', 'all clips', 'back to back', 'no music'];
+      else if (star) bullets = ['star mode', 'constellations + ids', 'vetted by committee'];
+      else if (s.mode === 'guide') bullets = ['guide mode', 'cut follows', 'the detections'];
+      else if (boxesOn) bullets = ['detections on', f.fact];
+      else if (s.cut === 'ai-edit') bullets = ['ai directed', 'byo keys', f.dur];
+      else bullets = ['cut to the beat', f.dur];
+      return {
+        topPx: (30 + idx*104) + 'px', color: f.color, det: f.det, title: f.title,
+        cam: f.cam, dur: f.dur, bullets: bullets,
+        showStar: star,
+        isLight: !star && f.type === 'light', isSteam: !star && f.type === 'steam',
+        isSkate: !star && f.type === 'skate', isReef: !star && f.type === 'reef',
+        isRidge: !star && f.type === 'ridge', isMontage: !star && f.type === 'montage',
+        isNight: !star && f.type === 'night',
+        boxOn: boxesOn && !star,
+        showHud: s.hud, droneHud: s.hud && !!f.drone,
+        hudInk: (star || f.type === 'night') ? '#EDE6D4' : '#2A1F16',
+        review: s.cut === 'review',
+        showPlate: !star
+      };
+    };
+    const mk = (f, idx, srcY) => {
+      const tY = tBase + idx*16, dY = dBase + idx*16, oCy = 74 + idx*104;
+      lanes.push({d: this.lanePath(srcY, tY, oCy, detOn, dY), color: f.color});
+      outputs.push(mkOut(f, idx));
+    };
+    if (promptActive) mk(this.PROMPTF, 0, 370);
+    else act.forEach((f, i) => mk(f, i, 59 + F.indexOf(f)*50));
+    const folderChips = F.map((f, i) => {
+      const on = !promptActive && s.on[f.key];
+      return {
+        label: f.label, clips: f.clips, color: f.color,
+        topPx: (37 + i*50) + 'px',
+        bd: on ? f.color : '#B9AD93',
+        bg: on ? '#FAF7ED' : 'transparent',
+        op: promptActive ? .45 : (on ? 1 : .6),
+        click: () => this.setState(st => ({sourceMode:'folders', on: Object.assign({}, st.on, {[f.key]: !st.on[f.key]})}))
+      };
+    });
+    const opt = (field, k, label, dis) => ({
+      label: label || k,
+      st: this.chipSt((field === 'render' ? render : s[field]) === k && !dis, dis),
+      click: () => {
+        if (dis) return;
+        if (field === 'mode' && k === 'guide') this.setState(st => ({mode:'guide', render: st.render === 'normal' ? 'overlay' : st.render}));
+        else this.setState({[field]: k});
+      }
+    });
+    let boxNote = '';
+    if (!allNight) boxNote = 'star needs a night-sky event — try perseids';
+    else if (render === 'star') boxNote = 'star renders include boxes';
+    else if (render === 'normal') boxNote = 'boxes need overlay or star';
+    if (s.mode === 'guide') boxNote = 'guide keeps boxes on' + (boxNote ? ' · ' + boxNote : '');
+    const modeName = s.mode === 'none' ? 'STANDARD' : s.mode.toUpperCase();
+    const slate = 'CUT ' + s.cut.toUpperCase() + ' · ' + modeName + ' · ' + render.toUpperCase() + (boxesOn ? ' + BOXES' : '') + (s.hud ? ' · HUD' : '') + (detOn ? ' · DETECTIONS ON' : '');
+    return {
+      lanes, outputs, folderChips,
+      cutOpts: [opt('cut','auto'), opt('cut','ai-edit'), opt('cut','review')],
+      modeOpts: [opt('mode','none','standard'), opt('mode','guide')],
+      renderOpts: [opt('render','normal'), opt('render','overlay'), opt('render','star','star', !allNight)],
+      boxesSt: this.chipSt(boxesOn, !boxesEnabled),
+      hudSt: this.chipSt(s.hud, false),
+      toggleBoxes: () => { if (boxesEnabled) this.setState(st => ({boxes: !st.boxes})); },
+      toggleHud: () => this.setState(st => ({hud: !st.hud})),
+      usePrompt: () => this.setState({sourceMode:'prompt'}),
+      outerRef: (el) => this.attachMeasure(el),
+      diagScale: s.scale,
+      diagHpx: Math.round(640 * s.scale) + 'px',
+      promptBd: promptActive ? '#1F5CA8' : '#B9AD93',
+      promptBg: promptActive ? '#FAF7ED' : 'transparent',
+      promptOp: promptActive ? 1 : .75,
+      ghostOp: detOn ? 0 : .35,
+      detOp: detOn ? 1 : .3,
+      detState: detOn ? (render === 'star' ? 'PLATE-SOLVE, ON THE LINE' : 'ON THE LINE') : 'IDLE — NOT NEEDED FOR THIS RENDER',
+      railA: render === 'star' ? 'HIPPARCOS' : 'LOCAL',
+      railB: render === 'star' ? 'IAU' : 'EXPERT',
+      railC: render === 'star' ? 'SKYFIELD' : 'COMMITTEE',
+      railSub1: render === 'star' ? 'plate-solve — stars are solved against the catalog, not detected' : 'local: yoloe · sam2 — expert picked to fit the event',
+      railSub2: render === 'star' ? 'hipparcos catalog · iau designations · skyfield ephemeris' : 'committee: gemini · perplexity · openai — claude presiding',
+      detNote: (!promptActive && act.some(f => f.drone) && render !== 'star') ? 'drone mode (upcoming) — solved against openstreetmap overpass' : '',
+      noOutputs: n === 0,
+      boxNote, slate
+    };
+  }
+}
+</script>
 </body>
 </html>
