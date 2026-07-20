@@ -7,9 +7,9 @@
 </head>
 <body>
 <x-dc>
-<helmet data-dc-atomics>
+<helmet data-dc-atomics="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Crete+Round:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F4EFE2;font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
@@ -208,7 +208,7 @@ html,body{overflow-x:hidden}
       </sc-for>
       <div onClick="{{usePrompt}}" style="position:absolute;left:0;top:342px;width:200px;box-sizing:border-box;border:2.5px solid {{promptBd}};background:{{promptBg}};opacity:{{promptOp}};border-radius:10px;padding:9px 12px;cursor:pointer">
         <div style="font-size:9.5px;font-weight:800;letter-spacing:.18em;color:#1F5CA8">PROMPT</div>
-        <div style="margin-top:4px;font-size:10.5px;font-style:italic;color:#4A3B2C;line-height:1.45">&#8220;every merry christmas in the last 5 years — christmas music, 2 min&#8221;</div>
+        <div style="margin-top:4px;font-size:10.5px;font-style:italic;color:#4A3B2C;line-height:1.45">“every merry christmas in the last 5 years — christmas music, 2 min”</div>
       </div>
       <div style="position:absolute;right:0;top:6px;width:210px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.18em;color:#6A5A48">OUTPUT — ONE PER EVENT</div>
       <sc-if value="{{noOutputs}}" hint-placeholder-val="{{false}}">
@@ -413,14 +413,14 @@ html,body{overflow-x:hidden}
   </div>
   <div>
     <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#1F5CA8">№ 02 — SPOTTER</div>
-    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Show it. It finds it.</h2>
-    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. DinoV2 takes the local guess (&#8220;mascot costume&#8221;); Gemini, armed with your hints and the web, names it for real (&#8220;Keyote — the Frederick Keys mascot&#8221;).</p>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Image search for your archive.</h2>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. Optionally, Gemini leverages all available context and the web to validate the quality of each match.</p>
     <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint (&#8220;this is from a Frederick Keys double header&#8221;)</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint (“this is from a Frederick Keys double header”)</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SCAN</span><span style="font-size:13.5px;color:#4A3B2C">three detectors run head-to-head, scored per hit</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">IDENTIFY</span><span style="font-size:13.5px;color:#4A3B2C">local guess by DinoV2 · real answer by Gemini + web</span></div>
       <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">RESULT</span><span style="font-size:13.5px;color:#4A3B2C">a confidence-coded timeline of every appearance</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SNIP</span><span style="font-size:13.5px;color:#4A3B2C">every hit snipped from its source video and filed to a target folder</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SNIP</span><span style="font-size:13.5px;color:#4A3B2C">every hit snipped from its source video and exported to a target folder</span></div>
     </div>
   </div>
 </div>
@@ -458,7 +458,7 @@ html,body{overflow-x:hidden}
           <div style="margin-top:7px;font-size:10.5px;font-weight:800;letter-spacing:.26em;color:#C93B26">VERIFIED OFFLOAD</div>
         </div>
       </div>
-      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:50ch">Old card in a drawer? Don&#8217;t wipe anything on faith. Safe Send hashes every file on the card — bit-accurate, not filename matching — and checks it against your archive. Whatever isn&#8217;t backed up comes home in one click, filed to your folder scheme. Then, and only then, is the card clear.</p>
+      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:50ch">Old card in a drawer? Don’t wipe anything on faith. Safe Send hashes every file on the card — bit-accurate, not filename matching — and checks it against your archive. Whatever isn’t backed up transfers in one click, filed to your folder scheme. Then, and only then, is the card clear.</p>
       <div style="display:flex;gap:18px;margin:30px 0 0;flex-wrap:wrap">
         <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(-2deg)">HASHED ✓</span>
         <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(1.5deg)">COMPARED ✓</span>
@@ -466,8 +466,8 @@ html,body{overflow-x:hidden}
       </div>
     </div>
     <div>
-      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:724px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
-        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-safesend-gui" src="assets/gui_safesend.mp4" shape="rect" fit="contain" placeholder="Drop: Safe Send screen recording (tall window)" style="position:absolute;inset:0" hint-size="100%,724px"></x-import>
+      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-safesend-gui" src="assets/gui_safesend.mp4" shape="rect" fit="contain" placeholder="Drop: Safe Send screen recording (tall window)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
       </div>
       <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 03 — SAFE SEND, RECEIPTS BEFORE THE WIPE</div>
     </div>
@@ -600,10 +600,10 @@ html,body{overflow-x:hidden}
   </div>
   <div id="download" style="scroll-margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:34px 0 8px">
     <div style="font-size:11px;font-weight:800;letter-spacing:.24em;color:#6A5A48">DOWNLOAD</div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#E4762B;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Factory</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">SELF-HOSTED</span></span>
-      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#1F5CA8;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Spotter</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">RUNS LOCAL · OFFLINE</span></span>
-      <span style="display:flex;flex-direction:column;align-items:center;gap:3px;background:#C93B26;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer"><span style="font-size:15px;font-weight:800;line-height:1">Safe Send</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">WINDOWS</span></span>
+    <div style="display:flex;gap:46px;flex-wrap:wrap;justify-content:center">
+      <span style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#E4762B;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box"><span style="font-size:15px;font-weight:800;line-height:1">Factory</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">SELF-HOSTED</span></span>
+      <span style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#1F5CA8;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box"><span style="font-size:15px;font-weight:800;line-height:1">Spotter</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">RUNS LOCAL · OFFLINE</span></span>
+      <span style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#C93B26;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box"><span style="font-size:15px;font-weight:800;line-height:1">Safe Send</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">WINDOWS</span></span>
     </div>
     <span style="font-size:13px;color:#6A5A48">or write: <a href="mailto:info@arvideo.io" style="color:#2A1F16;font-weight:600">info@arvideo.io</a></span>
   </div>
