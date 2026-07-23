@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Crete+Round:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4EFE2;font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1F5CA8}a:hover{color:#C93B26}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+*{box-sizing:border-box}
+@media (max-width:820px){
+  [data-screen-label="hero"]{grid-template-columns:1fr!important;padding:44px 22px 40px!important;gap:26px!important}
+  [data-screen-label="hero"] h1{font-size:52px!important}
+  [data-screen-label="the index"]{grid-template-columns:1fr!important;padding:52px 22px!important;gap:30px!important}
+  [data-screen-label="the cut"]{padding:52px 22px!important}
+  [data-screen-label="the cut"] > div:nth-child(3){grid-template-columns:1fr!important}
+  [data-screen-label="renders"]{padding:52px 22px!important}
+  [data-screen-label="renders"] > div > div{grid-template-columns:1fr!important}
+  [data-screen-label="specs"]{padding:52px 22px!important}
+  [data-screen-label="download"]{padding:56px 22px!important}
+  [data-screen-label="footer"]{padding:52px 22px 40px!important}
+}
+@media (max-width:560px){
+  [data-screen-label="topbar"]{flex-wrap:wrap!important;gap:10px 16px!important;padding:12px 20px!important}
+  [data-screen-label="hero"] h1{font-size:42px!important}
+  h2{font-size:31px!important}
+}
+</style>
+</helmet>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:3px solid #2A1F16;background:#F4EFE2;position:fixed;top:0;left:0;right:0;z-index:100" data-screen-label="topbar">
+  <a href="Arvideo Home.dc.html" style="display:flex;align-items:flex-end;gap:7px;text-decoration:none"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:26px;width:auto;display:block"><span style="width:9px;height:9px;border-radius:50%;background:#E4762B;margin-bottom:3px"></span></a>
+  <div style="display:flex;align-items:center;gap:26px">
+    <span style="font-size:13px;font-weight:800;color:#C05A17;letter-spacing:-.01em">Factory</span>
+    <a href="Arvideo Spotter.dc.html" style="font-size:13px;font-weight:800;color:#1F5CA8;letter-spacing:-.01em;text-decoration:none">Spotter</a>
+    <a href="Arvideo Safe Send.dc.html" style="font-size:13px;font-weight:800;color:#C93B26;letter-spacing:-.01em;text-decoration:none">SafeSend</a>
+    <a href="#download" style="background:#E4762B;color:#FAF7ED;padding:7px 18px;border-radius:999px;font-size:12.5px;font-weight:700;text-decoration:none">Download</a>
+  </div>
+</div>
+<div style="height:63px" data-screen-label="topbar-spacer"></div>
+
+<div style="display:grid;grid-template-columns:1.1fr .9fr;gap:36px;padding:64px 44px 56px 64px;align-items:center;max-width:1400px;margin:0 auto" data-screen-label="hero">
+  <div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · SELF-HOSTED EDIT LINE</div>
+    <h1 style="margin:16px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:68px;line-height:1;color:#1F5CA8;letter-spacing:-.01em">Loose clips in.<br>Finished videos out.</h1>
+    <p style="margin:22px 0 0;font-size:16px;line-height:1.6;color:#4A3B2C;max-width:50ch">Factory indexes every clip on your drives, then cuts the pile into event-based videos — on your hardware, on your schedule. Queue a batch before bed; the mountain is smaller by morning.</p>
+    <div style="display:flex;align-items:center;gap:20px;margin:30px 0 0;flex-wrap:wrap">
+      <a href="#download" style="background:#E4762B;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;text-decoration:none">Coming soon</a>
+      <span style="font-size:11px;font-weight:700;letter-spacing:.16em;color:#6A5A48">SELF-HOSTED · $249</span>
+    </div>
+  </div>
+  <svg viewBox="0 0 200 260" style="width:100%;max-width:260px;justify-self:center;display:block" aria-label="owl mark">
+    <path d="M52,46 L66,10 L82,38 Z" fill="#2A1F16"></path>
+    <path d="M148,46 L134,10 L118,38 Z" fill="#2A1F16"></path>
+    <path d="M52,46 Q100,30 148,46 L148,58 Q100,42 52,58 Z" fill="#2A1F16"></path>
+    <path d="M56,108 Q42,196 100,246 Q158,196 144,108 Z" fill="#FAF7ED" stroke="#2A1F16" stroke-width="6" stroke-linejoin="round"></path>
+    <clipPath id="owlbodyF"><path d="M56,108 Q42,196 100,246 Q158,196 144,108 Z"></path></clipPath>
+    <g clip-path="url(#owlbodyF)">
+      <path d="M66,122 L100,138 L134,122" fill="none" stroke="#E4762B" stroke-width="9"></path>
+      <path d="M66,144 L100,160 L134,144" fill="none" stroke="#E4762B" stroke-width="9"></path>
+      <path d="M66,166 L100,182 L134,166" fill="none" stroke="#E4762B" stroke-width="9"></path>
+      <path d="M66,188 L100,204 L134,188" fill="none" stroke="#E4762B" stroke-width="9"></path>
+      <path d="M66,210 L100,226 L134,210" fill="none" stroke="#E4762B" stroke-width="9"></path>
+      <rect x="52" y="112" width="12" height="112" rx="6" fill="#2A1F16"></rect>
+      <rect x="136" y="112" width="12" height="112" rx="6" fill="#2A1F16"></rect>
+    </g>
+    <circle cx="66" cy="72" r="34" fill="#2A1F16"></circle><circle cx="66" cy="72" r="27" fill="#E4762B"></circle><circle cx="66" cy="72" r="21" fill="#FAF7ED"></circle>
+    <g stroke="#2A1F16" stroke-width="3.5"><line x1="45" y1="72" x2="87" y2="72"></line><line x1="66" y1="51" x2="66" y2="93"></line><line x1="51.2" y1="57.2" x2="80.8" y2="86.8"></line><line x1="51.2" y1="86.8" x2="80.8" y2="57.2"></line></g>
+    <circle cx="66" cy="72" r="7" fill="#2A1F16"></circle>
+    <circle cx="134" cy="72" r="34" fill="#2A1F16"></circle><circle cx="134" cy="72" r="27" fill="#E4762B"></circle><circle cx="134" cy="72" r="21" fill="#FAF7ED"></circle>
+    <g stroke="#2A1F16" stroke-width="3.5"><line x1="113" y1="72" x2="155" y2="72"></line><line x1="134" y1="51" x2="134" y2="93"></line><line x1="119.2" y1="57.2" x2="148.8" y2="86.8"></line><line x1="119.2" y1="86.8" x2="148.8" y2="57.2"></line></g>
+    <circle cx="134" cy="72" r="7" fill="#2A1F16"></circle>
+    <path d="M100,106 L88,84 L112,84 Z" fill="#E4762B" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+    <rect x="70" y="244" width="16" height="11" rx="4" fill="#2A1F16"></rect>
+    <rect x="114" y="244" width="16" height="11" rx="4" fill="#2A1F16"></rect>
+  </svg>
+</div>
+
+<div style="border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED;padding:18px 64px;display:flex;gap:14px 34px;flex-wrap:wrap;align-items:center;justify-content:center">
+
+  <span style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48">THE LINE:</span><span style="font-size:12.5px;font-weight:800;color:#2A1F16">CUT <span style="font-weight:600;color:#6A5A48">auto · ai-edit · review</span></span>
+  <span style="width:2px;height:18px;background:#D8CDB6"></span>
+  <span style="font-size:12.5px;font-weight:800;color:#2A1F16">MODE <span style="font-weight:600;color:#6A5A48">standard · guide</span></span>
+  <span style="width:2px;height:18px;background:#D8CDB6"></span>
+  <span style="font-size:12.5px;font-weight:800;color:#2A1F16">RENDER <span style="font-weight:600;color:#6A5A48">normal · overlay ± boxes · star · + diagnostic hud</span></span>
+  <a href="Arvideo Home.dc.html#flow" style="font-size:11px;font-weight:800;letter-spacing:.14em;color:#C05A17;text-decoration:none">SEE IT RUN →</a>
+</div>
+
+<div style="display:grid;grid-template-columns:1.02fr .98fr;gap:52px;padding:84px 64px 64px;max-width:1400px;margin:0 auto;align-items:center" data-screen-label="the index">
+  <div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">THE INDEX</div>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.02;color:#1F5CA8">Know your footage.</h2>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Factory reads every clip before it touches one: quality scores, duration, resolution, camera body and everything the file will give up — GPMF telemetry included. Claude writes a scene description; transcription runs locally, timestamped. All of it lands in one database, and every edit downstream is a query against it.</p>
+    <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">SCORED</span><span style="font-size:13.5px;color:#4A3B2C">sharpness · brightness · motion · audio</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">LOGGED</span><span style="font-size:13.5px;color:#4A3B2C">camera · duration · resolution · GPMF telemetry · GPS</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DESCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">scene notes by Claude, per clip</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">TRANSCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">Whisper, timestamped, fully local</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DETECTED</span><span style="font-size:13.5px;color:#4A3B2C">optional — object detection, tracking, informatics</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">PROVENANCE</span><span style="font-size:13.5px;color:#4A3B2C">copyright carried from source clips through every edit, timestamped</span></div>
+    </div>
+  </div>
+  <div>
+    <div style="max-width:480px;margin:0 auto">
+      <div style="border:3px solid #2A1F16;border-radius:12px;background:#FAF7ED;overflow:hidden">
+        <div style="display:flex;gap:10px;justify-content:space-between;background:#E4762B;padding:6px 12px">
+          <span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:#2A1F16">CLIP_0834.MP4</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6A5A48">GoPro Hero 11 Black · 1080p · 00:02:41</span>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:space-between;background:#E4762B;padding:6px 12px">
+          <span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span><span style="width:14px;height:8px;border-radius:2px;background:#FAF7ED"></span>
+        </div>
+      </div>
+      <svg viewBox="0 0 480 58" style="display:block;width:100%" aria-hidden="true">
+        <path d="M240,2 C240,30 122,24 122,50 M240,2 C240,30 358,24 358,50" fill="none" stroke="#6A5A48" stroke-width="2.5"></path>
+        <polygon points="116,44 128,44 122,54" fill="#6A5A48"></polygon>
+        <polygon points="352,44 364,44 358,54" fill="#6A5A48"></polygon>
+      </svg>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="border:2.5px solid #C05A17;border-radius:10px;background:#FAF7ED;overflow:hidden">
+          <div style="background:#E4762B;color:#FAF7ED;font-size:9.5px;font-weight:800;letter-spacing:.16em;padding:7px 12px;text-align:center">IN THE FILE</div>
+          <div style="display:flex;flex-direction:column;padding:10px 14px 12px">
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">camera body</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">duration · resolution</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">timestamps</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">GPS position</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0">GPMF telemetry</span>
+          </div>
+        </div>
+        <div style="border:2.5px solid #1F5CA8;border-radius:10px;background:#FAF7ED;overflow:hidden">
+          <div style="background:#1F5CA8;color:#FAF7ED;font-size:9.5px;font-weight:800;letter-spacing:.16em;padding:7px 12px;text-align:center">SQUEEZED OUT BY AI</div>
+          <div style="display:flex;flex-direction:column;padding:10px 14px 12px">
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">scene notes — Claude</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">transcript — Whisper</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0;border-bottom:1px solid #D8CDB6">quality scores</span>
+            <span style="font-size:12.5px;color:#4A3B2C;padding:4px 0">detections — optional</span>
+          </div>
+        </div>
+      </div>
+      <svg viewBox="0 0 480 58" style="display:block;width:100%" aria-hidden="true">
+        <path d="M122,4 C122,26 240,20 240,40 L240,50 M358,4 C358,26 240,20 240,40" fill="none" stroke="#6A5A48" stroke-width="2.5"></path>
+        <polygon points="234,44 246,44 240,54" fill="#6A5A48"></polygon>
+      </svg>
+      <div style="position:relative">
+        <svg viewBox="0 0 480 118" style="display:block;width:100%" aria-hidden="true">
+          <path d="M50,22 L50,94 A190,16 0 0 0 430,94 L430,22 Z" fill="#1F5CA8"></path>
+          <ellipse cx="240" cy="22" rx="190" ry="16" fill="#1F5CA8" stroke="#FAF7ED" stroke-width="2.5"></ellipse>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:12px;gap:3px">
+          <span style="font-size:13px;font-weight:900;letter-spacing:.2em;color:#FAF7ED">THE INDEX</span>
+          <span style="font-size:10.5px;font-weight:600;letter-spacing:.08em;color:#DCE7F4">one database · every edit is a query against it</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 01 — ONE CLIP, SQUEEZED INTO THE INDEX.</div>
+  </div>
+</div>
+
+<div style="border-top:3px solid #2A1F16"></div>
+
+<div style="padding:76px 64px 84px;max-width:1400px;margin:0 auto" data-screen-label="the cut">
+  <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">THE CUT</div>
+  <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.02;color:#1F5CA8">Two ways to cut. One way out.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px">
+    <div style="border:2.5px solid #2A1F16;border-radius:12px;background:#FAF7ED;overflow:hidden">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:2.5px solid #2A1F16">
+        <span style="font-size:13px;font-weight:900;letter-spacing:.14em;color:#2A1F16">AUTO</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.14em;color:#6A5A48">RULES-BASED</span>
+      </div>
+      <div style="padding:16px 20px 20px">
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#4A3B2C">Deterministic edits from the index: best takes by quality score, trimmed and sequenced by rule. AI picks the song to fit the event; when the track has a clear structure, cuts snap to the beat.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#C05A17;border:1.5px solid #C05A17;border-radius:999px;padding:4px 12px">BEAT SNAPPING</span>
+          <span style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#C05A17;border:1.5px solid #C05A17;border-radius:999px;padding:4px 12px">AI SONG SELECTION</span>
+          <span style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#C05A17;border:1.5px solid #C05A17;border-radius:999px;padding:4px 12px">QUALITY FILTERING</span>
+        </div>
+      </div>
+    </div>
+    <div style="border:2.5px solid #1F5CA8;border-radius:12px;background:#FAF7ED;overflow:hidden">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:2.5px solid #1F5CA8">
+        <span style="font-size:13px;font-weight:900;letter-spacing:.14em;color:#1F5CA8">AI-EDIT</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.14em;color:#6A5A48">CONTEXT-DRIVEN</span>
+      </div>
+      <div style="padding:16px 20px 20px">
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#4A3B2C">AI reads everything the index knows — scene notes, transcripts, scores, telemetry — and writes the cut plan itself: what to keep, in what order, and why. The story drives the edit, not just the clock.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#1F5CA8;border:1.5px solid #1F5CA8;border-radius:999px;padding:4px 12px">FULL-CONTEXT CUT PLAN</span>
+          <span style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#1F5CA8;border:1.5px solid #1F5CA8;border-radius:999px;padding:4px 12px">STORY-AWARE ORDERING</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:30px;border:2.5px solid #2A1F16;border-radius:12px;background:#FAF7ED;padding:24px 26px 18px">
+    <div style="position:relative">
+      <div style="position:absolute;top:0;bottom:0;left:calc(66px + (100% - 66px)*.16);border-left:2px dashed #C05A17"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(66px + (100% - 66px)*.40);border-left:2px dashed #C05A17"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(66px + (100% - 66px)*.64);border-left:2px dashed #C05A17"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(66px + (100% - 66px)*.86);border-left:2px dashed #C05A17"></div>
+      <div style="display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;position:relative">
+        <span style="font-size:9px;font-weight:800;letter-spacing:.14em;color:#6A5A48">CUT</span>
+        <div style="position:relative">
+          <div style="display:flex;border:2px solid #1F5CA8;border-radius:7px;overflow:hidden;height:44px">
+            <div style="width:16%;display:flex;align-items:center;justify-content:center;border-right:2px solid #1F5CA8;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0834</span></div>
+            <div style="width:24%;display:flex;align-items:center;justify-content:center;border-right:2px solid #1F5CA8;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0512</span></div>
+            <div style="width:13%;display:flex;align-items:center;justify-content:center;border-right:2px solid #1F5CA8;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0221</span></div>
+            <div style="width:11%;display:flex;align-items:center;justify-content:center;border-right:2px solid #1F5CA8;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0227</span></div>
+            <div style="width:22%;display:flex;align-items:center;justify-content:center;border-right:2px solid #1F5CA8;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0771</span></div>
+            <div style="width:14%;display:flex;align-items:center;justify-content:center;background:#FAF7ED"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#1F5CA8">0790</span></div>
+          </div>
+          <svg viewBox="0 0 26 26" style="position:absolute;top:50%;left:16%;width:26px;height:26px;transform:translate(-50%,-50%)" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="#FAF7ED" stroke="#C93B26" stroke-width="2"></circle><path d="M6,7 L20,19 M20,7 L6,19" fill="none" stroke="#C93B26" stroke-width="2"></path></svg>
+          <svg viewBox="0 0 26 26" style="position:absolute;top:50%;left:86%;width:26px;height:26px;transform:translate(-50%,-50%)" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="#FAF7ED" stroke="#C93B26" stroke-width="2"></circle><path d="M6,7 L20,19 M20,7 L6,19" fill="none" stroke="#C93B26" stroke-width="2"></path></svg>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;position:relative;margin-top:12px">
+        <span style="font-size:9px;font-weight:800;letter-spacing:.14em;color:#6A5A48">SONG</span>
+        <div style="display:flex;border:2px solid #2A1F16;border-radius:7px;overflow:hidden;height:34px">
+          <div style="width:16%;display:flex;align-items:center;justify-content:center;border-right:2px solid #2A1F16;background:#EAE2CE repeating-linear-gradient(90deg,transparent 0 22px,#D8CDB6 22px 24px)"><span style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#6A5A48;background:#EAE2CE;padding:1px 5px">INTRO</span></div>
+          <div style="width:24%;display:flex;align-items:center;justify-content:center;border-right:2px solid #2A1F16;background:#EAE2CE repeating-linear-gradient(90deg,transparent 0 22px,#D8CDB6 22px 24px)"><span style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#6A5A48;background:#EAE2CE;padding:1px 5px">VERSE</span></div>
+          <div style="width:24%;display:flex;align-items:center;justify-content:center;border-right:2px solid #2A1F16;background:#F0BC3C repeating-linear-gradient(90deg,transparent 0 22px,rgba(42,31,22,.22) 22px 24px)"><span style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#2A1F16;background:#F0BC3C;padding:1px 5px">CHORUS</span></div>
+          <div style="width:22%;display:flex;align-items:center;justify-content:center;border-right:2px solid #2A1F16;background:#EAE2CE repeating-linear-gradient(90deg,transparent 0 22px,#D8CDB6 22px 24px)"><span style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#6A5A48;background:#EAE2CE;padding:1px 5px">VERSE</span></div>
+          <div style="width:14%;display:flex;align-items:center;justify-content:center;background:#EAE2CE repeating-linear-gradient(90deg,transparent 0 22px,#D8CDB6 22px 24px)"><span style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#6A5A48;background:#EAE2CE;padding:1px 5px">OUTRO</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px 30px;flex-wrap:wrap;align-items:center;margin-top:16px;border-top:1px solid #D8CDB6;padding-top:12px">
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.14em;color:#6A5A48"><span style="width:2px;height:14px;background:#C05A17"></span>CUT ON PHRASE BOUNDARY</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.14em;color:#6A5A48"><svg viewBox="0 0 26 26" style="width:16px;height:16px" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#C93B26" stroke-width="2.5"></circle><path d="M6,7 L20,19 M20,7 L6,19" fill="none" stroke="#C93B26" stroke-width="2.5"></path></svg>CROSSFADE</span>
+      <span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 02 — CLIP EDGES SNAPPED TO THE SONG'S PHRASES</span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;border-top:2.5px solid #2A1F16;padding-top:14px;margin-top:26px">
+    <span style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16;white-space:nowrap">THE WAY OUT — FCPXML</span>
+    <span style="font-size:12.5px;color:#6A5A48;max-width:66ch">Every cut ships with an FCPXML alongside the render — open it in Final Cut or your NLE of choice, nudge a trim, swap a take, regrade. The machine does the assembly; you keep the final word.</span>
+  </div>
+</div>
+
+<div style="border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED" data-screen-label="renders">
+  <div style="padding:76px 64px 68px;max-width:1400px;margin:0 auto">
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">THE RENDERS</div>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.02;color:#1F5CA8">One cut, four faces.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:26px;margin-top:34px">
+      <div style="border-top:2.5px solid #2A1F16;padding-top:14px">
+        <div style="font-size:12px;font-weight:900;letter-spacing:.14em;color:#2A1F16">NORMAL</div>
+        <p style="margin:8px 0 0;font-size:13.5px;line-height:1.6;color:#4A3B2C">Title card, clean picture, no frills.</p>
+      </div>
+      <div style="border-top:2.5px solid #E4762B;padding-top:14px">
+        <div style="font-size:12px;font-weight:900;letter-spacing:.14em;color:#C05A17">OVERLAY ± BOXES</div>
+        <p style="margin:8px 0 0;font-size:13.5px;line-height:1.6;color:#4A3B2C">Facts on the picture — with or without detection boxes drawn live.</p>
+      </div>
+      <div style="border-top:2.5px solid #1C3A63;padding-top:14px">
+        <div style="font-size:12px;font-weight:900;letter-spacing:.14em;color:#1C3A63">STAR</div>
+        <p style="margin:8px 0 0;font-size:13.5px;line-height:1.6;color:#4A3B2C">Night-sky events only. Stars are plate-solved against the catalog — Hipparcos · IAU · Skyfield — local detection.</p>
+      </div>
+      <div style="border-top:2.5px solid #2A1F16;padding-top:14px">
+        <div style="font-size:12px;font-weight:900;letter-spacing:.14em;color:#2A1F16">+ DIAGNOSTIC HUD</div>
+        <p style="margin:8px 0 0;font-size:13.5px;line-height:1.6;color:#4A3B2C">Camera, timecode, GPS, motion — the full instrument panel, on top of any render.</p>
+      </div>
+    </div>
+    <div style="margin-top:44px;border:3px solid #2A1F16;border-radius:14px;background:#F4EFE2;padding:26px 30px">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#6A5A48">WHEN A RENDER NEEDS BOXES OR FACTS — THE DETECTION RAIL</div>
+      <div style="display:flex;gap:14px 40px;flex-wrap:wrap;margin-top:14px;align-items:baseline">
+        <span style="font-size:13.5px;color:#4A3B2C"><b style="color:#2A1F16">LOCAL</b> — YoloE · SAM2, expert picked per event</span>
+        <span style="font-size:13.5px;color:#4A3B2C"><b style="color:#2A1F16">COMMITTEE</b> — Gemini · Perplexity · OpenAI, Claude presiding</span>
+        <span style="font-size:13.5px;color:#4A3B2C"><b style="color:#2A1F16">UPCOMING</b> — drone mode, solved against OpenStreetMap Overpass</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:2.5px solid #2A1F16;padding-top:14px;margin-top:44px">
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16">THE SLATE — JOBS, LOGS, AND A BIG RED STOP</div>
+      <div style="font-size:12.5px;color:#6A5A48;max-width:56ch">Every run is a job on the slate: watch the log live, stop it cold, requeue it. Batch mode runs the whole archive passively, overnight.</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:76px 64px 64px;max-width:1400px;margin:0 auto" data-screen-label="specs">
+  <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">RUNS ON YOUR IRON</div>
+  <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.02;color:#1F5CA8">Requirements.</h2>
+  <div style="margin-top:26px;border-top:2.5px solid #2A1F16;max-width:820px">
+    <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">SERVER</span><span style="font-size:13.5px;color:#4A3B2C">self-hosted web app — one machine on your network, pointed at your drives</span></div>
+    <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">CLIENT</span><span style="font-size:13.5px;color:#4A3B2C">any browser — the GUI is phone-first, run it from the couch over Tailscale</span></div>
+    <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">LOCAL MODELS</span><span style="font-size:13.5px;color:#4A3B2C">Whisper transcription · YoloE + SAM2 detection — GPU recommended</span></div>
+    <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">API KEYS</span><span style="font-size:13.5px;color:#4A3B2C">bring your own — Claude for scene notes and presiding; committee keys optional</span></div>
+    <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">YOUR DATA</span><span style="font-size:13.5px;color:#4A3B2C">footage never leaves your network except the frames you send to your own APIs</span></div>
+  </div>
+</div>
+
+<div id="download" style="scroll-margin-top:20px;border-top:3px solid #2A1F16;background:#E4762B;padding:76px 64px 68px" data-screen-label="download">
+  <div style="max-width:1400px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
+    <div style="font-size:11px;font-weight:800;letter-spacing:.24em;color:#FAF7ED">№ 01 — FACTORY</div>
+    <div style="font-family:'Crete Round',Georgia,serif;font-style:italic;font-size:46px;line-height:1;color:#FAF7ED">Put the archive to work tonight.</div>
+    <div style="display:flex;align-items:center;gap:22px;margin-top:10px;flex-wrap:wrap;justify-content:center">
+      <a href="mailto:info@arvideo.io?subject=Factory%20interest" style="background:#2A1F16;color:#FAF7ED;padding:14px 38px;border-radius:999px;font-size:16px;font-weight:800;text-decoration:none">Coming soon</a>
+      <a href="mailto:info@arvideo.io" style="font-size:14px;font-weight:600;color:#2A1F16;text-decoration:underline;text-underline-offset:3px">info@arvideo.io</a>
+    </div>
+    <div style="font-size:10.5px;font-weight:700;letter-spacing:.18em;color:#FAF7ED;opacity:.85">SELF-HOSTED · YOUR DRIVES, YOUR KEYS · NO SUBSCRIPTION</div>
+  </div>
+</div>
+
+<div style="background:#2A1F16;padding:48px 40px 40px" data-screen-label="footer">
+  <div style="max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <a href="Arvideo Home.dc.html" style="display:flex;align-items:flex-end;gap:8px;text-decoration:none"><img src="assets/wordmark_src_1.png" alt="arvideo" style="height:38px;width:auto;display:block"><span style="width:10px;height:10px;border-radius:50%;background:#E4762B;margin-bottom:4px"></span></a>
+    <div style="font-size:10px;font-weight:700;letter-spacing:.22em;color:#B9AD93;text-align:right;line-height:2.1"><a href="Arvideo Spotter.dc.html" style="color:#EDE6D4">SPOTTER</a> · <a href="Arvideo Safe Send.dc.html" style="color:#EDE6D4">SAFE SEND</a><br><a href="mailto:info@arvideo.io" style="color:#EDE6D4">INFO@ARVIDEO.IO</a></div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
