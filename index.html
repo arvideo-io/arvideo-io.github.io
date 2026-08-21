@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/site.webmanifest"><link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png"><link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -26,8 +27,11 @@ html,body{overflow-x:hidden}
   [data-screen-label="product strip"] > a:first-child{border-top:none!important}
   [data-screen-label="factory index"]{grid-template-columns:1fr!important;padding:52px 22px!important;gap:30px!important}
   [data-screen-label="spotter"]{grid-template-columns:1fr!important;padding:52px 22px!important;gap:30px!important}
-  [data-screen-label="safe send"]{padding:52px 22px!important}
-  [data-screen-label="safe send"] > div{grid-template-columns:1fr!important;gap:30px!important}
+  [data-screen-label="product strip"]{grid-template-columns:1fr 1fr!important}
+  [data-screen-label="director"]{padding:52px 22px!important}
+  [data-screen-label="director"] > div{grid-template-columns:1fr!important;gap:30px!important}
+  [data-screen-label="sender"]{padding:52px 22px!important}
+  [data-screen-label="sender"] > div{grid-template-columns:1fr!important;gap:30px!important}
   [data-screen-label="the line interactive"] > div{padding:0 22px!important}
   [data-mq="line-band"]{height:auto!important}
   [data-mq="line-pair"]{position:static!important;grid-template-columns:1fr!important}
@@ -55,9 +59,10 @@ html,body{overflow-x:hidden}
 <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:3px solid #2A1F16;background:#F4EFE2;position:fixed;top:0;left:0;right:0;z-index:100" data-screen-label="topbar">
   <div style="display:flex;align-items:flex-end;gap:7px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:26px;width:auto;display:block"><span style="width:9px;height:9px;border-radius:50%;background:#E4762B;margin-bottom:3px;margin-left:-9px"></span></div>
   <div style="display:flex;align-items:center;gap:26px">
+    <a href="/sender/" style="font-size:13px;font-weight:800;color:#C93B26;letter-spacing:-.01em;text-decoration:none">Sender</a>
+    <a href="/director/" style="font-size:13px;font-weight:800;color:#61468A;letter-spacing:-.01em;text-decoration:none">Director</a>
     <a href="/factory/" style="font-size:13px;font-weight:800;color:#C05A17;letter-spacing:-.01em;text-decoration:none">Factory</a>
     <a href="/spotter/" style="font-size:13px;font-weight:800;color:#1F5CA8;letter-spacing:-.01em;text-decoration:none">Spotter</a>
-    <a href="/safesend/" style="font-size:13px;font-weight:800;color:#C93B26;letter-spacing:-.01em;text-decoration:none">SafeSend</a>
   </div>
 </div>
 <div style="height:63px" data-screen-label="topbar-spacer"></div>
@@ -69,71 +74,178 @@ html,body{overflow-x:hidden}
       <span style="font-size:11px;font-weight:700;letter-spacing:.18em;color:#6A5A48">ARVIDEO.IO — SELF-HOSTED SUITE FOR PRO VIDEO</span>
     </div>
     <h1 style="margin:18px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:76px;line-height:.98;color:#1F5CA8;letter-spacing:-.01em">The good stuff<br>is in there.</h1>
-    <p style="margin:24px 0 0;font-size:16.5px;line-height:1.6;color:#4A3B2C;max-width:46ch">Decades of field tape — Hi-8, MiniDV, phones, GoPros, drones — sitting on drives, unlogged and unwatched.</p>
+    <p style="margin:24px 0 0;font-size:16.5px;line-height:1.6;color:#4A3B2C;max-width:48ch">Most of us have decades of footage sitting on drives — Hi-8 captures, MiniDV, phone clips, GoPro and drone cards — that nobody has watched since the day it was shot. These four tools put that archive to work.</p>
     <div style="margin:18px 0 0;display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.5;color:#4A3B2C;max-width:54ch">
-      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C05A17;font-weight:800">Factory</b><span>indexes every clip and cuts the pile into finished, event-based videos.</span></div>
-      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#1F5CA8;font-weight:800">Spotter</b><span>finds anything you can show it.</span></div>
-      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C93B26;font-weight:800">Safe Send</b><span>ingests cards into order, and clears them with receipts.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C93B26;font-weight:800">Sender</b><span>gets media in safely and proves it's backed up before you wipe an SD card before you wipe them.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#61468A;font-weight:800">Director</b><span>turns 360 files into watchable flat video without an editor.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#C05A17;font-weight:800">Factory</b><span>edits event footage into finished videos with music.</span></div>
+      <div style="display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:baseline"><b style="color:#1F5CA8;font-weight:800">Spotter</b><span>finds a specific thing anywhere in your footage.</span></div>
     </div>
     <div style="display:flex;align-items:center;gap:20px;margin:32px 0 0">
       <a href="#download" style="background:#1F5CA8;color:#FAF7ED;padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;text-decoration:none">Download</a>
       <a href="mailto:info@arvideo.io" style="font-size:14px;font-weight:600;color:#2A1F16;text-decoration:underline;text-underline-offset:3px">info@arvideo.io</a>
     </div>
   </div>
-  <svg viewBox="0 -70 520 690" style="width:100%;max-width:480px;justify-self:center;display:block" aria-label="clips in, videos out">
-    <rect x="6" y="140" width="26" height="40" fill="#F0BC3C"></rect>
-    <rect x="40" y="112" width="26" height="68" fill="#E4762B"></rect>
-    <rect x="74" y="80" width="26" height="100" fill="#F0BC3C"></rect>
-    <rect x="108" y="44" width="26" height="136" fill="#E4762B"></rect>
-    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#E4762B" stroke-width="120"></path>
-    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#F0BC3C" stroke-width="90"></path>
-    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#E4762B" stroke-width="60"></path>
-    <path d="M200,180 V380 A100,100 0 0 0 400,380 V60" fill="none" stroke="#F0BC3C" stroke-width="30"></path>
-    <path transform="translate(400,48) scale(1.7)" d="M0,-54 C3,-54 5,-46 5,-34 L5,-12 L64,14 L64,22 L6,8 L6,30 L26,42 L26,49 L2,44 L-2,44 L-26,49 L-26,42 L-6,30 L-6,8 L-64,22 L-64,14 L-5,-12 L-5,-34 C-5,-46 -3,-54 0,-54 Z" fill="#2A1F16"></path>
-    <text x="8" y="608" font-size="11" letter-spacing="3" fill="#6A5A48" font-family="Archivo,Helvetica,sans-serif" font-weight="700">LOOSE CLIPS IN — FINISHED VIDEOS OUT</text>
-  </svg>
+  <div style="align-self:center;width:100%">
+    <svg viewBox="0 0 520 470" style="width:100%;max-width:400px;margin:0 auto 26px;justify-self:center;display:block" aria-label="clips in, videos out">
+      <rect x="6" y="140" width="26" height="40" fill="#F0BC3C"></rect>
+      <rect x="40" y="112" width="26" height="68" fill="#E4762B"></rect>
+      <rect x="74" y="80" width="26" height="100" fill="#F0BC3C"></rect>
+      <rect x="108" y="44" width="26" height="136" fill="#E4762B"></rect>
+      <path d="M200,180 V300 A100,100 0 0 0 400,300 V84" fill="none" stroke="#E4762B" stroke-width="120"></path>
+      <path d="M200,180 V300 A100,100 0 0 0 400,300 V84" fill="none" stroke="#F0BC3C" stroke-width="90"></path>
+      <path d="M200,180 V300 A100,100 0 0 0 400,300 V84" fill="none" stroke="#E4762B" stroke-width="60"></path>
+      <path d="M200,180 V300 A100,100 0 0 0 400,300 V84" fill="none" stroke="#F0BC3C" stroke-width="30"></path>
+      <path transform="translate(400,76) scale(1.4)" d="M0,-54 C3,-54 5,-46 5,-34 L5,-12 L64,14 L64,22 L6,8 L6,30 L26,42 L26,49 L2,44 L-2,44 L-26,49 L-26,42 L-6,30 L-6,8 L-64,22 L-64,14 L-5,-12 L-5,-34 C-5,-46 -3,-54 0,-54 Z" fill="#2A1F16"></path>
+    </svg>
+    <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;position:relative;background:#1C3A63;aspect-ratio:16/9">
+      <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-home-hero-render" src="assets/hero_render.mp4" shape="rect" fit="contain" placeholder="Drop: 15-second finished Factory render, any event" style="position:absolute;inset:0" hint-size="100%,100%"></x-import>
+    </div>
+    <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">A FINISHED FACTORY RENDER — CLIPS IN, VIDEO OUT</div>
+  </div>
 </div>
 
-<div style="border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED;display:grid;grid-template-columns:1fr 1fr 1fr" data-screen-label="product strip">
-  <a href="#factory" style="padding:24px 34px;display:flex;gap:16px;align-items:baseline;text-decoration:none">
-    <span style="font-size:38px;font-weight:900;color:#C05A17;letter-spacing:-.03em">01</span>
+<div style="border-top:3px solid #2A1F16;border-bottom:3px solid #2A1F16;background:#FAF7ED;display:grid;grid-template-columns:repeat(4,1fr)" data-screen-label="product strip">
+  <a href="#sender" style="padding:24px 34px;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#C93B26;letter-spacing:-.03em">01</span>
+    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Sender</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">It copies incoming media to the folders you choose, verifies every file by checksum, and can wipe the card behind a confirmation.</span>
+    <span style="font-size:11px;font-weight:800;color:#C93B26;letter-spacing:.14em">SENDER →</span></span>
+  </a>
+  <a href="#director" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#61468A;letter-spacing:-.03em">02</span>
+    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Director</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">It reads frames from each 360 clip, plans real camera moves, and writes flat MP4s — often two or three shots from one sphere.</span>
+    <span style="font-size:11px;font-weight:800;color:#61468A;letter-spacing:.14em">DIRECTOR →</span></span>
+  </a>
+  <a href="#factory" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
+    <span style="font-size:38px;font-weight:900;color:#C05A17;letter-spacing:-.03em">03</span>
     <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Factory</span>
-    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Loose archival footage in, watchable event videos out. Indexing, batch runs, AI edits, prompt orders.</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">It reads every clip into a database first, then edits event footage into finished videos with music.</span>
     <span style="font-size:11px;font-weight:800;color:#C05A17;letter-spacing:.14em">FACTORY →</span></span>
   </a>
   <a href="#spotter" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
-    <span style="font-size:38px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">02</span>
+    <span style="font-size:38px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">04</span>
     <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Spotter</span>
-    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Show it a few frames of a thing; it finds that thing across your videos, timestamped and scored.</span>
+    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">Show it a few reference photos of something and it finds appearances in your footage — scored, previewable, and clipped out to a folder.</span>
     <span style="font-size:11px;font-weight:800;color:#1F5CA8;letter-spacing:.14em">SPOTTER →</span></span>
-  </a>
-  <a href="#safesend" style="padding:24px 34px;border-left:1px solid #D8CDB6;display:flex;gap:16px;align-items:baseline;text-decoration:none">
-    <span style="font-size:38px;font-weight:900;color:#C93B26;letter-spacing:-.03em">03</span>
-    <span><span style="display:block;font-size:20px;font-weight:800;color:#2A1F16;letter-spacing:-.02em;margin-bottom:5px">Safe Send</span>
-    <span style="display:block;font-size:13px;line-height:1.5;color:#6A5A48;margin-bottom:10px">The first stop for every card: files land in your folder scheme, and nothing gets wiped until every byte is proven backed up.</span>
-    <span style="font-size:11px;font-weight:800;color:#C93B26;letter-spacing:.14em">SAFE SEND →</span></span>
   </a>
 </div>
 
-<div id="factory" style="scroll-margin-top:88px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;padding:84px 64px 64px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="factory index">
-  <div>
-    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · THE INDEX</div>
-    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Know your footage.</h2>
-    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Factory reads every clip before it touches one: quality scores, duration, resolution, camera body and everything the file will give up — GPMF telemetry included. Claude writes a scene description; transcription runs locally, timestamped. All of it lands in one database, and every edit downstream is a query against it.</p>
-    <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">SCORED</span><span style="font-size:13.5px;color:#4A3B2C">sharpness · brightness · motion · audio</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">LOGGED</span><span style="font-size:13.5px;color:#4A3B2C">camera · duration · resolution · GPMF telemetry · GPS</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DESCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">scene notes by Claude, per clip</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">TRANSCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">Whisper, timestamped, fully local</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DETECTED</span><span style="font-size:13.5px;color:#4A3B2C">optional — object detection, tracking, informatics</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">PROVENANCE</span><span style="font-size:13.5px;color:#4A3B2C">copyright carried from source clips through every edit, timestamped</span></div>
+<div id="sender" style="scroll-margin-top:88px;background:#FAF7ED;padding:76px 64px 72px" data-screen-label="sender">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px;align-items:center">
+    <div>
+      <div style="display:flex;align-items:center;gap:22px">
+        <svg viewBox="0 0 200 260" style="width:120px;flex:none;display:block" aria-label="sender pigeon">
+          <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
+          <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
+          <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
+          <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
+          <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
+          <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
+          <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
+          <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
+          <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
+            <path d="M56,118 Q66,150 60,182"></path>
+            <path d="M70,110 Q82,148 74,188"></path>
+            <path d="M144,118 Q134,150 140,182"></path>
+            <path d="M130,110 Q118,148 126,188"></path>
+          </g>
+          <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+          <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
+          <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+          <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+          <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
+          <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+          <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+        </svg>
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C93B26">SENDER</div>
+          <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Nothing gets wiped on faith.</h2>
+        </div>
+      </div>
+      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:50ch">Sender copies incoming media to the folders you choose, then verifies each file landed in your storage system — SHA-256 checksums for SD cards and drives; a name-and-size check for iPhones and other internal storage that can't be hashed in place. A phone match can never authorize deletion — only hash-verified files are ever eligible for a wipe, behind a confirmation.</p>
+      <div style="display:flex;gap:18px;margin:30px 0 0;flex-wrap:wrap">
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(-2deg)">ORGANIZED ✓</span>
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(1.5deg)">HASHED ✓</span>
+        <span style="border:3px solid #C93B26;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#C93B26;transform:rotate(-1deg)">CLEAR TO WIPE</span>
+      </div>
+    </div>
+    <div style="order:-1;width:100%">
+      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-safesend-gui" src="assets/gui_sender.mp4" shape="rect" fit="contain" placeholder="Drop: Sender screen recording (tall window)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
+      </div>
+      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">SENDER — ORGANIZED INGEST, VERIFIED BACKUP</div>
     </div>
   </div>
-  <div>
-    <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
-      <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-factory-gui" shape="rect" fit="contain" placeholder="Drop: Factory GUI screen recording (tall / mobile)" style="position:absolute;inset:0" hint-size="100%,560px" src="assets/gui_factory.mp4"></x-import>
+</div>
+
+<div id="director" style="scroll-margin-top:88px;border-top:3px solid #2A1F16;padding:76px 64px 72px" data-screen-label="director">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px;align-items:center">
+    <div>
+      <div style="display:flex;align-items:center;gap:22px">
+        <svg viewBox="0 0 200 268" style="width:112px;flex:none;display:block" aria-label="woodcock mark">
+  <path d="M170,146 L196,132 L198,170 L172,180 Z" fill="#2A1F16" stroke="#2A1F16" stroke-width="5" stroke-linejoin="round"></path>
+  <path d="M50,166 Q50,114 112,114 Q174,114 174,166 Q174,222 112,222 Q50,222 50,166 Z" fill="#FAF7ED" stroke="#2A1F16" stroke-width="6" stroke-linejoin="round"></path>
+  <clipPath id="wcbody2"><path d="M50,166 Q50,114 112,114 Q174,114 174,166 Q174,222 112,222 Q50,222 50,166 Z"></path></clipPath>
+  <g clip-path="url(#wcbody2)">
+    <path d="M66,202 Q112,190 158,202" fill="none" stroke="#7B5EA7" stroke-width="8" stroke-linecap="round"></path>
+  </g>
+  <circle cx="78" cy="102" r="36" fill="none" stroke="#7B5EA7" stroke-width="3.5" stroke-dasharray="9 10" stroke-linecap="round"></circle>
+  <circle cx="78" cy="102" r="27" fill="#2A1F16"></circle>
+  <path d="M57,96 L8,114 L8,122 L58,114 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3.5" stroke-linejoin="round"></path>
+  <circle cx="93" cy="89" r="10" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></circle>
+  <circle cx="93" cy="89" r="6" fill="none" stroke="#7B5EA7" stroke-width="3"></circle>
+  <circle cx="93" cy="89" r="2.6" fill="#2A1F16"></circle>
+  <rect x="80" y="150" width="64" height="36" rx="4" fill="#7B5EA7" stroke="#2A1F16" stroke-width="4"></rect>
+  <g stroke="#FAF7ED" stroke-width="3" fill="none" stroke-linecap="round"><path d="M87,159 V156 H92"></path><path d="M137,159 V156 H132"></path><path d="M87,177 V180 H92"></path><path d="M137,177 V180 H132"></path></g>
+  <circle cx="112" cy="168" r="4.5" fill="#FAF7ED"></circle>
+  <rect x="95" y="216" width="9" height="20" rx="4" fill="#2A1F16"></rect>
+  <rect x="122" y="216" width="9" height="20" rx="4" fill="#2A1F16"></rect>
+  <rect x="82" y="233" width="28" height="9" rx="4.5" fill="#2A1F16"></rect>
+  <rect x="109" y="233" width="28" height="9" rx="4.5" fill="#2A1F16"></rect>
+</svg>
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#61468A">DIRECTOR</div>
+          <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8;white-space:nowrap">Automated 360 video framing.</h2>
+        </div>
+      </div>
+      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">An afternoon with a 360 camera leaves you a bunch of files, and each one requires keyframing in an editor before anyone can watch it. Nobody does that, so the footage sits. Director frames the whole folder for you: it reads frames from each clip, plans real camera moves, and writes flat MP4s that play anywhere — often two or three different shots from one sphere. Give it a mode and/or a prompt.</p>
+      <div style="display:flex;gap:18px;margin:30px 0 0;flex-wrap:wrap">
+        <span style="border:3px solid #7B5EA7;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#61468A;transform:rotate(-1.5deg)">AUTOMATIC</span>
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(1.5deg)">OR VIA PROMPT</span>
+        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(-1deg)">CALM · CINEMATIC · WILD</span>
+      </div>
+      <a href="/director/" style="display:inline-block;margin-top:28px;font-size:11px;font-weight:800;color:#61468A;letter-spacing:.14em;text-decoration:none">DIRECTOR →</a>
     </div>
-    <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 01 — FACTORY, INDEXING A CARD</div>
+    <div style="order:-1;width:100%">
+      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#1C3A63">
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-director-out" src="assets/director_out.mp4" shape="rect" fit="contain" placeholder="Drop: Director output (a flat clip from a 360 source)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
+      </div>
+      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">A DIRECTED FLAT CLIP FROM A 360 SOURCE</div>
+    </div>
+  </div>
+</div>
+
+<div id="factory" style="scroll-margin-top:88px;border-top:3px solid #2A1F16;display:grid;grid-template-columns:1fr;gap:40px;padding:84px 64px 64px;max-width:980px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="factory index">
+  <div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">FACTORY 3A — THE INDEX · READS EVERYTHING FIRST</div>
+    <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Know your footage.</h2>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Before Factory edits anything, it reads every clip and writes down what it finds: quality scores, duration, resolution, which camera shot it, and GPS and flight telemetry when the file — or the sidecar next to it — carries it: GoPro's GPMF lives in the file, DJI's SRT beside it. Claude writes a short description of each scene, and Whisper transcribes the audio locally with timestamps. Everything goes into one database, and every edit afterward is built from those records.</p>
+    <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">SCORED</span><span style="font-size:13.5px;color:#4A3B2C">sharpness · brightness · motion · audio</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">LOGGED</span><span style="font-size:13.5px;color:#4A3B2C">camera · duration · resolution · GPMF + SRT telemetry · GPS</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DESCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">scene notes by Claude, per clip</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">TRANSCRIBED</span><span style="font-size:13.5px;color:#4A3B2C">Whisper, timestamped, fully local</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">DETECTED</span><span style="font-size:13.5px;color:#4A3B2C">optional — object detection, landmark detection, star detection</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#C05A17">PROVENANCE</span><span style="font-size:13.5px;color:#4A3B2C">provenance and rights — every source segment recorded and timestamped in the finished video's metadata, and the most restrictive source wins</span></div>
+    </div>
+  </div>
+  <div style="order:-1;width:100%">
+    <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
+      <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-factory-gui" src="assets/gui_factory.mp4" shape="rect" fit="contain" placeholder="Drop: Factory GUI screen recording (tall / mobile)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
+    </div>
+    <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FACTORY, INDEXING AN EVENT</div>
   </div>
 </div>
 
@@ -141,10 +253,10 @@ html,body{overflow-x:hidden}
   <div style="max-width:1400px;margin:0 auto;padding:0 64px;box-sizing:border-box">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap">
       <div>
-        <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">№ 01 — FACTORY · THE LINE</div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C05A17">FACTORY 3B — THE EDITOR &amp; RENDERER · TRY IT</div>
         <h2 style="margin:12px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1;color:#1F5CA8">Run it yourself.</h2>
       </div>
-      <p style="margin:0;font-size:13.5px;color:#6A5A48;max-width:44ch;line-height:1.55">Pick folders — or run a prompt. Choose the cut, the mode, the render. When a render needs boxes or facts, the line dips through detections.</p>
+      <p style="margin:0;font-size:13.5px;color:#6A5A48;max-width:44ch;line-height:1.55">Pick folders — or run a prompt. Choose the cut, the mode, the render. When a render needs boxes or facts, the flow dips through detections.</p>
     </div>
     <div style="display:flex;gap:34px;margin:34px 0 6px;flex-wrap:wrap">
       <div>
@@ -357,8 +469,8 @@ html,body{overflow-x:hidden}
       </sc-for>
     </div></div>
     <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:2.5px solid #2A1F16;padding-top:14px">
-      <div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16">SLATE — {{slate}}</div>
-      <div style="font-size:12.5px;color:#6A5A48;max-width:56ch">Batch mode runs this same line across the whole archive, passively — the mountain shrinks while you sleep.</div>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#2A1F16">THIS RUN — {{slate}}</div>
+      <div style="font-size:12.5px;color:#6A5A48;max-width:56ch">Batch mode works through the whole archive on its own, overnight if that's when your machine is free.</div>
     </div>
   </div>
 </div>
@@ -367,15 +479,15 @@ html,body{overflow-x:hidden}
   <div style="position:relative;height:520px;border-bottom:3px solid #2A1F16" data-mq="line-band">
     <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr" data-mq="line-pair">
       <div style="position:relative;border-right:3px solid #2A1F16">
-        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-render-normal" shape="rect" fit="contain" placeholder="Drop: NORMAL render clip — title card, no frills (mp4 / webm)" style="position:absolute;inset:0" hint-size="100%,520px" src="assets/render_normal.mp4"></x-import>
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-render-normal" src="assets/render_normal.mp4" shape="rect" fit="contain" placeholder="Drop: NORMAL render clip — title card, no frills (mp4 / webm)" style="position:absolute;inset:0" hint-size="100%,520px"></x-import>
         <span style="position:absolute;top:30px;right:24px;background:#2A1F16;color:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:800;letter-spacing:.22em;pointer-events:none">NORMAL</span>
       </div>
       <div style="position:relative">
-        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-render-diagnostic" shape="rect" fit="contain" placeholder="Drop: DIAGNOSTIC render — same clip, full HUD (mp4 / webm)" style="position:absolute;inset:0" hint-size="100%,520px" src="assets/render_diagnostic.mp4"></x-import>
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-render-diagnostic" src="assets/render_diagnostic.mp4" shape="rect" fit="contain" placeholder="Drop: DIAGNOSTIC render — same clip, full HUD (mp4 / webm)" style="position:absolute;inset:0" hint-size="100%,520px"></x-import>
         <span style="position:absolute;top:30px;right:24px;background:#E4762B;color:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:800;letter-spacing:.22em;pointer-events:none">DIAGNOSTIC HUD</span>
       </div>
     </div>
-    <div style="position:absolute;top:30px;left:40px;background:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.26em;color:#2A1F16;pointer-events:none">ARVIDEO.IO — FROM THE LINE</div>
+    <div style="position:absolute;top:30px;left:40px;background:#FAF7ED;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.26em;color:#2A1F16;pointer-events:none">ARVIDEO.IO — FROM FACTORY</div>
     <div style="position:absolute;left:0;bottom:0;width:560px;background:#FAF7ED;border-top-right-radius:120px;padding:24px 62px 20px 40px;box-sizing:border-box;pointer-events:none" data-mq="line-plate">
       <div style="display:flex;align-items:center;gap:18px">
         <svg viewBox="0 0 40 40" style="width:32px;flex:none;display:block">
@@ -384,15 +496,15 @@ html,body{overflow-x:hidden}
         <div style="width:2px;height:40px;background:#D8CDB6"></div>
         <div style="display:flex;align-items:flex-end;gap:8px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="height:44px;width:auto;display:block"><span style="width:11px;height:11px;border-radius:50%;background:#E4762B;margin-bottom:5px;margin-left:-11px"></span></div>
       </div>
-      <div style="margin-top:11px;font-size:12.5px;color:#6A5A48">one clip, two renders — the title card, or the full diagnostic hud</div>
+      <div style="margin-top:11px;font-size:12.5px;color:#6A5A48">One clip, two renders: the plain title card, or the full diagnostic HUD.</div>
     </div>
   </div>
 </div>
 
-<div id="spotter" style="scroll-margin-top:88px;display:grid;grid-template-columns:.98fr 1.02fr;gap:52px;padding:84px 64px 72px;max-width:1400px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="spotter">
+<div id="spotter" style="scroll-margin-top:88px;display:grid;grid-template-columns:1fr;gap:40px;padding:84px 64px 72px;max-width:980px;margin:0 auto;box-sizing:border-box;align-items:center" data-screen-label="spotter">
   <div>
     <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
-      <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-spotter-gui" shape="rect" fit="contain" placeholder="Drop: Spotter GUI screen recording (tall / mobile)" style="position:absolute;inset:0" hint-size="100%,560px" src="assets/gui_spotter.mp4"></x-import>
+      <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-spotter-gui" src="assets/gui_spotter.mp4" shape="rect" fit="contain" placeholder="Drop: Spotter GUI screen recording (tall / mobile)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
     </div>
     <svg viewBox="0 0 460 96" style="width:100%;display:block;margin-top:18px">
       <rect x="4" y="58" width="452" height="14" rx="7" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></rect>
@@ -412,70 +524,22 @@ html,body{overflow-x:hidden}
     </svg>
   </div>
   <div>
-    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#1F5CA8">№ 02 — SPOTTER</div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#1F5CA8">SPOTTER</div>
     <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Image search for your archive.</h2>
-    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Hand Spotter a few frames — <i>find these objects</i> — and point it at <i>these videos</i>. Three competing detectors scan and score against each other. Optionally, Gemini leverages all available context and the web to validate the quality of each match.</p>
+    <p style="margin:20px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:52ch">Give Spotter a few reference photos of your thing and point it at your footage. It finds appearances of that thing, timestamps each to the half-second, and scores every one — with a sensitivity dial that runs from a few clean hits to everything. Finding runs entirely on your machine.</p>
     <div style="margin-top:26px;border-top:2.5px solid #2A1F16">
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference frames + optional hint for the language-input model</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SCAN</span><span style="font-size:13.5px;color:#4A3B2C">three detectors run head-to-head, scored per hit</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">IDENTIFY</span><span style="font-size:13.5px;color:#4A3B2C">local guess by DinoV2 · real answer by Gemini + web</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">RESULT</span><span style="font-size:13.5px;color:#4A3B2C">a confidence-coded timeline of every appearance</span></div>
-      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SNIP</span><span style="font-size:13.5px;color:#4A3B2C">every hit snipped from its source video and exported to a target folder</span></div>
-    </div>
-  </div>
-</div>
-
-<div id="safesend" style="scroll-margin-top:88px;border-top:3px solid #2A1F16;background:#FAF7ED;padding:76px 64px 72px" data-screen-label="safe send">
-  <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
-    <div>
-      <div style="display:flex;align-items:center;gap:22px">
-        <svg viewBox="0 0 200 260" style="width:120px;flex:none;display:block" aria-label="safe send pigeon">
-          <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
-          <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
-          <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
-          <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
-          <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
-          <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
-          <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
-          <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
-          <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
-            <path d="M56,118 Q66,150 60,182"></path>
-            <path d="M70,110 Q82,148 74,188"></path>
-            <path d="M144,118 Q134,150 140,182"></path>
-            <path d="M130,110 Q118,148 126,188"></path>
-          </g>
-          <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
-          <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
-          <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
-          <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
-          <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
-          <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
-          <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
-        </svg>
-        <div>
-          <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#C93B26">№ 03 — SAFE SEND</div>
-          <h2 style="margin:14px 0 0;font-family:'Crete Round',Georgia,serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;color:#1F5CA8">Files in, safe and sorted.</h2>
-        </div>
-      </div>
-      <p style="margin:26px 0 0;font-size:15.5px;line-height:1.65;color:#4A3B2C;max-width:50ch">Safe Send does two jobs, in one pass. First, ingest: every card enters your archive through it, filed straight into your folder scheme, so everything downstream stays organized. Second, verify: it hashes every file — bit-accurate, not filename matching — and checks it against your archive, catching anything that never made it across. Then, and only then, is the card clear to wipe.</p>
-      <div style="display:flex;gap:18px;margin:30px 0 0;flex-wrap:wrap">
-        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(-2deg)">HASHED ✓</span>
-        <span style="border:3px solid #2A1F16;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#2A1F16;transform:rotate(1.5deg)">COMPARED ✓</span>
-        <span style="border:3px solid #C93B26;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:900;letter-spacing:.1em;color:#C93B26;transform:rotate(-1deg)">CLEAR TO WIPE</span>
-      </div>
-    </div>
-    <div>
-      <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#EAE2CE">
-        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-safesend-gui" shape="rect" fit="contain" placeholder="Drop: Safe Send screen recording (tall window)" style="position:absolute;inset:0" hint-size="100%,560px" src="assets/gui_safesend.mp4"></x-import>
-      </div>
-      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">FIG. 03 — SAFE SEND, RECEIPTS BEFORE THE WIPE</div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">INPUT</span><span style="font-size:13.5px;color:#4A3B2C">reference photos, one or many — each mirrored automatically so either facing matches</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">SCAN</span><span style="font-size:13.5px;color:#4A3B2C">SAM2 proposes candidates; three matchers — DINOv2, SigLIP2, OpenCLIP — judge each one head-to-head</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">VERIFY</span><span style="font-size:13.5px;color:#4A3B2C">optional second opinion from a vision model with your own key, off by default — it sees the references and one crop, never your video</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">RESULT</span><span style="font-size:13.5px;color:#4A3B2C">a confidence-coded timeline of appearances, good to the half-second</span></div>
+      <div style="display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid #D8CDB6;align-items:baseline"><span style="font-size:10px;font-weight:800;letter-spacing:.16em;color:#1F5CA8">EXPORT</span><span style="font-size:13.5px;color:#4A3B2C">hits cut out as real MP4 clips with five seconds of context each side, plus CSV and HTML reports</span></div>
     </div>
   </div>
 </div>
 
 <div id="suite" style="scroll-margin-top:88px;border-top:3px solid #2A1F16;padding:76px 40px 60px;background:#F4EFE2" data-screen-label="deck wall">
   <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
-    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#6A5A48">THE SUITE</div>
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#6A5A48">FOUR TOOLS</div>
     <div style="display:flex;align-items:flex-end;gap:10px;margin-top:18px"><img src="assets/wordmark_cocoa.png" alt="arvideo" style="width:360px;height:auto;display:block"><span style="width:24px;height:24px;border-radius:50%;background:#E4762B;margin-bottom:7px;margin-left:-24px"></span></div>
     <div style="width:360px;display:flex;flex-direction:column;gap:3px;margin-top:22px" data-mq="suite-bars">
       <div style="height:4px;background:#C0A05E"></div>
@@ -483,9 +547,75 @@ html,body{overflow-x:hidden}
       <div style="height:4px;background:#7B5EA7"></div>
       <div style="height:4px;background:#D6432E"></div>
     </div>
-    <div style="margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.24em;color:#6A5A48">THREE TOOLS · ONE ARCHIVE</div>
+    <div style="margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.24em;color:#6A5A48">FOUR TOOLS · ONE ARCHIVE</div>
   </div>
   <div style="display:flex;justify-content:center;gap:46px;padding:46px 0 8px;flex-wrap:wrap">
+    <a href="/sender/" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
+      <span style="display:block;background:#D6432E;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
+        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
+          <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="homing pigeon mark">
+            <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
+            <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
+            <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
+            <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
+            <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
+            <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
+            <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
+            <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
+            <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
+              <path d="M56,118 Q66,150 60,182"></path>
+              <path d="M70,110 Q82,148 74,188"></path>
+              <path d="M144,118 Q134,150 140,182"></path>
+              <path d="M130,110 Q118,148 126,188"></path>
+            </g>
+            <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
+            <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
+            <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+            <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
+            <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
+            <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+            <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
+          </svg>
+          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Sender</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">It proves your media is backed up before you wipe a card.</span>
+          <span style="flex:1"></span>
+          <span style="font-size:34px;font-weight:900;color:#C93B26;letter-spacing:-.03em">01</span>
+          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#C93B26;letter-spacing:.18em">OPEN →</span>
+        </span>
+      </span>
+    </a>
+    <a href="/director/" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
+      <span style="display:block;background:#7B5EA7;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
+        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
+          <svg viewBox="0 0 200 268" style="width:124px;display:block" aria-label="woodcock mark">
+  <path d="M170,146 L196,132 L198,170 L172,180 Z" fill="#2A1F16" stroke="#2A1F16" stroke-width="5" stroke-linejoin="round"></path>
+  <path d="M50,166 Q50,114 112,114 Q174,114 174,166 Q174,222 112,222 Q50,222 50,166 Z" fill="#FAF7ED" stroke="#2A1F16" stroke-width="6" stroke-linejoin="round"></path>
+  <clipPath id="wcbody3"><path d="M50,166 Q50,114 112,114 Q174,114 174,166 Q174,222 112,222 Q50,222 50,166 Z"></path></clipPath>
+  <g clip-path="url(#wcbody3)">
+    <path d="M66,202 Q112,190 158,202" fill="none" stroke="#7B5EA7" stroke-width="8" stroke-linecap="round"></path>
+  </g>
+  <circle cx="78" cy="102" r="36" fill="none" stroke="#7B5EA7" stroke-width="3.5" stroke-dasharray="9 10" stroke-linecap="round"></circle>
+  <circle cx="78" cy="102" r="27" fill="#2A1F16"></circle>
+  <path d="M57,96 L8,114 L8,122 L58,114 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3.5" stroke-linejoin="round"></path>
+  <circle cx="93" cy="89" r="10" fill="#FAF7ED" stroke="#2A1F16" stroke-width="2.5"></circle>
+  <circle cx="93" cy="89" r="6" fill="none" stroke="#7B5EA7" stroke-width="3"></circle>
+  <circle cx="93" cy="89" r="2.6" fill="#2A1F16"></circle>
+  <rect x="80" y="150" width="64" height="36" rx="4" fill="#7B5EA7" stroke="#2A1F16" stroke-width="4"></rect>
+  <g stroke="#FAF7ED" stroke-width="3" fill="none" stroke-linecap="round"><path d="M87,159 V156 H92"></path><path d="M137,159 V156 H132"></path><path d="M87,177 V180 H92"></path><path d="M137,177 V180 H132"></path></g>
+  <circle cx="112" cy="168" r="4.5" fill="#FAF7ED"></circle>
+  <rect x="95" y="216" width="9" height="20" rx="4" fill="#2A1F16"></rect>
+  <rect x="122" y="216" width="9" height="20" rx="4" fill="#2A1F16"></rect>
+  <rect x="82" y="233" width="28" height="9" rx="4.5" fill="#2A1F16"></rect>
+  <rect x="109" y="233" width="28" height="9" rx="4.5" fill="#2A1F16"></rect>
+</svg>
+          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Director</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">It turns 360 files into flat video.</span>
+          <span style="flex:1"></span>
+          <span style="font-size:34px;font-weight:900;color:#61468A;letter-spacing:-.03em">02</span>
+          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#61468A;letter-spacing:.18em">OPEN →</span>
+        </span>
+      </span>
+    </a>
     <a href="/factory/" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
       <span style="display:block;background:#E4762B;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
         <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
@@ -519,9 +649,9 @@ html,body{overflow-x:hidden}
             <rect x="114" y="244" width="16" height="11" rx="4" fill="#2A1F16"></rect>
           </svg>
           <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Factory</span>
-          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">edits the pile into finished videos, overnight</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">It edits the pile into finished videos overnight.</span>
           <span style="flex:1"></span>
-          <span style="font-size:34px;font-weight:900;color:#C05A17;letter-spacing:-.03em">01</span>
+          <span style="font-size:34px;font-weight:900;color:#C05A17;letter-spacing:-.03em">03</span>
           <span style="margin-top:6px;font-size:10px;font-weight:800;color:#C05A17;letter-spacing:.18em">OPEN →</span>
         </span>
       </span>
@@ -555,44 +685,10 @@ html,body{overflow-x:hidden}
             <circle cx="100" cy="52" r="4" fill="#2A1F16"></circle>
           </svg>
           <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Spotter</span>
-          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">finds anything you can show it</span>
+          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">It finds anything you can show it.</span>
           <span style="flex:1"></span>
-          <span style="font-size:34px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">02</span>
+          <span style="font-size:34px;font-weight:900;color:#1F5CA8;letter-spacing:-.03em">04</span>
           <span style="margin-top:6px;font-size:10px;font-weight:800;color:#1F5CA8;letter-spacing:.18em">OPEN →</span>
-        </span>
-      </span>
-    </a>
-    <a href="/safesend/" style="width:186px;transition:transform .25s ease;cursor:pointer;text-decoration:none;display:block" style-hover="transform:translateY(-8px)">
-      <span style="display:block;background:#D6432E;border-radius:96px;padding:12px;height:560px;box-sizing:border-box">
-        <span style="background:#FAF7ED;border-radius:84px;height:100%;display:flex;flex-direction:column;align-items:center;padding:38px 14px 26px;box-sizing:border-box">
-          <svg viewBox="0 0 200 260" style="width:124px;display:block" aria-label="homing pigeon mark">
-            <circle cx="100" cy="146" r="58" fill="#2A1F16"></circle>
-            <rect x="86" y="70" width="28" height="32" fill="#2A1F16"></rect>
-            <circle cx="100" cy="64" r="24" fill="#2A1F16"></circle>
-            <circle cx="89" cy="60" r="5.5" fill="#FAF7ED"></circle>
-            <circle cx="111" cy="60" r="5.5" fill="#FAF7ED"></circle>
-            <circle cx="89" cy="61" r="2.2" fill="#2A1F16"></circle>
-            <circle cx="111" cy="61" r="2.2" fill="#2A1F16"></circle>
-            <path d="M100,94 L92,80 L108,80 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="3" stroke-linejoin="round"></path>
-            <g stroke="#FAF7ED" stroke-width="7" stroke-linecap="round" fill="none">
-              <path d="M56,118 Q66,150 60,182"></path>
-              <path d="M70,110 Q82,148 74,188"></path>
-              <path d="M144,118 Q134,150 140,182"></path>
-              <path d="M130,110 Q118,148 126,188"></path>
-            </g>
-            <path d="M93,116 H113 Q117,116 117,120 V156 Q117,160 113,160 H87 Q83,160 83,156 V126 Z" fill="#F0BC3C" stroke="#2A1F16" stroke-width="4" stroke-linejoin="round"></path>
-            <g stroke="#2A1F16" stroke-width="3"><line x1="93" y1="121" x2="93" y2="131"></line><line x1="101" y1="121" x2="101" y2="131"></line><line x1="109" y1="121" x2="109" y2="131"></line></g>
-            <rect x="82" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
-            <rect x="110" y="202" width="8" height="22" rx="3" fill="#2A1F16"></rect>
-            <rect x="80" y="210" width="12" height="5" rx="2.5" fill="#D6432E"></rect>
-            <rect x="74" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
-            <rect x="102" y="222" width="24" height="8" rx="4" fill="#2A1F16"></rect>
-          </svg>
-          <span style="margin-top:18px;font-size:19px;font-weight:800;color:#2A1F16;letter-spacing:-.02em">Safe Send</span>
-          <span style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#6A5A48;max-width:132px">files in, sorted — cards wiped with receipts</span>
-          <span style="flex:1"></span>
-          <span style="font-size:34px;font-weight:900;color:#C93B26;letter-spacing:-.03em">03</span>
-          <span style="margin-top:6px;font-size:10px;font-weight:800;color:#C93B26;letter-spacing:.18em">OPEN →</span>
         </span>
       </span>
     </a>
@@ -600,11 +696,19 @@ html,body{overflow-x:hidden}
   <div id="download" style="scroll-margin-top:88px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:34px 0 8px">
     <div style="font-size:11px;font-weight:800;letter-spacing:.24em;color:#6A5A48">DOWNLOAD</div>
     <div style="display:flex;gap:46px;flex-wrap:wrap;justify-content:center">
+      <a href="/sender/" style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#C93B26;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box;text-decoration:none"><span style="font-size:15px;font-weight:800;line-height:1">Sender</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">COMING SOON</span></a>
+      <a href="/director/" style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#7B5EA7;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box;text-decoration:none"><span style="font-size:15px;font-weight:800;line-height:1">Director</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">COMING SOON</span></a>
       <a href="/factory/" style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#E4762B;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box;text-decoration:none"><span style="font-size:15px;font-weight:800;line-height:1">Factory</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">COMING SOON</span></a>
       <a href="/spotter/" style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#1F5CA8;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box;text-decoration:none"><span style="font-size:15px;font-weight:800;line-height:1">Spotter</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">LOCAL · $149</span></a>
-      <a href="/safesend/" style="width:186px;display:flex;flex-direction:column;align-items:center;gap:3px;background:#C93B26;color:#FAF7ED;padding:12px 30px 10px;border-radius:999px;cursor:pointer;box-sizing:border-box;text-decoration:none"><span style="font-size:15px;font-weight:800;line-height:1">Safe Send</span><span style="font-size:9px;font-weight:700;letter-spacing:.18em">COMING SOON</span></a>
     </div>
-    <span style="font-size:13px;color:#6A5A48">or write: <a href="mailto:info@arvideo.io" style="color:#2A1F16;font-weight:600">info@arvideo.io</a></span>
+    <span style="font-size:13px;color:#6A5A48">Want it early? Write to <a href="mailto:info@arvideo.io" style="color:#2A1F16;font-weight:600">info@arvideo.io</a></span>
+  </div>
+</div>
+
+<div style="border-top:3px solid #2A1F16;background:#FAF7ED;padding:56px 64px" data-screen-label="from adam">
+  <div style="max-width:820px;margin:0 auto">
+    <div style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#6A5A48">FROM ADAM</div>
+    <p style="margin: 14px 0 0; font-size: 15.5px; line-height: 1.65; color: #4A3B2C; width: 885px; height: 101px">I started out as a skateboard filmer and now I'm a video professional and a dad with tons of family footage stacking up. I love editing video, but the mountain of footage had grown so overwhelming that I couldn't keep up. I was let down by subscription services that promised to automate the process, so I set out to solve the problem myself. Hopefully these tools can help your workflow, too.&nbsp;</p>
   </div>
 </div>
 
@@ -753,7 +857,7 @@ class Component extends DCLogic {
       promptOp: promptActive ? 1 : .75,
       ghostOp: detOn ? 0 : .35,
       detOp: detOn ? 1 : .3,
-      detState: detOn ? (render === 'star' ? 'PLATE-SOLVE, ON THE LINE' : 'ON THE LINE') : 'IDLE — NOT NEEDED FOR THIS RENDER',
+      detState: detOn ? (render === 'star' ? 'PLATE-SOLVE, RUNNING' : 'RUNNING') : 'IDLE — NOT NEEDED FOR THIS RENDER',
       railA: render === 'star' ? 'HIPPARCOS' : 'LOCAL',
       railB: render === 'star' ? 'IAU' : 'EXPERT',
       railC: render === 'star' ? 'SKYFIELD' : 'COMMITTEE',
