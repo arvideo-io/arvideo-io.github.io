@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>@media (max-width:820px){[data-screen-label] div[style*="1fr 1fr"],
+[data-screen-label] div[style*="1fr 1.1fr"],
+[data-screen-label] div[style*="1.1fr .9fr"],
+[data-screen-label] div[style*="1.05fr .95fr"],
+[data-screen-label] div[style*="1.15fr .85fr"],
+[data-screen-label] div[style*="1.35fr .65fr"],
+[data-screen-label] div[style*="1.02fr .98fr"],
+[data-screen-label] div[style*=".98fr 1.02fr"],
+[data-screen-label] div[style*="repeat(3,1fr)"],
+[data-screen-label] div[style*="repeat(4,1fr)"]{grid-template-columns:1fr!important}[data-screen-label] *{min-width:0}}@media (max-width:560px){[data-screen-label="topbar"]>div{flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px 14px!important}}[data-screen-label="from adam"] p{width:auto!important;height:auto!important;max-width:100%!important}@media (min-width:821px){[data-screen-label="from the line band"] div[style*="height: 520px"]{height:28.12vw!important}}@media (max-width:820px){[data-screen-label="from the line band"] div[style*="height: 520px"]{height:112.5vw!important}}[data-screen-label] div[style*="560px"][style*="300px"]{height:auto!important;aspect-ratio:300/560}</style>
 <link rel="manifest" href="/site.webmanifest"><link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png"><link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <script src="./support.js"></script>
 </head>
@@ -220,9 +230,9 @@ html,body{overflow-x:hidden}
     </div>
     <div style="order:-1;width:100%">
       <div style="border:3px solid #2A1F16;border-radius:14px;overflow:hidden;height:560px;width:300px;max-width:100%;margin:0 auto;position:relative;background:#1C3A63">
-        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-director-out" src="assets/director_out.mp4" shape="rect" fit="contain" placeholder="Drop: Director output (a flat clip from a 360 source)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
+        <x-import component-from-global-scope="video-slot" from="./video-slot.js" id="slot-director-out" src="assets/gui_director.mp4" shape="rect" fit="contain" placeholder="Drop: Director output (a flat clip from a 360 source)" style="position:absolute;inset:0" hint-size="100%,560px"></x-import>
       </div>
-      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">A DIRECTED FLAT CLIP FROM A 360 SOURCE</div>
+      <div style="margin-top:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;color:#6A5A48">DIRECTOR, FRAMING A FOLDER OF 360 CLIPS</div>
     </div>
   </div>
 </div>
