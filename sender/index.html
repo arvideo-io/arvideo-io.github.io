@@ -3,16 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>@media (max-width:820px){[data-screen-label] div[style*="1fr 1fr"],
-[data-screen-label] div[style*="1fr 1.1fr"],
-[data-screen-label] div[style*="1.1fr .9fr"],
-[data-screen-label] div[style*="1.05fr .95fr"],
-[data-screen-label] div[style*="1.15fr .85fr"],
-[data-screen-label] div[style*="1.35fr .65fr"],
-[data-screen-label] div[style*="1.02fr .98fr"],
-[data-screen-label] div[style*=".98fr 1.02fr"],
-[data-screen-label] div[style*="repeat(3,1fr)"],
-[data-screen-label] div[style*="repeat(4,1fr)"]{grid-template-columns:1fr!important}[data-screen-label] div,[data-screen-label] p,[data-screen-label] a{min-width:0}}@media (max-width:560px){[data-screen-label="topbar"]>div{flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px 14px!important}}[data-screen-label="from adam"] p{width:auto!important;height:auto!important;max-width:100%!important}@media (min-width:821px){[data-screen-label="from the line band"] div[style*="height: 520px"]{height:28.12vw!important}}@media (max-width:820px){[data-screen-label="from the line band"] div[style*="520px"]{height:auto!important}[data-screen-label="from the line band"] div[style*="1fr 1fr"]{position:static!important}[data-screen-label="from the line band"] div[style*="1fr 1fr"]>div{aspect-ratio:16/9}}[data-screen-label] div[style*="560px"][style*="300px"]{aspect-ratio:300/560}[data-screen-label] div[style*="560px"][style*="300px"]>div[style*="inset"]{bottom:auto!important;height:auto!important}@media (max-width:820px){[data-screen-label] div[style*="560px"][style*="300px"]{aspect-ratio:auto!important;height:min(58vh,560px)!important;width:100%!important}}@media (max-width:820px){[data-screen-label] div[style*="px 64px"]{padding-left:22px!important;padding-right:22px!important}}@media (max-width:380px){[data-screen-label] span[style*="nowrap"]{white-space:normal!important}}@media (max-width:340px){div[data-screen-label="product strip"][data-screen-label]{grid-template-columns:1fr!important}}div:has(>#slot-home-hero-render){aspect-ratio:1280/720}div:has(>#slot-safesend-gui){aspect-ratio:672/1618}div:has(>#slot-factory-gui){aspect-ratio:672/1266}div:has(>#slot-render-normal){aspect-ratio:960/540}div:has(>#slot-render-diagnostic){aspect-ratio:960/540}div:has(>#slot-spotter-gui){aspect-ratio:672/1266}div:has(>#slot-director-out){aspect-ratio:672/1618}div:has(>#slot-safesend-gui){aspect-ratio:672/1618}div:has(>#slot-spotter-gui){aspect-ratio:672/1266}</style>
+<style>@media (max-width:560px){[data-screen-label="topbar"]>div{flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px 14px!important}}@media (min-width:821px){[data-screen-label="from the line band"] div[style*="height: 520px"]{height:28.12vw!important}}@media (max-width:820px){[data-screen-label="from the line band"] div[style*="520px"]{height:auto!important}[data-screen-label="from the line band"] div[style*="1fr 1fr"]{position:static!important}[data-screen-label="from the line band"] div[style*="1fr 1fr"]>div{aspect-ratio:16/9}}[data-screen-label] div[style*="560px"][style*="300px"]{aspect-ratio:300/560}[data-screen-label] div[style*="560px"][style*="300px"]>div[style*="inset"]{bottom:auto!important;height:auto!important}@media (max-width:820px){[data-screen-label] div[style*="560px"][style*="300px"]{aspect-ratio:auto!important;height:min(58vh,560px)!important;width:100%!important}}@media (max-width:340px){div[data-screen-label="product strip"][data-screen-label]{grid-template-columns:1fr!important}}div:has(>#slot-home-hero-render){aspect-ratio:1280/720}div:has(>#slot-safesend-gui){aspect-ratio:672/1618}div:has(>#slot-factory-gui){aspect-ratio:672/1266}div:has(>#slot-render-normal){aspect-ratio:960/540}div:has(>#slot-render-diagnostic){aspect-ratio:960/540}div:has(>#slot-spotter-gui){aspect-ratio:672/1266}div:has(>#slot-director-out){aspect-ratio:672/1618}div:has(>#slot-safesend-gui){aspect-ratio:672/1618}div:has(>#slot-spotter-gui){aspect-ratio:672/1266}</style>
 <link rel="manifest" href="/site.webmanifest"><link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png"><link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <script src="../support.js"></script>
 </head>
@@ -41,6 +32,24 @@ html,body{overflow-x:hidden}
   [data-screen-label="topbar"]{flex-wrap:wrap!important;gap:10px 16px!important;padding:12px 20px!important}
   [data-screen-label="hero"] h1{font-size:42px!important}
   h2{font-size:31px!important}
+}
+
+/* responsive corrections (2026-08-21): the rules above target the labelled section or
+   its direct child, but the real grids sit deeper, so they never landed and content was
+   clipped off-screen on phones. Matched on VALUE substrings because the runtime rewrites
+   the style attribute at render time. */
+@media (max-width:820px){
+  [data-screen-label] div,[data-screen-label] p,[data-screen-label] a{min-width:0}
+  [data-screen-label] div[style*="1fr 1fr"],[data-screen-label] div[style*="1fr 1.1fr"],
+  [data-screen-label] div[style*="1.1fr .9fr"],[data-screen-label] div[style*="1.05fr .95fr"],
+  [data-screen-label] div[style*="1.15fr .85fr"],[data-screen-label] div[style*="1.35fr .65fr"],
+  [data-screen-label] div[style*="1.02fr .98fr"],[data-screen-label] div[style*=".98fr 1.02fr"],
+  [data-screen-label] div[style*="repeat(3,1fr)"],[data-screen-label] div[style*="repeat(4,1fr)"]
+    {grid-template-columns:1fr!important}
+  [data-screen-label] div[style*="px 64px"]{padding-left:22px!important;padding-right:22px!important}
+}
+@media (max-width:380px){
+  [data-screen-label] span[style*="nowrap"]{white-space:normal!important}
 }
 </style>
 </helmet>
